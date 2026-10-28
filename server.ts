@@ -23,6 +23,7 @@ app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`SRI Fabrics full-stack server running on port ${PORT}`);
+const portNumber = Number(PORT) || 3000;
+app.listen(portNumber, '0.0.0.0', () => {
+  console.log(`SRI Fabrics full-stack server running on http://0.0.0.0:${portNumber}`);
 });
