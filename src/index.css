@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-burgundy: #4a1122;
+    --color-burgundy-dark: #320a16;
+    --color-burgundy-light: #641c32;
+    --color-gold: #dfb15b;
+    --color-gold-light: #f7e6c4;
+    --color-gold-dark: #b88a38;
+    --color-cream: #faf7f2;
+    --color-ivory: #f4eee1;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-cream);
+    color: #1a1617;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', Georgia, serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Remove Right-Side Scrollbar Visibility for Perfect Fit (Full Scrolling Preserved) */
+html,
+body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Subtle gold frame border effect */
+.gold-border-glow {
+  box-shadow: 0 0 0 1px rgba(223, 177, 91, 0.4);
+}
+.gold-border-glow:hover {
+  box-shadow: 0 0 0 1.5px rgba(223, 177, 91, 0.9), 0 8px 24px -4px rgba(74, 17, 34, 0.2);
+}
+
+/* Continuous Seamless Infinite Loop Marquee */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+/* Hide scrollbar for clean presentation */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
