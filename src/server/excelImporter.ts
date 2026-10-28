@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
-import { db } from '../db/index.ts';
+import { db, isDatabaseConfigured } from '../db/index.ts';
 import { fabrics, fabricImages, categories } from '../db/schema.ts';
 import { eq, or } from 'drizzle-orm';
 import { clearCache } from './api.ts';
@@ -10,50 +10,60 @@ const require = createRequire(import.meta.url);
 const XLSX = require('xlsx');
 
 export async function ensureDefaultCategories() {
-  const existingCats = await db.select().from(categories);
-  const existingSlugs = new Set(existingCats.map((c) => c.slug.toLowerCase()));
+  if (!isDatabaseConfigured()) return;
+  try {
+    const existingCats = await db.select().from(categories);
+    const existingSlugs = new Set(existingCats.map((c) => c.slug.toLowerCase()));
 
-  // 1. Ensure SAREES category
-  if (!existingSlugs.has('sarees')) {
-    await db.insert(categories).values({
-      name: 'SAREES',
-      slug: 'sarees',
-      description: 'Regal Banarasi katan silks, tissue organzas, and bordered bridal textiles.',
-      imageUrl: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80',
-      featured: true,
-      sortOrder: 1,
-      isActive: true,
-    });
-  }
+    // 1. Ensure SAREES category
+    if (!existingSlugs.has('sarees')) {
+      await db.insert(categories).values({
+        name: 'SAREES',
+        slug: 'sarees',
+        description: 'Regal Banarasi katan silks, tissue organzas, and bordered bridal textiles.',
+        imageUrl: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80',
+        featured: true,
+        sortOrder: 1,
+        isActive: true,
+      });
+    }
 
-  // 2. Ensure combined TOP + DUPATTA category
-  if (!existingSlugs.has('top-dupatta')) {
-    await db.insert(categories).values({
-      name: 'TOP + DUPATTA',
-      slug: 'top-dupatta',
-      description: 'Coordinated designer top and dupatta ensembles with authentic motifs, matching bottoms, and artisanal borders.',
-      imageUrl: 'https://i.pinimg.com/736x/53/22/48/53224833995ecb3594be3aef6bc95316.jpg',
-      featured: true,
-      sortOrder: 2,
-      isActive: true,
-    });
-  }
+    // 2. Ensure combined TOP + DUPATTA category
+    if (!existingSlugs.has('top-dupatta')) {
+      await db.insert(categories).values({
+        name: 'TOP + DUPATTA',
+        slug: 'top-dupatta',
+        description: 'Coordinated designer top and dupatta ensembles with authentic motifs, matching bottoms, and artisanal borders.',
+        imageUrl: 'https://i.pinimg.com/736x/53/22/48/53224833995ecb3594be3aef6bc95316.jpg',
+        featured: true,
+        sortOrder: 2,
+        isActive: true,
+      });
+    }
 
-  // 3. Ensure FABRICS category
-  if (!existingSlugs.has('fabrics')) {
-    await db.insert(categories).values({
-      name: 'FABRICS',
-      slug: 'fabrics',
-      description: 'Comprehensive catalogue of pure plain, jacquard, embroidered, and dyed yardages.',
-      imageUrl: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80',
-      featured: true,
-      sortOrder: 3,
-      isActive: true,
-    });
+    // 3. Ensure FABRICS category
+    if (!existingSlugs.has('fabrics')) {
+      await db.insert(categories).values({
+        name: 'FABRICS',
+        slug: 'fabrics',
+        description: 'Comprehensive catalogue of pure plain, jacquard, embroidered, and dyed yardages.',
+        imageUrl: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80',
+        featured: true,
+        sortOrder: 3,
+        isActive: true,
+      });
+    }
+  } catch (err: any) {
+    if (err?.code !== 'ECONNREFUSED' && err?.cause?.code !== 'ECONNREFUSED') {
+      console.warn('Note during ensureDefaultCategories:', err?.message);
+    }
   }
 }
 
 export async function importExcelCatalog(customFilePath?: string) {
+  if (!isDatabaseConfigured()) {
+    return { success: true, message: 'Standalone mode active with Excel catalog' };
+  }
   await ensureDefaultCategories();
 
   const filesToImport: string[] = [];

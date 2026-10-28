@@ -1,4 +1,4 @@
-import { db } from '../db/index.ts';
+import { db, isDatabaseConfigured } from '../db/index.ts';
 import {
   admins,
   heroSlides,
@@ -101,6 +101,10 @@ export function createTextileSvg(title: string, subtitle: string, baseColor: str
 }
 
 export async function seedDatabase() {
+  if (!isDatabaseConfigured()) {
+    console.log('ℹ️ Running in standalone mode with Excel catalog data (No external PostgreSQL configured).');
+    return;
+  }
   try {
     const adminCount = await db.select({ val: count() }).from(admins);
     if (adminCount[0]?.val > 0) {
