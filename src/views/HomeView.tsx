@@ -239,14 +239,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* ============================================================ */}
       <section className="bg-[#FAF6EE] py-10 sm:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EAE4D7]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-y-10 lg:gap-0">
-            {/* 1. PREMIUM QUALITY */}
-            <div className="relative flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-              <Diamond className="w-7 h-7 text-[#9E7D3B]" strokeWidth={1.35} />
-              <h3 className="font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wider text-[#141414] mt-3.5 mb-1.5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-10 lg:gap-0">
+            {/* 1. PREMIUM QUALITY (Row 1, Col 1) */}
+            <div className="relative flex flex-col items-center text-center px-3 sm:px-6 lg:px-8 h-full justify-start">
+              <Diamond className="w-6 h-6 sm:w-7 sm:h-7 text-[#9E7D3B] shrink-0" strokeWidth={1.35} />
+              <h3 className="font-sans font-bold text-[11px] sm:text-[13px] lg:text-[14px] uppercase tracking-wider text-[#4a1122] mt-2.5 sm:mt-3.5 mb-1 sm:mb-1.5 min-h-[32px] sm:min-h-[36px] flex items-center justify-center text-center">
                 PREMIUM QUALITY
               </h3>
-              <p className="font-sans text-[12px] sm:text-[13px] text-[#555555] leading-relaxed max-w-[260px] mx-auto">
+              <p className="font-sans text-[11px] sm:text-[12px] lg:text-[13px] text-[#555555] leading-relaxed max-w-[200px] sm:max-w-[260px] mx-auto">
                 Finest fabrics, superior finish and strict thread inspection.
               </p>
               {/* Thin Vertical Gold Divider for Desktop */}
@@ -254,25 +254,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[75px] bg-[#B8934C]/35"
                 aria-hidden="true"
               />
-              {/* Thin Vertical Divider for Tablet (right of col 1) */}
+              {/* Thin Vertical Divider for Mobile & Tablet (right of Col 1) */}
               <div
-                className="hidden md:block lg:hidden absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[65px] bg-[#B8934C]/35"
+                className="block lg:hidden absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[70%] bg-[#B8934C]/25"
                 aria-hidden="true"
               />
-              {/* Thin Horizontal Divider for Mobile */}
+              {/* Thin Horizontal Divider for Mobile & Tablet (below Row 1) */}
               <div
-                className="block md:hidden w-24 h-[1px] bg-[#B8934C]/30 mx-auto mt-6"
+                className="block lg:hidden absolute -bottom-4 left-3 right-3 h-[1px] bg-[#B8934C]/20"
                 aria-hidden="true"
               />
             </div>
 
-            {/* 2. ADVANCED MANUFACTURING */}
-            <div className="relative flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-              <Cog className="w-7 h-7 text-[#9E7D3B]" strokeWidth={1.35} />
-              <h3 className="font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wider text-[#141414] mt-3.5 mb-1.5">
+            {/* 2. ADVANCED MANUFACTURING (Row 1, Col 2) */}
+            <div className="relative flex flex-col items-center text-center px-3 sm:px-6 lg:px-8 h-full justify-start">
+              <Cog className="w-6 h-6 sm:w-7 sm:h-7 text-[#9E7D3B] shrink-0" strokeWidth={1.35} />
+              <h3 className="font-sans font-bold text-[11px] sm:text-[13px] lg:text-[14px] uppercase tracking-wider text-[#4a1122] mt-2.5 sm:mt-3.5 mb-1 sm:mb-1.5 min-h-[32px] sm:min-h-[36px] flex items-center justify-center text-center">
                 ADVANCED MANUFACTURING
               </h3>
-              <p className="font-sans text-[12px] sm:text-[13px] text-[#555555] leading-relaxed max-w-[260px] mx-auto">
+              <p className="font-sans text-[11px] sm:text-[12px] lg:text-[13px] text-[#555555] leading-relaxed max-w-[200px] sm:max-w-[260px] mx-auto">
                 Modern high-speed rapier & Jacquard looms for flawless weave.
               </p>
               {/* Thin Vertical Gold Divider for Desktop */}
@@ -280,20 +280,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[75px] bg-[#B8934C]/35"
                 aria-hidden="true"
               />
-              {/* Thin Horizontal Divider for Mobile */}
+              {/* Thin Horizontal Divider for Mobile & Tablet (below Row 1) */}
               <div
-                className="block md:hidden w-24 h-[1px] bg-[#B8934C]/30 mx-auto mt-6"
+                className="block lg:hidden absolute -bottom-4 left-3 right-3 h-[1px] bg-[#B8934C]/20"
                 aria-hidden="true"
               />
             </div>
 
-            {/* 3. DIRECT MILL STUDIO */}
-            <div className="relative flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-              <FabricLoomIcon className="w-7 h-7 text-[#9E7D3B]" />
-              <h3 className="font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wider text-[#141414] mt-3.5 mb-1.5">
+            {/* 3. DIRECT MILL STUDIO (Row 2, Col 1) */}
+            <div className="relative flex flex-col items-center text-center px-3 sm:px-6 lg:px-8 h-full justify-start">
+              <FabricLoomIcon className="w-6 h-6 sm:w-7 sm:h-7 text-[#9E7D3B] shrink-0" />
+              <h3 className="font-sans font-bold text-[11px] sm:text-[13px] lg:text-[14px] uppercase tracking-wider text-[#4a1122] mt-2.5 sm:mt-3.5 mb-1 sm:mb-1.5 min-h-[32px] sm:min-h-[36px] flex items-center justify-center text-center">
                 DIRECT MILL STUDIO
               </h3>
-              <p className="font-sans text-[12px] sm:text-[13px] text-[#555555] leading-relaxed max-w-[260px] mx-auto">
+              <p className="font-sans text-[11px] sm:text-[12px] lg:text-[13px] text-[#555555] leading-relaxed max-w-[200px] sm:max-w-[260px] mx-auto">
                 Wholesale design collections, bulk dispatch, and dedicated client advisory.
               </p>
               {/* Thin Vertical Gold Divider for Desktop */}
@@ -301,25 +301,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[75px] bg-[#B8934C]/35"
                 aria-hidden="true"
               />
-              {/* Thin Vertical Divider for Tablet (right of col 3) */}
+              {/* Thin Vertical Divider for Mobile & Tablet (right of Col 1) */}
               <div
-                className="hidden md:block lg:hidden absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[65px] bg-[#B8934C]/35"
-                aria-hidden="true"
-              />
-              {/* Thin Horizontal Divider for Mobile */}
-              <div
-                className="block md:hidden w-24 h-[1px] bg-[#B8934C]/30 mx-auto mt-6"
+                className="block lg:hidden absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[70%] bg-[#B8934C]/25"
                 aria-hidden="true"
               />
             </div>
 
-            {/* 4. SUSTAINABLE PRACTICES */}
-            <div className="relative flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-              <Leaf className="w-7 h-7 text-[#9E7D3B]" strokeWidth={1.35} />
-              <h3 className="font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wider text-[#141414] mt-3.5 mb-1.5">
+            {/* 4. SUSTAINABLE PRACTICES (Row 2, Col 2) */}
+            <div className="relative flex flex-col items-center text-center px-3 sm:px-6 lg:px-8 h-full justify-start">
+              <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-[#9E7D3B] shrink-0" strokeWidth={1.35} />
+              <h3 className="font-sans font-bold text-[11px] sm:text-[13px] lg:text-[14px] uppercase tracking-wider text-[#4a1122] mt-2.5 sm:mt-3.5 mb-1 sm:mb-1.5 min-h-[32px] sm:min-h-[36px] flex items-center justify-center text-center">
                 SUSTAINABLE PRACTICES
               </h3>
-              <p className="font-sans text-[12px] sm:text-[13px] text-[#555555] leading-relaxed max-w-[260px] mx-auto">
+              <p className="font-sans text-[11px] sm:text-[12px] lg:text-[13px] text-[#555555] leading-relaxed max-w-[200px] sm:max-w-[260px] mx-auto">
                 AZO-free dyes, zero-liquid discharge, and ethical sourcing.
               </p>
             </div>
@@ -347,7 +342,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
                 EXCLUSIVE MILL COLLECTION
               </span>
-              <h2 className="font-serif text-3xl font-bold text-stone-900">
+              <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
                 FEATURED SAREES
               </h2>
             </div>
@@ -503,7 +498,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.25em]">
                 ABOUT SRI FABRICS
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#4a1122] leading-tight">
                 Crafting Excellence in Every Thread
               </h2>
             </div>
@@ -563,7 +558,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* ============================================================ */}
       <section className="bg-white py-16 px-4 sm:px-8 border-b border-stone-200">
         <div className="max-w-7xl mx-auto text-center space-y-3 mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#4a1122]">
             WHY CHOOSE SRI FABRICS?
           </h2>
           <p className="font-serif italic text-stone-500 text-base">
@@ -576,7 +571,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
               <Diamond className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-stone-900 text-base">Premium Quality</h3>
+            <h3 className="font-serif font-bold text-[#4a1122] text-base">Premium Quality</h3>
             <p className="text-xs text-stone-600 leading-relaxed">
               Only the finest raw mulberry silk, high-twist viscose, and tested zari filaments used in our fabric warps.
             </p>
@@ -586,7 +581,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
               <Sparkles className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-stone-900 text-base">Innovative Designs</h3>
+            <h3 className="font-serif font-bold text-[#4a1122] text-base">Innovative Designs</h3>
             <p className="text-xs text-stone-600 leading-relaxed">
               Seasonal trend analysis, proprietary CAD pattern development, and bespoke Jacquard card punches.
             </p>
@@ -596,7 +591,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
               <Truck className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-stone-900 text-base">Reliable Bulk Supply</h3>
+            <h3 className="font-serif font-bold text-[#4a1122] text-base">Reliable Bulk Supply</h3>
             <p className="text-xs text-stone-600 leading-relaxed">
               Consistently supplying fashion houses, boutique designers, and garment manufacturers on schedule.
             </p>
@@ -606,7 +601,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
               <Leaf className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-stone-900 text-base">Sustainable Approach</h3>
+            <h3 className="font-serif font-bold text-[#4a1122] text-base">Sustainable Approach</h3>
             <p className="text-xs text-stone-600 leading-relaxed">
               Eco-friendly zero-discharge wet processing, biodegradable dyes, and safe working conditions.
             </p>
@@ -624,7 +619,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
                 EXCLUSIVE MILL COLLECTION
               </span>
-              <h2 className="font-serif text-3xl font-bold text-stone-900">
+              <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
                 FEATURED TOP + DUPATTA
               </h2>
             </div>
@@ -749,7 +744,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
                 INDUSTRY INSIGHTS
               </span>
-              <h2 className="font-serif text-3xl font-bold text-stone-900">
+              <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
                 LATEST FROM OUR BLOG
               </h2>
             </div>
@@ -763,37 +758,43 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className={`grid grid-cols-1 ${blogPosts.length <= 2 ? 'md:grid-cols-2 gap-8' : 'sm:grid-cols-2 lg:grid-cols-4 gap-6'} w-full`}>
             {blogPosts.map((post) => (
               <div
                 key={post.id}
                 onClick={() => onNavigate(`/blog/${post.slug}`)}
-                className="group bg-[#faf7f2] rounded-lg overflow-hidden border border-stone-200/80 hover:border-[#dfb15b] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                className="group bg-[#faf7f2] rounded-2xl overflow-hidden border border-stone-200/90 hover:border-[#dfb15b] shadow-xs hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#24060d]">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#24060d]">
                   <img
                     src={post.featuredImageUrl}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3 bg-[#4a1122] text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded border border-[#dfb15b]/40">
+                  <div className="absolute top-3.5 left-3.5 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
                     {post.categoryName || 'FABRICS'}
                   </div>
                 </div>
 
-                <div className="p-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-serif font-bold text-base text-stone-900 group-hover:text-[#4a1122] transition-colors line-clamp-2 leading-snug">
+                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs text-stone-500 font-semibold uppercase tracking-wider">
+                      <span>{post.author || 'SRI FABRIC'}</span>
+                      <span aria-hidden="true" className="text-stone-300">·</span>
+                      <span>7 MIN READ</span>
+                    </div>
+
+                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#4a1122] group-hover:text-[#781934] transition-colors line-clamp-2 leading-snug">
                       {post.title}
                     </h3>
-                    <p className="text-xs text-stone-600 line-clamp-2 mt-2 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed">
                       {post.excerpt}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-stone-200 flex items-center gap-1 text-xs font-semibold text-[#4a1122]">
-                    <span>Read More</span>
+                  <div className="pt-3 border-t border-stone-200/80 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#4a1122]">
+                    <span className="group-hover:text-[#781934] transition-colors">Read Full Guide</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>

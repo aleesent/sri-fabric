@@ -211,7 +211,7 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
     <section className="bg-[#FAF7F2] py-10 sm:py-14 w-full overflow-hidden relative select-none border-b border-stone-200">
       {/* Centered Section Header */}
       <div className="max-w-4xl mx-auto text-center mb-7 sm:mb-9 px-4">
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-stone-900 tracking-tight leading-tight">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#4a1122] tracking-tight leading-tight">
           Shop by collection
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-stone-500 font-normal tracking-wide max-w-xl mx-auto">
@@ -253,7 +253,7 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex gap-3 sm:gap-4.5 overflow-x-auto scrollbar-none py-3 px-3 sm:px-6 lg:px-10 scroll-smooth touch-pan-x w-full"
+          className="flex gap-2.5 sm:gap-4.5 overflow-x-auto scrollbar-none py-3 px-3 sm:px-6 lg:px-10 scroll-smooth touch-pan-x w-full"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {carouselCards.map((item, idx) => {
@@ -263,7 +263,7 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
                 key={uniqueKey}
                 data-category-card
                 onClick={() => handleItemClick(item)}
-                className="group relative cursor-pointer shrink-0 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-stone-300/60 hover:border-[#dfb15b] w-[165px] sm:w-[200px] lg:w-[230px] xl:w-[250px] aspect-[9/16] select-none"
+                className="group relative cursor-pointer shrink-0 rounded-lg sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-stone-300/60 hover:border-[#dfb15b] w-[calc((100vw-34px)/2)] sm:w-[200px] lg:w-[230px] xl:w-[250px] aspect-[9/16] select-none"
               >
                 {/* Large Vertical Rectangular Image */}
                 <div className="absolute inset-0 w-full h-full bg-[#24060d] overflow-hidden">

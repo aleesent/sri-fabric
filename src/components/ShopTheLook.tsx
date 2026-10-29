@@ -57,7 +57,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ item }) => {
 
   return (
     <div
-      className="relative shrink-0 rounded-2xl overflow-hidden bg-black shadow-lg border border-white/10 w-[165px] sm:w-[200px] lg:w-[230px] xl:w-[250px] aspect-[9/16] select-none pointer-events-none"
+      className="relative shrink-0 rounded-lg sm:rounded-2xl overflow-hidden bg-black shadow-lg border border-white/10 w-[calc((100vw-34px)/2)] sm:w-[200px] lg:w-[230px] xl:w-[250px] aspect-[9/16] select-none pointer-events-none"
       aria-hidden="true"
     >
       <div className="absolute inset-0 w-full h-full bg-black overflow-hidden">
@@ -123,7 +123,7 @@ export const ShopTheLook: React.FC<ShopTheLookProps> = () => {
           {duplicatedItems.map((item, idx) => (
             <div
               key={`${item.id}-${idx}`}
-              className="relative shrink-0 rounded-2xl overflow-hidden bg-black shadow-lg border border-white/10 w-[165px] sm:w-[200px] lg:w-[230px] xl:w-[250px] aspect-[9/16] mr-3 sm:mr-4.5 select-none pointer-events-none"
+              className="relative shrink-0 rounded-lg sm:rounded-2xl overflow-hidden bg-black shadow-lg border border-white/10 w-[calc((100vw-34px)/2)] sm:w-[200px] lg:w-[230px] xl:w-[250px] aspect-[9/16] mr-2.5 sm:mr-4 select-none pointer-events-none"
               aria-hidden="true"
             >
               <div className="absolute inset-0 w-full h-full bg-black overflow-hidden">

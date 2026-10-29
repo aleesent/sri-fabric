@@ -626,8 +626,13 @@ apiRouter.get('/blog', async (req: Request, res: Response) => {
         .select()
         .from(blogPosts)
         .where(and(...conditions))
-        .orderBy(desc(blogPosts.publishDate));
-      if (posts.length > 0) return res.json(posts);
+        .orderBy(asc(blogPosts.id));
+
+      if (posts.length > 0) {
+        // Ensure post 1 (B2B Fabric Wholesale Guide) is always positioned first
+        posts.sort((a, b) => (a.id === 1 ? -1 : b.id === 1 ? 1 : a.id - b.id));
+        return res.json(posts);
+      }
     }
     let fallbackPosts = FALLBACK_BLOG_POSTS;
     if (category && typeof category === 'string' && category !== 'all') {

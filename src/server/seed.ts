@@ -15,8 +15,9 @@ import {
   enquiries,
 } from '../db/schema.ts';
 import bcrypt from 'bcryptjs';
-import { count } from 'drizzle-orm';
+import { count, eq } from 'drizzle-orm';
 import { DEFAULT_SHOP_THE_LOOK_ITEMS } from '../data/shopTheLook.ts';
+import { FALLBACK_BLOG_POSTS } from './fallbackData.ts';
 
 // Helper to generate elegant textile SVG data URIs
 export function createTextileSvg(title: string, subtitle: string, baseColor: string, accentColor: string, pattern: 'zari' | 'crepe' | 'sheer' | 'floral' | 'loom'): string {
@@ -108,7 +109,28 @@ export async function seedDatabase() {
   try {
     const adminCount = await db.select({ val: count() }).from(admins);
     if (adminCount[0]?.val > 0) {
-      console.log('Database already seeded. Skipping initial seed.');
+      console.log('Database already seeded. Ensuring latest featured blog post is synced.');
+      try {
+        const firstBlog = FALLBACK_BLOG_POSTS[0];
+        if (firstBlog) {
+          await db
+            .update(blogPosts)
+            .set({
+              title: firstBlog.title,
+              slug: firstBlog.slug,
+              excerpt: firstBlog.excerpt,
+              content: firstBlog.content,
+              featuredImageUrl: firstBlog.featuredImageUrl,
+              categoryName: firstBlog.categoryName || 'SOURCING GUIDE',
+              author: firstBlog.author,
+              tags: firstBlog.tags || 'Surat Textile, B2B Wholesale, Digital Printing',
+              publishDate: new Date(),
+            })
+            .where(eq(blogPosts.id, 1));
+        }
+      } catch (err) {
+        console.warn('Could not update seeded blog post 1:', err);
+      }
       return;
     }
 
@@ -317,76 +339,254 @@ export async function seedDatabase() {
 
     await db.insert(blogPosts).values([
       {
-        title: 'Top 5 Fabric Trends for 2026',
-        slug: 'top-5-fabric-trends-for-2026',
-        excerpt: 'From high-sheen liquid chinons to sustainable heritage silks, discover the key materials dominating international runways this season.',
-        content: `As global luxury fashion embraces fluid movement and tactile depth, designers are gravitating toward fabrics that bridge historical artistry with modern lightness.
-        
-1. Fluid Viscose Chinon: The resurgence of high-twist crepe yarns provides natural stretch and drape without synthetic elastane.
-2. Lightweight Kadwa Zari: Modernized Banarasi motifs with featherweight silk warps allow voluminous silhouettes without excessive weight.
-3. Micro-Filament Sheers: Translucent organzas infused with soft foil printing offer architectural volume for sleeves and tiered hems.
-4. Jewel-Toned Raw Silks: Deep wines, emeralds, and peacock blues are replacing subdued pastels for celebratory and evening wardrobes.
-5. Zero-Discharge Sustainable Dyeing: International fashion houses now require certified clean supply chains, prioritizing OEKO-TEX verified textile mills.`,
-        featuredImageUrl: blog1Img,
+        title: 'B2B Fabric Wholesale in Surat: A Complete Guide for Textile Buyers',
+        slug: 'b2b-fabric-wholesale-in-surat-guide',
+        excerpt: 'Surat is a well-known centre of India\'s textile industry. Discover how to source B2B fabrics, custom digital printing, and wholesale production with confidence.',
+        content: `Surat is a well-known centre of India's textile industry, attracting garment manufacturers, fashion labels, boutiques, textile traders and businesses looking for fabric sourcing and textile production services. For companies searching for **B2B fabric wholesale in Surat**, selecting the right supplier is an important step towards building a reliable and efficient supply chain.
+
+Whether you manufacture ethnic wear, develop contemporary clothing collections, source materials for garment production or work in interior design, the right textile partner can help you coordinate fabric requirements, design development, printing and production planning.
+
+At **SRI FABRIC**, our focus includes digital fabric printing, textile design and customised textile solutions for fashion, interiors and other creative applications. Our approach is centred on understanding the buyer's requirements and discussing suitable solutions for each project.
+
+## Why Is Surat an Important Destination for Textile Sourcing?
+
+Surat has an established textile trading and production ecosystem. Businesses sourcing textiles can explore suppliers and services associated with fabric trading, printing, processing and garment manufacturing.
+
+For B2B buyers, the advantage of working with a suitable textile supplier is not simply access to material. It is the ability to discuss the requirements of the finished product, including fabric selection, print design, intended application and order planning.
+
+For example, a garment manufacturer may require printed fabric for a new clothing collection, while an interior business may need a customised textile design for a decorative project. These businesses have different requirements, making supplier selection an important part of the sourcing process.
+
+## What Should You Look for in a B2B Fabric Wholesale Supplier?
+
+### 1. Fabric Selection and Suitability
+
+The correct fabric depends on the intended application. Fabrics for tunics, dresses, sarees, tops, sportswear and home furnishings can require different compositions, constructions and performance characteristics.
+
+Before confirming an order, explain how the material will be used. Discuss fabric composition, width, colour, texture, drape, finishing and other specifications relevant to the final product.
+
+At SRI FABRIC, fabric requirements can be discussed according to the buyer's project rather than assuming that one specification will suit every application.
+
+### 2. Custom Fabric Design and Printing
+
+Businesses developing original collections may require exclusive artwork, repeat patterns, customised colour combinations or print designs prepared for specific products.
+
+Digital fabric printing can support a range of design possibilities on compatible textiles. The final result depends on the fabric, printing equipment, ink system, artwork preparation and finishing process.
+
+If your business needs customised prints, discuss the artwork, fabric compatibility, design dimensions and sample approval process before placing a bulk order.
+
+### 3. Quality Checks and Sample Approval
+
+A fabric sample allows buyers to evaluate the material and its suitability before committing to a larger production requirement.
+
+Depending on the project, review the fabric's feel, appearance, width, print clarity, colour reproduction and finishing. For repeat orders, agree on the approved sample and written specifications that will guide production.
+
+Clear reference standards are especially useful for businesses that manufacture garments or supply finished products to their own customers.
+
+### 4. Transparent Quotations
+
+When comparing fabric wholesalers in Surat, evaluate quotations using equivalent specifications.
+
+Ask whether the price includes fabric, printing, finishing, packaging or other services. Confirm the applicable quantity requirements (MOQs), delivery timelines, payment terms, and applicable taxes or shipping.
+
+At SRI FABRIC, we provide transparent, itemised quotations so buyers have complete clarity on costs before production begins.
+
+### 5. Production Planning and Reliable Lead Times
+
+Reliable turnaround is vital in apparel manufacturing where collection launches and retail delivery windows cannot slip. A competent supplier communicates realistic lead times for sampling, printing, and bulk dispatch.
+
+Discuss production schedules, batch consistency, and packing standards early to keep your supply chain predictable and stress-free.
+
+## The Advantages of Digital Fabric Printing for Modern Brands
+
+Digital textile printing has transformed how fashion labels, boutique creators, and interior designers source fabrics. Key advantages include:
+
+- **Design Flexibility:** Complex motifs, photorealistic gradients, and unlimited colourways without rotary screen limitations.
+- **Lower Initial Commitments:** Ideal for test capsules, seasonal designer drops, and made-to-order collections.
+- **Fast Sampling:** Rapid prototype strikes allow garment makers to verify hand-feel, drape, and visual impact before bulk runs.
+- **Colour Fastness & Detail:** Modern reactive and pigment inks deliver rich penetration and wash-resistant durability on compatible fabrics.
+
+## Who Can Benefit from B2B Fabric Sourcing with SRI FABRIC?
+
+SRI FABRIC partners with diverse B2B clients across India and internationally:
+
+- **Garment Manufacturers:** Sourcing custom printed yardages and coordinating cuts for ethnic wear, Western ensembles, and resort wear.
+- **Fashion Designers & Boutique Brands:** Seeking bespoke prints, premium Mulberry silks, viscose chinons, organzas, and georgettes.
+- **Home & Interior Decorators:** Custom printed upholstery, drapery yardages, and decorative textiles.
+- **Textile Wholesalers & Exporters:** Seeking steady production capacity, strict GSM consistency, and verified quality standards.
+
+## How to Prepare Your Sourcing Enquiry
+
+To help us provide the most accurate recommendation and quotation, prepare the following details:
+
+1. **Fabric Type / Base Material:** (e.g., Pure Silk, Viscose Chinon, Organza, Crepe, Georgette, Cotton, Rayon)
+2. **Intended Application:** (e.g., Saree, Kurta Set, Dress, Eveningwear, Furnishing)
+3. **Print or Dyeing Requirement:** (Solid dyed, digital print, custom artwork, or mill design)
+4. **Target Quantity & Delivery Timeline:** Required metres/yardage and project deadline
+5. **Sample Requirement:** Whether you require swatch swatches or sample strike-offs prior to bulk order
+
+## Frequently Asked Questions (FAQs)
+
+**Q: Where is SRI FABRIC located in Surat?**
+A: We are based in the heart of Surat's textile ecosystem in Gujarat, India. You can connect with our textile team directly via phone or WhatsApp at +91 9875198837.
+
+**Q: Can I request fabric samples or strike-offs before placing a bulk order?**
+A: Yes. We recommend sample evaluation for quality verification, print clarity, and hand-feel before committing to bulk production.
+
+**Q: What fabrics are compatible with your digital printing?**
+A: We work with a wide range of natural, viscose, and blended fabrics including Mulberry silk, chinon, organza, georgette, modal, and cotton.
+
+**Q: Do you ship outside Surat and internationally?**
+A: Yes, we ship across all Indian states and provide export logistics support for international textile buyers with complete documentation.
+
+---
+
+### Partner with SRI FABRIC for B2B Textile Sourcing in Surat
+
+Connect with our sourcing specialists today to discuss your fabric requirements, request swatch samples, or obtain a project quotation.
+
+**Contact & WhatsApp:** +91 9875198837  
+**Email:** contact@srifabrics.com  
+**Location:** Ring Road, Surat, Gujarat 395002, India`,
+        featuredImageUrl: '/blog1.png',
         categoryId: bCatFabrics.id,
-        categoryName: 'FABRICS',
-        author: 'SRI Fabrics Editorial Team',
-        tags: 'Trends, Silks, Chinon, 2026 Fashion',
-        seoTitle: 'Top 5 Fabric Trends for 2026 | SRI Fabrics Blog',
-        seoDescription: 'Explore the definitive textile trends shaping fashion collections in 2026, from fluid chinons to eco-conscious silks.',
+        categoryName: 'SOURCING GUIDE',
+        author: 'SRI FABRIC Sourcing Team',
+        tags: 'Surat Textile, B2B Wholesale, Digital Printing, Fabric Sourcing, Garment Manufacturing',
+        seoTitle: 'B2B Fabric Wholesale in Surat: A Complete Guide for Textile Buyers | SRI FABRIC',
+        seoDescription: 'Comprehensive guide for fashion labels, garment manufacturers, and textile buyers on sourcing B2B wholesale fabrics, digital printing, and sample approval in Surat.',
         featured: true,
         status: 'PUBLISHED',
       },
       {
-        title: 'How to Choose the Right Fabric for Your Dress?',
-        slug: 'how-to-choose-the-right-fabric-for-your-dress',
-        excerpt: 'A comprehensive technical guide for garment designers on balancing GSM, hand-feel, stretch, and drape.',
-        content: `Selecting the right fabric is the single most critical decision in apparel manufacturing. Even a masterfully cut pattern will collapse if paired with an incompatible weave.
-        
-- Draping vs Structure: For column dresses and bias cuts, prioritize fabrics with high yarn twist like 60-80 GSM Chinon or Georgette. For structured A-line skirts or trench gowns, opt for 120+ GSM Katan Silk or Brocade.
-- Breathability & Climate: Natural protein fibers like Mulberry Silk offer superior thermo-regulation compared to cheap polyesters.
-- Dyeing & Color Fastness: Always specify whether garments will undergo post-assembly wash or piece dyeing to ensure zero shrinkage.`,
-        featuredImageUrl: blog2Img,
+        title: 'Digital Fabric Printing in Surat: From Creative Design to Finished Textile',
+        slug: 'digital-fabric-printing-surat-creative-design-to-finished-textile',
+        excerpt: 'Every memorable textile design begins with an idea. Discover the end-to-end digital printing workflow in Surat from design to finished fabric.',
+        content: `Every memorable textile design begins with an idea. It might be a floral pattern for a fashion collection, a contemporary print for a clothing label, or customised artwork for an interior design project. Turning that idea into a finished textile requires the right combination of artwork preparation, fabric selection, printing technology and finishing.
+
+For businesses searching for **digital fabric printing in Surat**, understanding this process helps make better decisions about design development, material suitability and bulk production.
+
+SRI FABRIC specialises in digital fabric printing and textile design solutions for fashion, interiors and marketing-related applications. The company's service approach focuses on bringing creative requirements and practical textile production needs together.
+
+## What Is Digital Fabric Printing?
+
+Digital fabric printing is a method of transferring digital artwork onto compatible textile materials using specialised printing equipment and an appropriate ink system.
+
+The process allows designs to be prepared digitally and reproduced on fabric. Depending on the equipment, fabric composition, ink technology and production setup, digital printing can support intricate patterns, multiple colours and customised artwork.
+
+However, the final appearance and performance are not determined by the printer alone. Fabric selection, colour management, pretreatment where required, printing settings and finishing all contribute to the result.
+
+This is why a textile printing project should begin with a clear understanding of the intended finished product.
+
+## How Does the Digital Fabric Printing Process Work?
+
+### Step 1: Artwork and Design Development
+
+The first stage is preparing the design.
+
+Artwork may include floral prints, abstract patterns, geometric designs, illustrations, brand graphics or custom repeat patterns developed for a particular collection.
+
+Before printing, consider:
+
+- The intended print size and pattern repeat.
+- The required colour palette.
+- The scale of motifs and decorative details.
+- The fabric width and printable area.
+- Whether the design must align across a continuous length of fabric.
+
+High-resolution artwork and correct file preparation can help avoid problems during production.
+
+For repeating patterns, the design should be checked carefully to ensure that the repeat appears intentional and consistent.
+
+### Step 2: Fabric Selection
+
+Not every fabric is suitable for every printing technology.
+
+The textile composition, surface texture, weight (GSM) and drape all determine the choice of inks and printing method:
+
+- **Natural & Semi-Natural Fabrics:** Mulberry silks, viscose, chinon, modal, cotton and organza yield rich colour depth and luxurious hand-feel when printed with reactive inks.
+- **Synthetics & Blends:** Polyester crepes, georgettes, satins and chiffon perform exceptionally well with dye-sublimation and disperse printing, ensuring sharp saturation and wash durability.
+
+At SRI FABRIC, we assist designers in selecting base fabrics that harmonize with both the artwork's visual style and the finished garment's intended drape.
+
+### Step 3: Fabric Pre-Treatment & Preparation
+
+Before ink application, fabrics must undergo meticulous preparation:
+
+- **Scouring & Bleaching:** Purifying raw grey fabrics to remove natural oils, sizing agents and impurities.
+- **Chemical Padding:** Padding the cloth with specialized coatings to optimize dye acceptance, sharpen edge definition, and prevent ink migration or bleeding during printing.
+
+### Step 4: Digital Printing Execution
+
+Once primed, the textile is fed through precision industrial digital textile printers:
+
+- **Direct-to-Fabric (Reactive / Pigment Printing):** Ink droplets are micro-injected directly into the fiber core, ideal for natural luxury textiles.
+- **Dye-Sublimation Transfer:** Prints on transfer paper are sublimated into synthetic fibers under regulated temperature and pressure.
+- **Color Matching & Proofing:** Micro-calibrated printheads reproduce gradients, intricate filigrees and multi-tonal shades with continuous tone consistency.
+
+### Step 5: Post-Processing & Fixation
+
+Post-printing treatment seals the vibrant pigments permanently into the fibers:
+
+- **High-Temperature Steaming (Ager):** Molecularly binds reactive dyes into natural yarn filaments.
+- **Washing & Soaping:** Industrial tensionless washing ranges wash away unfixed dye residues, ensuring certified skin-safety and wash-fastness.
+- **Stentering & Drying:** Straightening the grain lines and restoring fabric dimensions to specified width and GSM.
+
+### Step 6: Finishing & Quality Inspection
+
+- **Softening & Calendering:** Giving fabrics the desired hand-feel, whether silky-soft, crisp, or lustrous.
+- **Zero-Defect Inspection:** Full-length roll inspection on illuminated audit tables to identify any banding, colour deviation, or weave flaws before packing.
+
+## Why Choose Digital Fabric Printing Over Traditional Screen Printing?
+
+1. **Unlimited Colours & Intricate Gradients:** No screen count restrictions—reproduce photographic visuals, subtle ombre fades and multi-tonal floral details effortlessly.
+2. **Low Minimum Order Quantities (MOQs):** Perfect for boutique capsule drops, emerging designers and made-to-order collections without heavy inventory risk.
+3. **Rapid Sampling & Quick Turnaround:** Strike-off approvals within 24 to 48 hours accelerate your garment launch cycles.
+4. **Eco-Friendly Manufacturing:** Eliminates excessive water and dye waste, supporting cleaner, modern textile production.
+
+## Key Applications of Digitally Printed Fabrics
+
+- **Ethnic Wear & Couture:** Designer Sarees, Top + Dupatta ensembles, Anarkalis and Lehengas.
+- **Contemporary Apparel:** Dresses, resort wear, tunics, silk scarves and shirts.
+- **Interiors & Furnishings:** Bespoke drapery, upholstery, cushion covers and wall tapestries.
+- **Corporate & Custom Merchandising:** Promotional fabrics, branded event textiles and scarves.
+
+## Tips for Textile Buyers & Designers Sourcing in Surat
+
+- **Provide High-Resolution Files:** Submit vector artwork or TIFF/PSD files at minimum 300 DPI in RGB mode with embedded colour profiles.
+- **Confirm Fabric Drape & GSM Early:** Request sample swatches to evaluate the fabric's weight and drape for your garment silhouette.
+- **Approve Strike-Offs Before Bulk Runs:** Verify colour saturation, motif scale and repeat alignment on the actual base textile before signing off on mass production.
+- **Coordinate Order Planning & Timelines:** Communicate packaging, roll packing and freight delivery requirements with your supplier in advance.
+
+## Frequently Asked Questions (FAQs)
+
+**Q: What is the turnaround time for digital fabric printing at SRI FABRIC?**  
+A: Sample strike-offs are typically processed within 24 to 48 hours. Bulk production timelines depend on yardage but generally range from 3 to 7 business days.
+
+**Q: Can I print my own custom patterns and proprietary designs?**  
+A: Absolutely. We maintain strict non-disclosure and intellectual property protection for designers, fashion houses and brands. Your artwork is never reused or shared.
+
+**Q: Which fabric bases are available for digital printing?**  
+A: We print on pure mulberry silk, viscose chinon, organza, crepe, georgette, modal, satin, combed cotton and custom poly-viscose blends.
+
+**Q: Do you offer PAN-India shipping and international export?**  
+A: Yes. SRI FABRIC ships across all Indian states and manages export freight documentation for buyers worldwide.
+
+---
+
+### Partner with SRI FABRIC for Digital Fabric Printing in Surat
+
+Whether you are launching a bespoke fashion line, producing boutique ethnic wear, or sourcing commercial printed fabrics, SRI FABRIC is your trusted manufacturing partner in Surat.
+
+**Contact & WhatsApp:** +91 9875198837  
+**Email:** contact@srifabrics.com  
+**Location:** Ring Road, Surat, Gujarat 395002, India`,
+        featuredImageUrl: '/blog2.png',
         categoryId: bCatTrends.id,
-        categoryName: 'TIPS',
-        author: 'Vikram Mehta, Head of Textile Engineering',
-        tags: 'Design Tips, Sourcing, Dressmaking',
-        seoTitle: 'How to Choose the Right Fabric for Your Dress | Guide',
-        seoDescription: 'Technical guide on selecting fabrics for evening dresses, bridal gowns, and luxury apparel.',
-        featured: true,
-        status: 'PUBLISHED',
-      },
-      {
-        title: 'The Beauty of Banarasi Weaves: History & Modern Revival',
-        slug: 'the-beauty-of-banarasi-weaves',
-        excerpt: 'Delving into the timeless art of Kadwa jaal, golden meenakari, and the master artisans preserving India’s finest weave.',
-        content: `Banarasi weaving represents one of the world's most intricate artistic disciplines. Unlike machine prints that mimic the surface, authentic Kadwa weaving interlocks every single gold zari motif into the fabric warp without loose float threads at the back.
-        
-At SRI Fabrics, our master weaving clusters blend centuries of generational technique with state-of-the-art electronic Jacquard control, achieving unmatched precision and uniform tension across hundreds of metres of yardage.`,
-        featuredImageUrl: blog3Img,
-        categoryId: bCatCollections.id,
-        categoryName: 'COLLECTIONS',
-        author: 'Ananya Roy, Heritage Textile Specialist',
-        tags: 'Banarasi, Heritage, Zari, Handloom',
-        seoTitle: 'The Beauty of Banarasi Weaves | SRI Fabrics Heritage',
-        seoDescription: 'Discover the craft, history, and modern manufacturing behind authentic Banarasi brocade fabrics.',
-        featured: true,
-        status: 'PUBLISHED',
-      },
-      {
-        title: 'Inside Our Manufacturing Process',
-        slug: 'inside-our-manufacturing-process',
-        excerpt: 'Take a virtual walk through our Surat weaving mills, where heritage craft meets high-precision German & Swiss looms.',
-        content: `From raw yarn inspection under polarized light to automated steam calendering, every bolt of fabric produced at SRI Fabrics undergoes a rigorous 5-stage manufacturing cycle.
-        
-Our closed-loop water treatment facility recycles 94% of process water, while our laboratory conducts 4-point ASTM D5430 fabric inspections before custom roll packaging.`,
-        featuredImageUrl: blog4Img,
-        categoryId: bCatMfg.id,
-        categoryName: 'MANUFACTURING',
-        author: 'Production Directorate, SRI Fabrics',
-        tags: 'Manufacturing, Quality Control, Surat Mills',
-        seoTitle: 'Inside Our Manufacturing Process | SRI Fabrics',
-        seoDescription: 'A technical tour of the high-speed rapier looms and zero-discharge dye facilities at SRI Fabrics.',
+        categoryName: 'DIGITAL PRINTING',
+        author: 'SRI FABRIC Design & Production Team',
+        tags: 'Digital Fabric Printing, Surat Textile, Custom Fabric, Textile Design, Fabric Printing Guide',
+        seoTitle: 'Digital Fabric Printing in Surat: From Creative Design to Finished Textile | SRI FABRIC',
+        seoDescription: 'Discover the full digital fabric printing process in Surat—from digital artwork and fabric selection to precision direct and sublimation printing.',
         featured: true,
         status: 'PUBLISHED',
       },
