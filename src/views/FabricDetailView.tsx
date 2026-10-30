@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Fabric } from '../types/index.ts';
 import { FabricCard } from '../components/FabricCard.tsx';
 import { Phone, Send, Image as ImageIcon } from 'lucide-react';
+import { SEOHead } from '../components/SEOHead.tsx';
 
 interface FabricDetailViewProps {
   slug: string;
@@ -96,7 +97,7 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
       index: idx,
       url,
       hasImage: !!url,
-      alt: url ? `${fabric.name} - View ${idx + 1}` : `View ${idx + 1} Placeholder`,
+      alt: url ? `${fabric.name} - Wholesale Saree Fabric Mill Surat View ${idx + 1}` : `View ${idx + 1} Placeholder`,
     };
   });
 
@@ -122,8 +123,67 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
   const whatsappText = `Hello! I would like to enquire about ${fabric.name} (${categoryName}) on SRI FABRICS: ${productUrl}. Please share wholesale pricing, availability, and bulk order details.`;
   const whatsappHref = `https://wa.me/919875198837?text=${encodeURIComponent(whatsappText)}`;
 
+  const productJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: fabric.name,
+      image: fabric.primaryImageUrl ? [`https://srifabrics.com${fabric.primaryImageUrl}`] : undefined,
+      description: fabric.description || `Wholesale ${fabric.name} (${categoryName}) direct from Surat looms. Sourcing partner to retailers and fashion labels worldwide.`,
+      sku: designId,
+      brand: {
+        '@type': 'Brand',
+        name: 'SRI FABRIC',
+      },
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'INR',
+        price: (fabric as any).price || '0.00',
+        priceValidUntil: '2028-12-31',
+        availability: 'https://schema.org/InStock',
+        url: `https://srifabrics.com/fabrics/${slug}`,
+        seller: {
+          '@type': 'Organization',
+          name: 'SRI FABRIC',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://srifabrics.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: categoryName,
+          item: `https://srifabrics.com${categoryPath}`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: fabric.name,
+          item: `https://srifabrics.com/fabrics/${slug}`,
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="bg-white min-h-[calc(100vh-120px)] pt-3 sm:pt-4 lg:pt-5 pb-12 sm:pb-16">
+      <SEOHead
+        title={`${fabric.name} | Wholesale Fabric & Saree Mill Surat`}
+        description={`Wholesale ${fabric.name} (${categoryName}) direct from SRI FABRIC Surat. Premium quality, ready stock & custom bulk orders. Inquire at +91 9875198837.`}
+        canonicalPath={`/fabrics/${fabric.slug}`}
+        ogImage={fabric.primaryImageUrl || '/slides/hero-fabrics-home.jpg'}
+        ogType="product"
+        jsonLd={productJsonLd}
+      />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Exact Reformation-Matched 3-Part Product Detail Container - Fits in Desktop Viewport Without Scroll */}
         <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8 xl:gap-10 lg:h-[calc(100vh-140px)] lg:max-h-[calc(100vh-140px)]">

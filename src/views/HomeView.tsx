@@ -26,6 +26,8 @@ import {
   MapPin,
   Sparkles,
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 interface HomeViewProps {
@@ -84,6 +86,34 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [newsletterMsg, setNewsletterMsg] = useState('');
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const homeFaqs = [
+    {
+      q: 'Why is SRI FABRIC regarded as a leading fabric wholesaler and manufacturer in Surat?',
+      a: 'Operating in the heart of Surat’s historic Ring Road Textile Market, SRI FABRIC combines high-speed European rapier & Jacquard looms with industrial-grade digital textile printing. We bridge mill-floor manufacturing with transparent B2B wholesale supply, offering bridal couture houses, garment manufacturers, and textile retailers direct mill pricing, certified colorfastness, and dependable delivery schedules.',
+    },
+    {
+      q: 'What is the Minimum Order Quantity (MOQ) for wholesale fabrics, sarees, and suits?',
+      a: 'For catalogued ready-stock fabrics and running saree collections, our standard MOQ starts from just 50 to 100 meters per design or 10–20 sarees per set. For bespoke mill-woven Jacquard patterns or custom digital print production, MOQs are customized to your project requirements with fast-turnaround lab dips and sample swatches.',
+    },
+    {
+      q: 'Can fashion designers, boutiques, and apparel brands request physical fabric sample swatches?',
+      a: 'Yes. We provide curated swatch folders, feeler cuts, and digital strike-offs delivered directly to your design studio or production facility across India and worldwide. Swatches enable you to verify thread density, GSM weight, hand-feel, drape, and luster before committing to commercial bulk rolls.',
+    },
+    {
+      q: 'What wholesale fabrics and ethnic collections are available at SRI FABRIC?',
+      a: 'Our Surat mill produces wholesale bridal and festive Sarees, pure & blend Viscose Chinon, Organza, Modal Chanderi, Georgette, premium Crepe, digital printed Dupattas, unstitched Top + Dupatta suits, and custom Jacquard woven textiles. All fabrics are woven with AZO-free dyes and tested zari filaments.',
+    },
+    {
+      q: 'How fast are wholesale textile consignments dispatched from Surat to other cities?',
+      a: 'Surat is connected to India’s most robust road transport, air freight, and container port logistics. Bulk dispatches typically arrive in Mumbai within 24 hours, Ahmedabad in 24 hours, Delhi and Jaipur in 48 hours, and Bengaluru and Chennai in 48 to 72 hours with comprehensive consignment tracking.',
+    },
+    {
+      q: 'How can wholesale buyers submit bulk enquiries or schedule a mill visit in Surat?',
+      a: 'Wholesale buyers can submit instant RFQs through our online portal, connect with our B2B textile advisory desk via WhatsApp at +91 98751 98837, or arrange a private viewing at our Surat showroom and loom facility.',
+    },
+  ];
 
   // Fetch or revalidate dynamic content in background
   const fetchAllHomeData = (forceFresh = false) => {
@@ -323,12 +353,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* ============================================================ */}
-      {/* 3. CATEGORY CARDS SECTION: SHOP BY COLLECTION CAROUSEL       */}
+      {/* SHOP THE LOOK — CONTINUOUS MOVING VIDEO MARQUEE SECTION       */}
       {/* ============================================================ */}
-      <ShopByCollection
+      <ShopTheLook
         onNavigate={onNavigate}
-        onViewFabric={onViewFabric}
-        products={allFabrics}
+        onRequestEnquiry={onRequestEnquiry}
       />
 
       {/* ============================================================ */}
@@ -648,11 +677,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* ============================================================ */}
-      {/* SHOP THE LOOK — CONTINUOUS MOVING VIDEO MARQUEE SECTION       */}
+      {/* CATEGORY CARDS SECTION: SHOP BY COLLECTION CAROUSEL          */}
       {/* ============================================================ */}
-      <ShopTheLook
+      <ShopByCollection
         onNavigate={onNavigate}
-        onRequestEnquiry={onRequestEnquiry}
+        onViewFabric={onViewFabric}
+        products={allFabrics}
       />
 
       {/* ============================================================ */}
@@ -800,6 +830,162 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 9B. B2B TEXTILE WHOLESALE SURAT — AUTHORITY & CAPABILITIES   */}
+      {/* ============================================================ */}
+      <section className="bg-[#FAF7F2] py-20 px-4 sm:px-8 border-b border-stone-200">
+        <div className="max-w-7xl mx-auto space-y-16">
+          {/* Header */}
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#4a1122]/5 border border-[#4a1122]/15 text-[#4a1122] rounded-full text-xs font-semibold uppercase tracking-[0.2em]">
+              <span>Direct Mill Manufacturer & Wholesaler</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#4a1122] tracking-tight leading-[1.15]">
+              Premier Fabric Wholesaler & Textile Manufacturer in Surat
+            </h2>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Surat produces over 40% of India’s man-made and blended textiles. At SRI FABRIC, we stand at the nexus of heritage craftsmanship and modern high-speed rapier and Jacquard weaving. Supplying fashion houses, boutique retailers, garment exporters, and wholesale traders with certified luxury textiles directly from our Surat looms.
+            </p>
+          </div>
+
+          {/* 3 Value Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl border border-stone-200/90 shadow-xs space-y-4 hover:border-[#dfb15b] transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-[#4a1122] text-[#dfb15b] flex items-center justify-center font-bold text-lg font-serif">
+                01
+              </div>
+              <h3 className="font-serif font-bold text-xl text-[#4a1122]">
+                Ready-Stock & Made-to-Order
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                Maintain high-turnover retail inventory with our thousands of running meters in ready stock, or collaborate with our textile engineers to develop exclusive custom weaves, prints, and dye palettes tailored to your brand's seasonal collection.
+              </p>
+              <div className="pt-2 text-xs font-bold text-[#4a1122] uppercase tracking-wider flex items-center gap-1.5">
+                <span>Flexible MOQs for Growing Brands</span>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-stone-200/90 shadow-xs space-y-4 hover:border-[#dfb15b] transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-[#4a1122] text-[#dfb15b] flex items-center justify-center font-bold text-lg font-serif">
+                02
+              </div>
+              <h3 className="font-serif font-bold text-xl text-[#4a1122]">
+                Industrial Digital Printing
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                Our cutting-edge Italian and Japanese digital textile printers achieve photo-realistic gradient precision (up to 2400 DPI) across pure Chinon, Organza, Georgette, and Dola Silk, with reactive and pigment inks certified zero-discharge.
+              </p>
+              <div className="pt-2 text-xs font-bold text-[#4a1122] uppercase tracking-wider flex items-center gap-1.5">
+                <span>Colorfast & Wash-Durable Tested</span>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-stone-200/90 shadow-xs space-y-4 hover:border-[#dfb15b] transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-[#4a1122] text-[#dfb15b] flex items-center justify-center font-bold text-lg font-serif">
+                03
+              </div>
+              <h3 className="font-serif font-bold text-xl text-[#4a1122]">
+                Pan-India & Global Logistics
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                Direct road transport dispatches to Mumbai, Ahmedabad, Delhi NCR, Jaipur, Kolkata, and Bengaluru within 24 to 72 hours. Comprehensive international export packaging with complete phytosanitary and export documentation for worldwide buyers.
+              </p>
+              <div className="pt-2 text-xs font-bold text-[#4a1122] uppercase tracking-wider flex items-center gap-1.5">
+                <span>Doorstep Transport & Port Clearance</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Sourcing Hubs Link Bar */}
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#dfb15b]/40 shadow-xs space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span className="text-[#4a1122] text-xs font-bold uppercase tracking-[0.2em]">Strategic B2B Sourcing Hubs</span>
+                <h3 className="font-serif text-2xl font-bold text-[#4a1122]">Explore Regional Wholesale Textile Supply</h3>
+              </div>
+              <button
+                onClick={() => onNavigate('/contact')}
+                className="self-start sm:self-auto px-5 py-2.5 bg-[#4a1122] text-[#f7eedf] text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#781934] transition-colors shrink-0"
+              >
+                Request Swatches & Price List
+              </button>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+              <button
+                onClick={() => onNavigate('/fabric-wholesale-surat')}
+                className="p-3 text-left bg-[#FAF7F2] rounded-xl hover:bg-[#4a1122] hover:text-[#f7eedf] transition-all group border border-stone-200"
+              >
+                <div className="text-xs font-bold text-[#4a1122] group-hover:text-white">Surat Head Mill</div>
+                <div className="text-[11px] text-stone-500 group-hover:text-stone-300">Ring Road Market Hub</div>
+              </button>
+              <button
+                onClick={() => onNavigate('/wholesale-fabric-mumbai')}
+                className="p-3 text-left bg-[#FAF7F2] rounded-xl hover:bg-[#4a1122] hover:text-[#f7eedf] transition-all group border border-stone-200"
+              >
+                <div className="text-xs font-bold text-[#4a1122] group-hover:text-white">Mumbai Couture</div>
+                <div className="text-[11px] text-stone-500 group-hover:text-stone-300">24-Hr Express Dispatch</div>
+              </button>
+              <button
+                onClick={() => onNavigate('/b2b-textile-delhi')}
+                className="p-3 text-left bg-[#FAF7F2] rounded-xl hover:bg-[#4a1122] hover:text-[#f7eedf] transition-all group border border-stone-200"
+              >
+                <div className="text-xs font-bold text-[#4a1122] group-hover:text-white">Delhi NCR Boutiques</div>
+                <div className="text-[11px] text-stone-500 group-hover:text-stone-300">Chandni Chowk & Okhla</div>
+              </button>
+              <button
+                onClick={() => onNavigate('/wholesale-fabric-jaipur')}
+                className="p-3 text-left bg-[#FAF7F2] rounded-xl hover:bg-[#4a1122] hover:text-[#f7eedf] transition-all group border border-stone-200"
+              >
+                <div className="text-xs font-bold text-[#4a1122] group-hover:text-white">Jaipur Ethnic Wear</div>
+                <div className="text-[11px] text-stone-500 group-hover:text-stone-300">Block & Festive Bases</div>
+              </button>
+            </div>
+          </div>
+
+          {/* Interactive FAQ Accordion */}
+          <div className="space-y-6 pt-4">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.25em]">
+                FREQUENTLY ASKED QUESTIONS
+              </span>
+              <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
+                Wholesale Textile Procurement & Mill Inquiries
+              </h2>
+              <p className="text-xs sm:text-sm text-stone-600">
+                Transparent answers for garment manufacturers, boutique retailers, and international textile importers.
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto divide-y divide-stone-200 border border-stone-200 bg-white rounded-2xl shadow-xs overflow-hidden">
+              {homeFaqs.map((faq, idx) => {
+                const isOpen = openFaqIndex === idx;
+                return (
+                  <div key={idx} className="transition-colors">
+                    <button
+                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                      className="w-full py-5 px-6 sm:px-8 text-left flex items-center justify-between gap-4 hover:bg-stone-50/80 transition-colors"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="font-serif text-base sm:text-lg font-bold text-[#4a1122]">
+                        {faq.q}
+                      </span>
+                      <span className="text-[#4a1122] shrink-0 p-1 rounded-full bg-stone-100">
+                        {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      </span>
+                    </button>
+                    {isOpen && (
+                      <div className="px-6 sm:px-8 pb-6 pt-1 text-xs sm:text-sm text-stone-600 leading-relaxed bg-stone-50/30">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

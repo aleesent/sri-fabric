@@ -12,6 +12,7 @@ import {
   Check,
   ChevronRight,
 } from 'lucide-react';
+import { SEOHead } from '../components/SEOHead.tsx';
 
 interface BlogViewProps {
   initialSlug?: string;
@@ -231,8 +232,65 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
   if (selectedPost) {
     const otherPost = posts.find((p) => p.id !== selectedPost.id);
 
+    const articleJsonLd = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: selectedPost.title,
+        description: selectedPost.excerpt,
+        image: selectedPost.featuredImageUrl ? [`https://srifabrics.com${selectedPost.featuredImageUrl}`] : ['https://srifabrics.com/slides/hero-fabrics-home.jpg'],
+        datePublished: selectedPost.publishDate || '2026-01-15T09:00:00+05:30',
+        dateModified: selectedPost.publishDate || '2026-03-20T10:00:00+05:30',
+        author: {
+          '@type': 'Organization',
+          name: 'SRI FABRIC Textile Advisory Team',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'SRI FABRIC',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://srifabrics.com/logo.png',
+          },
+        },
+        mainEntityOfPage: `https://srifabrics.com/blog/${selectedPost.slug}`,
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://srifabrics.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Blog',
+            item: 'https://srifabrics.com/blog',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: selectedPost.title,
+            item: `https://srifabrics.com/blog/${selectedPost.slug}`,
+          },
+        ],
+      },
+    ];
+
     return (
       <div className="bg-[#faf7f2] min-h-screen">
+        <SEOHead
+          title={`${selectedPost.title} | SRI FABRIC Surat`}
+          description={selectedPost.excerpt}
+          canonicalPath={`/blog/${selectedPost.slug}`}
+          ogImage={selectedPost.featuredImageUrl || '/slides/hero-fabrics-home.jpg'}
+          ogType="article"
+          jsonLd={articleJsonLd}
+        />
         {/* Full-width flexible wrapper adjusting to wide viewports without side dead-space */}
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 sm:py-10">
           

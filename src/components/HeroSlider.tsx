@@ -13,7 +13,7 @@ interface HeroSliderProps {
 const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
   fabrics: [
     {
-      id: 101,
+      id: 5,
       kicker: 'DIRECT MILL TEXTILE SOURCING',
       heading: 'WHOLESALE LUXURY FABRIC YARDAGES',
       subheading: 'Supplying pure mulberry silks, organic muslins, fluid chinons and georgettes directly to couturiers and garment manufacturers.',
@@ -23,7 +23,7 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
       buttonText2: 'REQUEST SAMPLE SWATCH',
       buttonLink2: '/enquiry',
       imageUrl: '/slides/hero-fabrics-5.jpg',
-      mobileImageUrl: '/slides/hero-fabrics-5.jpg',
+      mobileImageUrl: '/slides/hero-mobile-5.jpg',
       targetPage: 'fabrics',
       sortOrder: 1,
       isActive: true,
@@ -47,7 +47,7 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
   ],
   sarees: [
     {
-      id: 201,
+      id: 7,
       kicker: 'HERITAGE WEAVES & BRIDAL COUTURE',
       heading: 'REGAL DOLA SILK & KATAN SAREES',
       subheading: 'Opulent zari kadwa borders, featherlight tissue drapes, and heritage motifs crafted for bridal & festive royalty.',
@@ -57,7 +57,7 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
       buttonText2: 'REQUEST SAMPLE SWATCH',
       buttonLink2: '/enquiry',
       imageUrl: '/slides/hero-sarees-7.jpg',
-      mobileImageUrl: '/slides/hero-sarees-7.jpg',
+      mobileImageUrl: '/slides/hero-mobile-7.jpg',
       targetPage: 'sarees',
       sortOrder: 1,
       isActive: true,
@@ -81,7 +81,7 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
   ],
   'kurti-set': [
     {
-      id: 301,
+      id: 21,
       kicker: 'ETHNIC CO-ORDS & SUIT LENGTHS',
       heading: 'ORGANIC MUSLIN & COTTON KURTI SETS',
       subheading: 'Butter-soft combed cotton, featherlight muslin, and breathable natural blends engineered for premium designer kurti sets.',
@@ -90,8 +90,8 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
       buttonLink1: '/kurti-set',
       buttonText2: 'REQUEST SAMPLE SWATCH',
       buttonLink2: '/enquiry',
-      imageUrl: '/slides/hero-kurti-home.jpg',
-      mobileImageUrl: '/slides/hero-kurti-home.jpg',
+      imageUrl: '/slides/hero-desktop-21.jpg',
+      mobileImageUrl: '/slides/hero-mobile-21.jpg',
       targetPage: 'kurti-set',
       sortOrder: 1,
       isActive: true,
@@ -115,23 +115,7 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
   ],
   home: [
     {
-      id: 1,
-      kicker: 'PREMIUM TEXTILES',
-      heading: 'FABRICS FOR A BRIGHTER TOMORROW',
-      subheading: 'Exceptional quality, timeless designs and premium fabrics for every occasion.',
-      description: 'Partnering with couture designers, global fashion houses, and garment manufacturers worldwide.',
-      buttonText1: 'EXPLORE COLLECTIONS',
-      buttonLink1: '/fabrics',
-      buttonText2: 'REQUEST AN ENQUIRY',
-      buttonLink2: '/enquiry',
-      imageUrl: '/slides/hero-fabrics-home.jpg',
-      mobileImageUrl: '/slides/hero-fabrics-home.jpg',
-      targetPage: 'home',
-      sortOrder: 1,
-      isActive: true,
-    },
-    {
-      id: 101,
+      id: 5,
       kicker: 'DIRECT MILL TEXTILE SOURCING',
       heading: 'WHOLESALE LUXURY FABRIC YARDAGES',
       subheading: 'Supplying pure mulberry silks, organic muslins, fluid chinons and georgettes directly to couturiers and garment manufacturers.',
@@ -141,13 +125,13 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
       buttonText2: 'REQUEST SAMPLE SWATCH',
       buttonLink2: '/enquiry',
       imageUrl: '/slides/hero-fabrics-5.jpg',
-      mobileImageUrl: '/slides/hero-fabrics-5.jpg',
+      mobileImageUrl: '/slides/hero-mobile-5.jpg',
       targetPage: 'fabrics',
       sortOrder: 2,
       isActive: true,
     },
     {
-      id: 201,
+      id: 7,
       kicker: 'HERITAGE WEAVES & BRIDAL COUTURE',
       heading: 'REGAL DOLA SILK & KATAN SAREES',
       subheading: 'Opulent zari kadwa borders, featherlight tissue drapes, and heritage motifs crafted for bridal & festive royalty.',
@@ -157,41 +141,41 @@ const FALLBACK_SLIDES: Record<string, HeroSlide[]> = {
       buttonText2: 'REQUEST SAMPLE SWATCH',
       buttonLink2: '/enquiry',
       imageUrl: '/slides/hero-sarees-7.jpg',
-      mobileImageUrl: '/slides/hero-sarees-7.jpg',
+      mobileImageUrl: '/slides/hero-mobile-7.jpg',
       targetPage: 'sarees',
       sortOrder: 3,
       isActive: true,
     },
     {
-      id: 301,
-      kicker: 'ETHNIC CO-ORDS & SUIT LENGTHS',
-      heading: 'ORGANIC MUSLIN & COTTON KURTI SETS',
-      subheading: 'Butter-soft combed cotton, featherlight muslin, and breathable natural blends engineered for premium designer kurti sets.',
-      description: 'Pre-shrunk, skin-friendly textiles with high colorfastness and luxurious hand-feel for 2-piece and 3-piece ensembles.',
-      buttonText1: 'EXPLORE KURTI FABRICS',
-      buttonLink1: '/kurti-set',
-      buttonText2: 'REQUEST SAMPLE SWATCH',
+      id: 20,
+      kicker: 'PREMIUM TEXTILES',
+      heading: 'FABRICS FOR A BRIGHTER TOMORROW',
+      subheading: 'Exceptional quality, timeless designs and premium fabrics for every occasion.',
+      description: 'Partnering with couture designers, global fashion houses, and garment manufacturers worldwide.',
+      buttonText1: 'EXPLORE COLLECTIONS',
+      buttonLink1: '/fabrics',
+      buttonText2: 'REQUEST AN ENQUIRY',
       buttonLink2: '/enquiry',
-      imageUrl: '/slides/hero-kurti-home.jpg',
-      mobileImageUrl: '/slides/hero-kurti-home.jpg',
-      targetPage: 'kurti-set',
-      sortOrder: 4,
+      imageUrl: '/slides/hero-desktop-20.jpg',
+      mobileImageUrl: '/slides/hero-mobile-20.jpg',
+      targetPage: 'home',
+      sortOrder: 3,
       isActive: true,
     },
     {
-      id: 302,
-      kicker: 'FESTIVE SILHOUETTES & ANARKALIS',
-      heading: 'ROYAL CHINON & VISCOSE ENSEMBLES',
-      subheading: 'Fluid, lustrous drapery with graceful twirl and shimmer — tailored for embroidered kurtis, palazzos, and dupattas.',
-      description: 'Engineered specifically for heavy thread embroidery, mirror embellishment, and luxury pret labels.',
-      buttonText1: 'VIEW ENSEMBLE FABRICS',
-      buttonLink1: '/kurti-set',
-      buttonText2: 'REQUEST AN ENQUIRY',
+      id: 21,
+      kicker: 'ETHNIC CO-ORDS & SUIT LENGTHS',
+      heading: 'FABRICS FOR A BRIGHTER TOMORROW',
+      subheading: 'Supplying pure mulberry silks, organic muslins, fluid chinons and georgettes directly to couturiers.',
+      description: 'Pre-shrunk, skin-friendly textiles with high colorfastness and luxurious hand-feel.',
+      buttonText1: 'EXPLORE COLLECTIONS',
+      buttonLink1: '/fabrics',
+      buttonText2: 'REQUEST SAMPLE SWATCH',
       buttonLink2: '/enquiry',
-      imageUrl: '/slides/hero-kurti-2.jpg',
-      mobileImageUrl: '/slides/hero-kurti-2.jpg',
+      imageUrl: '/slides/hero-desktop-21.jpg',
+      mobileImageUrl: '/slides/hero-mobile-21.jpg',
       targetPage: 'kurti-set',
-      sortOrder: 5,
+      sortOrder: 4,
       isActive: true,
     },
   ],
@@ -205,7 +189,7 @@ const preloadedImageInstances = new Set<HTMLImageElement>();
 
 // Helper to eagerly preload images into browser cache for instant, zero-delay display
 const preloadSlideImages = (slideList: HeroSlide[]) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !Array.isArray(slideList)) return;
   slideList.forEach((slide) => {
     if (slide.imageUrl && !slide.imageUrl.startsWith('data:')) {
       const img = new Image();
@@ -231,65 +215,41 @@ const SlideImageRenderer: React.FC<{
       ? '/slides/hero-sarees-7.jpg'
       : '/slides/hero-fabrics-5.jpg';
 
-  const [hasMobileError, setHasMobileError] = useState(false);
-  const [hasImgError, setHasImgError] = useState(false);
+  const [mobileError, setMobileError] = useState(false);
+  const [desktopError, setDesktopError] = useState(false);
 
-  // Reset error states whenever the slide URLs change
   useEffect(() => {
-    setHasMobileError(false);
-    setHasImgError(false);
+    setMobileError(false);
+    setDesktopError(false);
   }, [slide.imageUrl, slide.mobileImageUrl]);
 
-  const hasDistinctMobile = Boolean(
-    slide.mobileImageUrl &&
-    slide.mobileImageUrl.trim() &&
-    slide.mobileImageUrl !== slide.imageUrl &&
-    !hasMobileError
-  );
-
-  // If mobile source failed or is absent, attempt desktop image before resorting to default static asset
-  const resolvedDesktopSrc = hasImgError
-    ? defaultFallback
-    : (slide.imageUrl || defaultFallback);
+  const mobileSrc = (!mobileError && slide.mobileImageUrl) || slide.imageUrl || defaultFallback;
+  const desktopSrc = (!desktopError && slide.imageUrl) || slide.mobileImageUrl || defaultFallback;
 
   return (
     <div className="w-full h-full relative">
-      {hasDistinctMobile ? (
-        <picture className="w-full h-full block">
-          <source
-            media="(max-width: 768px)"
-            srcSet={slide.mobileImageUrl!}
-          />
-          <img
-            src={resolvedDesktopSrc}
-            alt={slide.heading || 'Sri Fabrics Luxury Textiles'}
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            decoding="async"
-            onError={() => {
-              // First unmount mobile source to try desktop image
-              if (!hasMobileError) {
-                setHasMobileError(true);
-              } else {
-                setHasImgError(true);
-              }
-            }}
-          />
-        </picture>
-      ) : (
-        <img
-          src={
-            hasImgError
-              ? defaultFallback
-              : (slide.mobileImageUrl && !hasMobileError ? slide.mobileImageUrl : slide.imageUrl) || defaultFallback
-          }
-          alt={slide.heading || 'Sri Fabrics Luxury Textiles'}
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-          decoding="async"
-          onError={() => setHasImgError(true)}
-        />
-      )}
+      {/* Mobile view image (screen < 768px): clean portrait mobile image with instant rendering */}
+      <img
+        src={mobileSrc}
+        alt={slide.heading || 'Sri Fabrics Luxury Textiles'}
+        className="block md:hidden w-full h-full object-cover object-center"
+        loading={isPriority ? 'eager' : 'lazy'}
+        decoding="async"
+        onError={() => {
+          if (!mobileError) setMobileError(true);
+        }}
+      />
+      {/* Desktop view image (screen >= 768px): clean landscape desktop image */}
+      <img
+        src={desktopSrc}
+        alt={slide.heading || 'Sri Fabrics Luxury Textiles'}
+        className="hidden md:block w-full h-full object-cover object-center"
+        loading={isPriority ? 'eager' : 'lazy'}
+        decoding="async"
+        onError={() => {
+          if (!desktopError) setDesktopError(true);
+        }}
+      />
     </div>
   );
 };
@@ -305,18 +265,22 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   // Initialize with cached slides or instant fallback so the slide renders instantaneously (0ms paint)
   const [slides, setSlides] = useState<HeroSlide[]>(() => {
     const cached = slidesCache[targetPage];
-    const initial = (cached && cached.length > 0) ? cached : (FALLBACK_SLIDES[targetPage] || FALLBACK_SLIDES.home);
+    const initial = cached && cached.length > 0 ? cached : FALLBACK_SLIDES[targetPage] || FALLBACK_SLIDES.home;
     preloadSlideImages(initial);
     return initial;
   });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
 
-  // Keep track of the current slides JSON to prevent unnecessary re-renders
+  // Touch tracking refs to accurately differentiate swipes from clicks
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
+  const isSwipeRef = useRef(false);
+
+  // Keep track of current slides JSON to prevent unnecessary re-renders
   const currentJsonRef = useRef<string>(JSON.stringify(slides));
 
-  // Eagerly preload fallback slides for all pages immediately
+  // Eagerly preload fallback slides immediately
   useEffect(() => {
     Object.values(FALLBACK_SLIDES).forEach((list) => preloadSlideImages(list));
   }, []);
@@ -389,25 +353,23 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     window.addEventListener('hero-slides-updated', handleInstantUpdate);
     window.addEventListener('storage', handleStorageChange);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleInstantUpdate);
 
-    // Periodic background sync every 8 seconds so any update appears automatically without refresh
+    // Background sync every 15 seconds
     const syncInterval = setInterval(() => {
       if (document.visibilityState === 'visible') {
         fetchSlides(false);
       }
-    }, 8000);
+    }, 15000);
 
     return () => {
       window.removeEventListener('hero-slides-updated', handleInstantUpdate);
       window.removeEventListener('storage', handleStorageChange);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleInstantUpdate);
       clearInterval(syncInterval);
     };
   }, [targetPage, fetchSlides]);
 
-  // Automatic rotation with strict 2-second delay per slide (unconditional across all sections)
+  // Automatic rotation with strict 2-second delay per slide
   useEffect(() => {
     if (slides.length <= 1) return;
     const timer = setTimeout(() => {
@@ -424,9 +386,13 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       const dest =
         activeSlide.buttonLink1 ||
         (activeSlide.targetPage && activeSlide.targetPage !== 'home' ? `/${activeSlide.targetPage}` : null) ||
-        (activeSlide.sortOrder === 1 ? '/fabrics' :
-         activeSlide.sortOrder === 2 ? '/sarees' :
-         activeSlide.sortOrder === 3 ? '/kurti-set' : '/fabrics');
+        (activeSlide.sortOrder === 1
+          ? '/fabrics'
+          : activeSlide.sortOrder === 2
+          ? '/sarees'
+          : activeSlide.sortOrder === 3
+          ? '/kurti-set'
+          : '/fabrics');
 
       if (dest) {
         if (dest.startsWith('#')) {
@@ -452,18 +418,63 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsHovered(true);
+    touchStartXRef.current = e.targetTouches[0].clientX;
+    touchStartYRef.current = e.targetTouches[0].clientY;
+    isSwipeRef.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+    const diffX = Math.abs(e.targetTouches[0].clientX - touchStartXRef.current);
+    const diffY = Math.abs(e.targetTouches[0].clientY - touchStartYRef.current);
+    if (diffX > 10 || diffY > 10) {
+      isSwipeRef.current = true;
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setIsHovered(false);
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchStartXRef.current - touchEndX;
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+
+    if (Math.abs(diffX) > 40 && slides.length > 1) {
+      if (diffX > 0) {
+        // Swiped left -> next slide
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      } else {
+        // Swiped right -> prev slide
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      }
+    }
+  };
+
+  const handleClick = () => {
+    if (isSwipeRef.current) {
+      // Ignore click if this gesture was a touch swipe
+      isSwipeRef.current = false;
+      return;
+    }
+    handleSlideClick();
+  };
+
   // Section height styling:
-  // Engineered so the hero slide fits in the screen viewport perfectly on all devices
+  // Mobile: fits cleanly in the mobile viewport accounting for mobile header
+  // Desktop: matches full screen luxury editorial banner
   const heightClasses =
     variant === 'compact'
-      ? 'min-h-[420px] sm:min-h-[460px] lg:h-[calc(75vh-80px)] lg:min-h-[480px]'
-      : 'h-[calc(100svh-90px)] sm:h-[calc(100svh-96px)] lg:h-[calc(100vh-98px)] max-h-[calc(100vh-98px)] min-h-[440px]';
+      ? 'min-h-[380px] sm:min-h-[440px] lg:h-[calc(75vh-80px)] lg:min-h-[480px]'
+      : 'h-[calc(100vh-125px)] sm:h-[calc(100vh-96px)] lg:h-[calc(100vh-98px)] min-h-[400px] sm:min-h-[440px] max-h-[820px]';
 
   return (
     <section
       role="button"
       tabIndex={0}
-      onClick={handleSlideClick}
+      onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -474,26 +485,11 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       title="Click to explore collection"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onTouchStart={(e) => {
-        setIsHovered(true);
-        setTouchStart(e.targetTouches[0].clientX);
-      }}
-      onTouchEnd={(e) => {
-        setIsHovered(false);
-        if (touchStart === null) return;
-        const touchEnd = e.changedTouches[0].clientX;
-        const diff = touchStart - touchEnd;
-        if (diff > 50 && slides.length > 1) {
-          // Swiped left -> next slide
-          setCurrentSlide((prev) => (prev + 1) % slides.length);
-        } else if (diff < -50 && slides.length > 1) {
-          // Swiped right -> prev slide
-          setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-        }
-        setTouchStart(null);
-      }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* Background Images for all slides with smooth cross-fade (Fixed, no zoom/scale animation, 100% visible) */}
+      {/* Background Images for all slides with smooth cross-fade */}
       <div className="absolute inset-0 z-0">
         {slides.map((slide, idx) => (
           <div
@@ -511,22 +507,23 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
         ))}
       </div>
 
-      {/* Subtle Slide Indicators at bottom center (pure visual dots, non-button) */}
+      {/* Subtle Slide Indicators at bottom center */}
       {slides.length > 1 && (
-        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5">
+        <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 pointer-events-auto">
           {slides.map((_, idx) => (
-            <span
+            <button
               key={idx}
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentSlide(idx);
               }}
-              className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              className={`h-2 sm:h-2 rounded-full transition-all duration-300 cursor-pointer p-0 focus:outline-none ${
                 idx === currentSlide
-                  ? 'w-7 sm:w-9 bg-[#dfb15b] shadow-md shadow-black/50'
-                  : 'w-2 sm:w-2.5 bg-white/50 hover:bg-white/80'
+                  ? 'w-7 sm:w-9 bg-[#dfb15b] shadow-md shadow-black/60'
+                  : 'w-2 sm:w-2.5 bg-white/60 hover:bg-white/90'
               }`}
-              title={`Slide ${idx + 1}`}
+              aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
         </div>
@@ -534,4 +531,3 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     </section>
   );
 };
-

@@ -132,28 +132,22 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
     const singleSetWidth = el.scrollWidth / 2;
     if (singleSetWidth <= 0) return;
 
-    // If scrolled past 1.5 sets, wrap backward by 1 full set seamlessly
-    if (el.scrollLeft >= singleSetWidth * 1.5) {
+    // If scrolled past 1 full set, wrap backward seamlessly
+    if (el.scrollLeft >= singleSetWidth) {
       el.scrollLeft -= singleSetWidth;
-    } else if (el.scrollLeft <= singleSetWidth * 0.1) {
-      // If scrolled before 0.1 set, wrap forward by 1 full set seamlessly
+    } else if (el.scrollLeft <= 0 && isUserInteractingRef.current) {
       el.scrollLeft += singleSetWidth;
     }
   }, []);
 
-  // Initialize scroll position to center of set on mount
+  // Ensure scroll position is cleanly initialized at start on mount
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-
-    const timer = setTimeout(() => {
-      const singleSetWidth = el.scrollWidth / 2;
-      if (singleSetWidth > 0 && el.scrollLeft < 10) {
-        el.scrollLeft = singleSetWidth * 0.5;
-      }
-    }, 150);
-
-    return () => clearTimeout(timer);
+    // Keep at start for mobile render so first collection cards are immediately visible
+    if (!isUserInteractingRef.current && el.scrollLeft > 1000) {
+      el.scrollLeft = 0;
+    }
   }, [randomItems]);
 
   // Smooth auto-advancing interval: advances 1 card every 3.2s
@@ -253,7 +247,7 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex gap-2.5 sm:gap-4.5 overflow-x-auto scrollbar-none py-3 px-3 sm:px-6 lg:px-10 scroll-smooth touch-pan-x w-full"
+          className="flex gap-2.5 sm:gap-4.5 overflow-x-auto scrollbar-none py-3 px-3 sm:px-6 lg:px-10 touch-pan-x w-full"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {carouselCards.map((item, idx) => {

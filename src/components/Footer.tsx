@@ -253,6 +253,100 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
+        {/* B2B Wholesale Sourcing Hubs & Regional Distribution Grid */}
+        <div className="py-10 border-b border-white/5 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h4 className="text-[#dfb15b] font-serif text-xs tracking-[0.25em] uppercase font-semibold">
+              B2B Wholesale Textile Sourcing Hubs
+            </h4>
+            <span className="text-[11px] text-stone-400">
+              Direct Mill Supply Across India & Export Consignments
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-[11px]">
+            <button
+              onClick={() => onNavigate('/fabric-wholesale-surat')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Surat Mill</div>
+              <div className="text-[10px] text-stone-400">Ring Road Hub</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/textile-wholesale-gujarat')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Gujarat State</div>
+              <div className="text-[10px] text-stone-400">Wholesale Network</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/wholesale-fabric-mumbai')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Mumbai</div>
+              <div className="text-[10px] text-stone-400">Couture & Wholesale</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/b2b-textile-delhi')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Delhi NCR</div>
+              <div className="text-[10px] text-stone-400">Fashion Boutiques</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/b2b-fabric-ahmedabad')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Ahmedabad</div>
+              <div className="text-[10px] text-stone-400">Apparel Hub</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/wholesale-fabric-jaipur')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Jaipur</div>
+              <div className="text-[10px] text-stone-400">Ethnic Wear Bases</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/fabric-wholesale-bengaluru')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Bengaluru</div>
+              <div className="text-[10px] text-stone-400">Design Studios</div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('/b2b-textile-india')}
+              className="p-2.5 bg-white/[0.03] hover:bg-[#dfb15b]/10 hover:text-[#dfb15b] border border-white/5 hover:border-[#dfb15b]/40 rounded-lg text-left transition-all group"
+            >
+              <div className="font-semibold text-stone-200 group-hover:text-[#dfb15b]">Pan-India</div>
+              <div className="text-[10px] text-stone-400">Bulk Sourcing</div>
+            </button>
+          </div>
+
+          {/* Core SEO Keyword Link Row */}
+          <div className="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-stone-400">
+            <span className="text-stone-300 font-medium">Popular Wholesale Searches:</span>
+            <button onClick={() => onNavigate('/sarees')} className="hover:text-[#dfb15b] transition-colors">Wholesale Sarees Surat</button>
+            <span className="text-white/10">|</span>
+            <button onClick={() => onNavigate('/fabrics')} className="hover:text-[#dfb15b] transition-colors">Digital Printed Fabrics</button>
+            <span className="text-white/10">|</span>
+            <button onClick={() => onNavigate('/top-dupatta')} className="hover:text-[#dfb15b] transition-colors">Kurti & Suit Fabrics</button>
+            <span className="text-white/10">|</span>
+            <button onClick={() => onNavigate('/manufacturing')} className="hover:text-[#dfb15b] transition-colors">Rapier & Jacquard Looms</button>
+            <span className="text-white/10">|</span>
+            <button onClick={() => onNavigate('/global-reach')} className="hover:text-[#dfb15b] transition-colors">Textile Exports</button>
+            <span className="text-white/10">|</span>
+            <button onClick={() => onNavigate('/blog')} className="hover:text-[#dfb15b] transition-colors">Textile Insights & Guides</button>
+          </div>
+        </div>
+
         {/* Bottom Legal & Identity Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-stone-500 gap-4">
           <p>© {new Date().getFullYear()} SRI Fabrics. All rights reserved.</p>
