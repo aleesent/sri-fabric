@@ -70,12 +70,14 @@ export async function importExcelCatalog(customFilePath?: string) {
   if (customFilePath) {
     filesToImport.push(customFilePath);
   } else {
-    // Check both catalog template files
+    // Check all three catalog template files
     const file1 = path.resolve(process.cwd(), 'public/SRI_FABRIC1_Product_Catalog_Template.xlsx');
     const file0 = path.resolve(process.cwd(), 'public/SRI_FABRIC_Product_Catalog_Template.xlsx');
+    const file3 = path.resolve(process.cwd(), 'public/SRI_FABRIC3_Product_Catalog_Template.xlsx');
 
     if (fs.existsSync(file0)) filesToImport.push(file0);
     if (fs.existsSync(file1)) filesToImport.push(file1);
+    if (fs.existsSync(file3)) filesToImport.push(file3);
   }
 
   if (filesToImport.length === 0) {
@@ -119,12 +121,13 @@ export async function importExcelCatalog(customFilePath?: string) {
     if (!rows || rows.length === 0) continue;
 
     const isTopDupattaFile = filePath.includes('SRI_FABRIC1');
+    const isFabricFile = filePath.includes('SRI_FABRIC3');
 
     for (let i = 0; i < rows.length; i++) {
       const row = rows[i];
       const title = (row['Product Title'] || '').trim();
       const desc = (row['Product Description'] || '').trim();
-      const catName = (row['Category'] || '').trim() || (isTopDupattaFile ? 'Top + Dupatta' : 'Saree');
+      const catName = (row['Category'] || '').trim() || (isFabricFile ? 'Fabric' : (isTopDupattaFile ? 'Top + Dupatta' : 'Saree'));
       const img1 = (row['Image Link 1'] || '').trim();
       const img2 = (row['Image Link 2'] || '').trim();
       const img3 = (row['Image Link 3'] || '').trim();
@@ -134,11 +137,18 @@ export async function importExcelCatalog(customFilePath?: string) {
         continue;
       }
 
-      const isTD =
+      const isFabric =
+        isFabricFile ||
+        catName.toLowerCase() === 'fabric' ||
+        catName.toLowerCase().includes('printed fabric') ||
+        catName.toLowerCase().includes('designer fabric');
+
+      const isTD = !isFabric && (
         catName.toLowerCase().includes('top') ||
         catName.toLowerCase().includes('dupatta') ||
         title.toLowerCase().includes('kurta set') ||
-        isTopDupattaFile;
+        isTopDupattaFile
+      );
 
       const categoryId = findCategoryId(catName);
       const baseSlug = title
@@ -147,13 +157,13 @@ export async function importExcelCatalog(customFilePath?: string) {
         .replace(/(^-|-$)/g, '');
       const slug = baseSlug;
 
-      const designPrefix = isTD ? 'SRI-TD' : 'SRI-SAR';
+      const designPrefix = isFabric ? 'SRI-FAB' : (isTD ? 'SRI-TD' : 'SRI-SAR');
       const designId = `${designPrefix}-${String(1001 + i).padStart(4, '0')}`;
-      const fabricType = isTD ? 'Top + Dupatta' : 'Saree';
+      const fabricType = isFabric ? 'Printed Fabric' : (isTD ? 'Top + Dupatta' : 'Saree');
       const gsm = 'Customizable per buyer requirement';
-      const width = isTD
-        ? 'Standard Kurta & Dupatta Cut (44" Width)'
-        : '44 Inches (Standard Saree Width)';
+      const width = isFabric
+        ? '44" / 58" (Customizable Width)'
+        : (isTD ? 'Standard Kurta & Dupatta Cut (44" Width)' : '44 Inches (Standard Saree Width)');
       const moq = 'Wholesale Bulk Orders & Custom Yardages on Request';
 
       // Check existing by slug or title
@@ -164,6 +174,7 @@ export async function importExcelCatalog(customFilePath?: string) {
         .limit(1);
 
       let fabricId: number;
+      const sortOrder = isFabric ? 200 + i + 1 : (isTD ? 100 + i + 1 : i + 1);
 
       if (existing.length > 0) {
         fabricId = existing[0].id;
@@ -179,9 +190,10 @@ export async function importExcelCatalog(customFilePath?: string) {
             gsm,
             width,
             moq,
-            keywords: designId,
+            keywords: `${designId} ${catName} ${fabricType}`,
+            featured: true,
             isActive: true,
-            sortOrder: isTD ? 100 + i + 1 : i + 1,
+            sortOrder,
           })
           .where(eq(fabrics.id, fabricId));
         totalUpdated++;
@@ -199,9 +211,10 @@ export async function importExcelCatalog(customFilePath?: string) {
             gsm,
             width,
             moq,
-            keywords: designId,
+            keywords: `${designId} ${catName} ${fabricType}`,
+            featured: true,
             isActive: true,
-            sortOrder: isTD ? 100 + i + 1 : i + 1,
+            sortOrder,
           })
           .returning({ id: fabrics.id });
         fabricId = newFabric.id;

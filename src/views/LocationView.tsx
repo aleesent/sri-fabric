@@ -132,6 +132,7 @@ export const LocationView: React.FC<LocationViewProps> = ({
       <SEOHead
         title={location.metaTitle}
         description={location.metaDescription}
+        keywords={`wholesale fabrics ${location.name}, wholesale sarees ${location.name}, fabric manufacturer ${location.name}, B2B textile supplier ${location.name}, Surat to ${location.name} fabric freight, direct mill sourcing, ${location.keyProducts.slice(0, 3).join(', ')}`}
         canonicalPath={`/locations/${location.slug}`}
         jsonLd={jsonLdData}
       />

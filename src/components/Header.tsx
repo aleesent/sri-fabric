@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo.tsx';
 import {
   Search,
-  User,
   Menu,
   X,
   Phone,
@@ -173,15 +172,6 @@ export const Header: React.FC<HeaderProps> = ({
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Admin Portal Direct Link (Hidden on small phones to preserve clean bar) */}
-            <button
-              onClick={() => onNavigate('/admin')}
-              className="hidden sm:flex p-2 text-[#dfb15b] bg-[#dfb15b]/15 hover:bg-[#dfb15b] hover:text-[#1c050d] rounded-lg transition-all cursor-pointer border border-[#dfb15b]/40 shadow-xs relative items-center gap-1"
-              title="Admin CMS Portal"
-            >
-              <User className="w-5 h-5" />
-              <span className="hidden xl:inline text-[11px] font-bold tracking-wider">ADMIN</span>
-            </button>
 
             {/* Request Enquiry Primary CTA (Desktop) */}
             <button
@@ -251,16 +241,7 @@ export const Header: React.FC<HeaderProps> = ({
                     {link.label}
                   </button>
                 ))}
-                <button
-                  onClick={() => {
-                    onNavigate('/admin');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-left text-sm tracking-widest py-2 text-white/80 hover:text-white flex items-center justify-between"
-                >
-                  <span>ADMIN CMS PORTAL</span>
-                  <User className="w-4 h-4" />
-                </button>
+
               </nav>
             </div>
 

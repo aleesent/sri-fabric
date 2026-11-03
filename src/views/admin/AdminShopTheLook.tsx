@@ -189,9 +189,9 @@ export const AdminShopTheLook: React.FC<AdminShopTheLookProps> = ({ token }) => 
           <span>Active Video Reels & Playback Verification</span>
         </div>
         <p className="mt-1 text-stone-600">
-          • All 8 Cloudinary video sources are active and verified (HTTP 200).
+          • All 11 video sources are active and verified (HTTP 200).
           <br />
-          • Direct video field (<code className="bg-stone-200/70 px-1 py-0.5 rounded font-mono">res.cloudinary.com/...mp4</code>) provides reliable 60fps muted autoplay on Chrome, Safari, iOS, and Android without iframe delays.
+          • Direct video links provide reliable muted autoplay on Chrome, Safari, iOS, and Android without iframe delays.
           <br />
           • Clicking a card opens the interactive lookbook with smooth 9:16 high-definition video playback.
         </p>

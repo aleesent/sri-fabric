@@ -1,247 +1,974 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- Core Authority & Hub Pages -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://srifabrics.com/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://srifabrics.com/sarees</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://srifabrics.com/slides/hero-sarees-home.jpg</image:loc>
-      <image:title>Wholesale Sarees Surat Collection - SRI FABRIC</image:title>
-    </image:image>
   </url>
   <url>
     <loc>https://srifabrics.com/fabrics</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://srifabrics.com/slides/hero-fabrics-home.jpg</image:loc>
-      <image:title>B2B Wholesale Fabrics Surat - SRI FABRIC</image:title>
-    </image:image>
   </url>
   <url>
     <loc>https://srifabrics.com/top-dupatta</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/collections</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
-    <image:image>
-      <image:loc>https://srifabrics.com/slides/hero-topdupatta-home.jpg</image:loc>
-      <image:title>Wholesale Unstitched Top and Dupatta Sets Surat</image:title>
-    </image:image>
   </url>
   <url>
     <loc>https://srifabrics.com/manufacturing</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://srifabrics.com/about</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://srifabrics.com/global-reach</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://srifabrics.com/blog</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://srifabrics.com/contact</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- 8 Strategic Location-Based B2B Wholesale Landing Pages -->
   <url>
-    <loc>https://srifabrics.com/fabric-wholesale-surat</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://srifabrics.com/textile-wholesale-gujarat</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://srifabrics.com/wholesale-fabric-mumbai</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://srifabrics.com/b2b-textile-delhi</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://srifabrics.com/b2b-fabric-ahmedabad</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/blog</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/wholesale-fabric-jaipur</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/collections/pure-silk</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/fabric-wholesale-bengaluru</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/collections/royal-chinon</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/b2b-textile-india</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- Location Canonical Routes -->
-  <url>
-    <loc>https://srifabrics.com/locations/fabric-wholesale-surat</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/collections/organza</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/locations/textile-wholesale-gujarat</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/collections/georgette-luxe</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/locations/wholesale-fabric-mumbai</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/sarees?category=banarasi</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/locations/b2b-textile-delhi</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/sarees?category=dola-silk</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/locations/b2b-fabric-ahmedabad</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/sarees?category=tissue-organza</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/sarees?category=bridal</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics?category=pure-silk</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics?category=chinon</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics?category=organza</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics?category=georgette</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/top-dupatta?category=cotton</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/locations/wholesale-fabric-jaipur</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/top-dupatta?category=muslin</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/locations/fabric-wholesale-bengaluru</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://srifabrics.com/locations/b2b-textile-india</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/locations/surat</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Authoritative B2B Textile Blog Guides -->
   <url>
-    <loc>https://srifabrics.com/blog/best-fabric-wholesale-suppliers-surat</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://srifabrics.com/locations/gujarat</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/blog/how-to-source-fabrics-wholesale-india</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://srifabrics.com/locations/ahmedabad</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/blog/surat-textile-market-wholesale-guide</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://srifabrics.com/locations/mumbai</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/blog/digital-fabric-printing-guide-b2b</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://srifabrics.com/locations/delhi</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/blog/ready-stock-vs-made-to-order-fabrics</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://srifabrics.com/locations/jaipur</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/bengaluru</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/india</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/kolkata</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/chennai</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/hyderabad</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/varanasi</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/locations/surat-textile-market</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/blog/b2b-fabric-wholesale-in-surat-guide</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/blog/wholesale-saree-sourcing-guide-retailers</loc>
-    <lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- High-Demand Wholesale Fabric & Saree Product URLs -->
-  <url>
-    <loc>https://srifabrics.com/fabrics/pure-viscose-chinon-digital-print</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/blog/digital-fabric-printing-surat-creative-design-to-finished-textile</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://srifabrics.com/fabrics/pure-silk-fabric</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/fabrics/multicolor-kalamkari-inspired-printed-saree-with-rich-maroon-border</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/d4/4e/e3/d44ee3f2cba28be56a094472eec9ddd8.jpg</image:loc>
+      <image:title>Multicolor Kalamkari-Inspired Printed Saree with Rich Maroon Border | SRI FABRIC Surat</image:title>
+      <image:caption>Elevate your ethnic collection with this elegant printed saree featuring a beautiful blend of beige, maroon, rust, navy blue, and mustard tones. The saree showc</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://srifabrics.com/fabrics/royal-chinon-fabric</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/fabrics/multicolor-traditional-printed-saree-with-rust-red-border-and-artistic-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/20/35/9e/20359e680675ca2d19896ad58cdc4f9a.jpg</image:loc>
+      <image:title>Multicolor Traditional Printed Saree with Rust Red Border and Artistic Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Discover the beauty of traditional prints with this stunning saree featuring a rich rust red base adorned with intricate multicolour floral and geometric motifs</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://srifabrics.com/fabrics/organza-fabric</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/fabrics/teal-blue-saree-with-antique-gold-floral-motifs-and-traditional-woven-style-border</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/08/2e/1e/082e1e3655c94cfce198e8e6c5c69c1a.jpg</image:loc>
+      <image:title>Teal Blue Saree with Antique Gold Floral Motifs and Traditional Woven-Style Border | SRI FABRIC Surat</image:title>
+      <image:caption>Add timeless elegance to your ethnic collection with this beautiful teal blue saree featuring intricate antique gold floral motifs arranged throughout the body.</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://srifabrics.com/fabrics/banarasi-fabric</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/fabrics/red-traditional-saree-with-delicate-floral-patterns-and-royal-blue-border</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/c6/78/e8/c678e84551af569fe5fb3030e7bb8dd5.jpg</image:loc>
+      <image:title>Red Traditional Saree with Delicate Floral Patterns and Royal Blue Border | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this elegant red saree featuring delicate floral outlines and fine dotted patterns throughout the body. The rich red base is</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://srifabrics.com/fabrics/georgette-fabric</loc>
-    <lastmod>2026-10-30</lastmod>
+    <loc>https://srifabrics.com/fabrics/rust-brown-floral-printed-saree-with-traditional-multicolor-border-and-decorative-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/b1/85/b6/b185b643e1661e64ffb7bdd229496e42.jpg</image:loc>
+      <image:title>Rust Brown Floral Printed Saree with Traditional Multicolor Border and Decorative Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Bring timeless ethnic charm to your collection with this beautiful rust brown saree featuring intricate floral and botanical prints in muted green, mustard, bei</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/charcoal-grey-floral-printed-saree-with-multicolor-traditional-border-and-artistic-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/51/1f/b4/511fb472cc7804724362e0e5d426400b.jpg</image:loc>
+      <image:title>Charcoal Grey Floral Printed Saree with Multicolor Traditional Border and Artistic Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Discover timeless ethnic elegance with this charcoal grey saree featuring intricate floral and botanical prints in rust red, muted green, mustard, and earthy be</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/multicolor-floral-printed-saree-with-antique-gold-base-and-teal-blue-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/5e/a8/11/5ea811a766de13b6b4b1e76e966608cc.jpg</image:loc>
+      <image:title>Multicolor Floral Printed Saree with Antique Gold Base and Teal Blue Border | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this elegant saree featuring a rich antique gold and earthy brown base adorned with vibrant floral motifs in rust red, muted</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/multicolor-geometric-saree-with-black-stripes-and-mustard-rose-pink-teal-panels</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/68/fc/7e/68fc7e094d823d3e195cc803253a28e6.jpg</image:loc>
+      <image:title>Multicolor Geometric Saree with Black Stripes and Mustard, Rose Pink &amp; Teal Panels | SRI FABRIC Surat</image:title>
+      <image:caption>Make a bold style statement with this contemporary saree featuring a striking combination of mustard yellow, rose pink, deep red, teal green, and beige tones. T</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-saree-with-antique-gold-floral-motifs-and-elegant-traditional-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/78/81/4f/78814f4d9202bafaa1cb07863d58f881.jpg</image:loc>
+      <image:title>Black Saree with Antique Gold Floral Motifs and Elegant Traditional Border | SRI FABRIC Surat</image:title>
+      <image:caption>Discover understated elegance with this sophisticated black saree featuring delicate antique gold floral motifs arranged across the body. The deep black base be</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/maroon-saree-with-mustard-gold-pallu-and-intricate-traditional-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/21/75/8a/21758af0f89bbfcb174e400e5428d15a.jpg</image:loc>
+      <image:title>Maroon Saree with Mustard Gold Pallu and Intricate Traditional Border | SRI FABRIC Surat</image:title>
+      <image:caption>Add timeless charm to your ethnic collection with this elegant maroon saree featuring delicate small motifs arranged across the rich maroon body. The deep maroo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/maroon-striped-saree-with-mustard-yellow-contrast-panel-and-ornate-traditional-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/88/38/c4/8838c41c873797777e9abf40be9522b1.jpg</image:loc>
+      <image:title>Maroon Striped Saree with Mustard Yellow Contrast Panel and Ornate Traditional Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Discover a beautiful blend of traditional elegance and distinctive design with this maroon saree featuring fine diagonal stripes and delicate repeating motifs i</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/mustard-yellow-artistic-printed-saree-with-black-polka-dots-and-multicolor-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/a0/0e/76/a00e7699f12d6f84cedeb0e3978f990c.jpg</image:loc>
+      <image:title>Mustard Yellow Artistic Printed Saree with Black Polka Dots and Multicolor Border | SRI FABRIC Surat</image:title>
+      <image:caption>Make a striking addition to your ethnic collection with this contemporary saree featuring a mustard yellow base adorned with bold artistic paisley-inspired moti</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-abstract-printed-saree-with-multicolor-geometric-pallu-and-teal-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/4f/a0/1e/4fa01e8f59bdc3f6fd6c0a13542d7413.jpg</image:loc>
+      <image:title>Beige Abstract Printed Saree with Multicolor Geometric Pallu and Teal Border | SRI FABRIC Surat</image:title>
+      <image:caption>Refresh your ethnic collection with this eye-catching saree featuring a beige base decorated with bold black abstract spots and scattered multicolour accents. T</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/maroon-striped-saree-with-antique-gold-motifs-and-beige-contrast-panel</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/b7/53/8b/b7538bdc1d2a5818be0b6b93ccd5e0ce.jpg</image:loc>
+      <image:title>Maroon Striped Saree with Antique Gold Motifs and Beige Contrast Panel | SRI FABRIC Surat</image:title>
+      <image:caption>Discover timeless traditional elegance with this striking saree featuring a rich maroon body adorned with vertical mustard-gold stripes and delicate ornamental </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/pink-and-beige-polka-dot-saree-with-bold-orange-pallu-and-black-accents</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/3d/14/5b/3d145b604b3cff48fcd3dda83dbca263.jpg</image:loc>
+      <image:title>Pink and Beige Polka Dot Saree with Bold Orange Pallu and Black Accents | SRI FABRIC Surat</image:title>
+      <image:caption>Add a vibrant touch to your ethnic collection with this eye-catching saree featuring a striking combination of bright fuchsia pink, beige, orange, and black. Th</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/teal-blue-floral-printed-saree-with-rust-orange-border-and-artistic-paisley-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/99/8f/23/998f23c0c8ce82d631baa07f3f60e825.jpg</image:loc>
+      <image:title>Teal Blue Floral Printed Saree with Rust Orange Border and Artistic Paisley Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Discover timeless ethnic elegance with this beautifully designed saree featuring a rich teal blue base adorned with intricate floral motifs in rust orange, must</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/wine-maroon-saree-with-olive-green-border-and-delicate-traditional-motifs</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/54/71/f9/5471f938e03c7402e1704756c9274df5.jpg</image:loc>
+      <image:title>Wine Maroon Saree with Olive Green Border and Delicate Traditional Motifs | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this elegant wine maroon saree featuring delicate all-over dotted and ornamental motifs. The rich maroon base is beautifully</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/sage-green-saree-with-delicate-all-over-motifs-and-maroon-teal-traditional-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/18/df/c1/18dfc1610f110d92a7fa451a658607c2.jpg</image:loc>
+      <image:title>Sage Green Saree with Delicate All-Over Motifs and Maroon Teal Traditional Border | SRI FABRIC Surat</image:title>
+      <image:caption>Discover understated elegance with this beautiful sage green saree featuring delicate, evenly distributed motifs across a soft, muted green base. The subtle pat</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-printed-saree-with-burgundy-geometric-motifs-and-traditional-ornamental-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/70/6e/81/706e8158d7802a592ef4e9b67ad7b54d.jpg</image:loc>
+      <image:title>Beige Printed Saree with Burgundy Geometric Motifs and Traditional Ornamental Border | SRI FABRIC Surat</image:title>
+      <image:caption>Add timeless ethnic charm to your collection with this elegant beige saree featuring repeating burgundy geometric floral motifs across the body. The warm beige </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/golden-beige-geometric-saree-with-multicolor-stripes-and-contemporary-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/d4/23/93/d423938b3522b50bf985c8a21e0b3005.jpg</image:loc>
+      <image:title>Golden Beige Geometric Saree with Multicolor Stripes and Contemporary Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Elevate your ethnic collection with this striking golden beige saree featuring a lustrous-looking base and bold geometric colour-block patterns. The design comb</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/plum-purple-saree-with-antique-gold-motifs-and-beige-contrast-panel</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/e6/06/e1/e606e1783704247ed9e289c33559bbf7.jpg</image:loc>
+      <image:title>Plum Purple Saree with Antique Gold Motifs and Beige Contrast Panel | SRI FABRIC Surat</image:title>
+      <image:caption>Add a touch of traditional elegance to your collection with this beautiful plum purple saree featuring delicate antique gold motifs arranged across the rich pur</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/royal-blue-saree-with-antique-gold-floral-motifs-and-rich-red-ornamental-border</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/a4/20/b8/a420b8cb9ecf2c4b55cf5f3e0276df89.jpg</image:loc>
+      <image:title>Royal Blue Saree with Antique Gold Floral Motifs and Rich Red Ornamental Border | SRI FABRIC Surat</image:title>
+      <image:caption>Elevate your ethnic collection with this elegant royal blue saree featuring intricate antique gold floral and botanical motifs across the body. The deep blue ba</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/charcoal-grey-saree-with-mint-green-ornamental-border-and-geometric-patterns</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/95/85/d7/9585d74cdc6270154ac35717ef4a1946.jpg</image:loc>
+      <image:title>Charcoal Grey Saree with Mint Green Ornamental Border and Geometric Patterns | SRI FABRIC Surat</image:title>
+      <image:caption>Discover sophisticated ethnic styling with this elegant charcoal grey saree featuring delicate all-over dotted motifs and contrasting geometric patterns. The de</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-and-black-geometric-printed-saree-with-multicolor-striped-border-and-artistic-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/c7/4d/8e/c74d8e0ef263e1402c74a1f4f9f050dd.jpg</image:loc>
+      <image:title>Beige and Black Geometric Printed Saree with Multicolor Striped Border and Artistic Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Add a distinctive touch to your ethnic collection with this elegant saree featuring a beige base adorned with repeating black geometric motifs. The contrasting </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-saree-with-black-traditional-motifs-and-rust-red-geometric-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/34/c7/ca/34c7ca2321d1c53588e559196001aa64.jpg</image:loc>
+      <image:title>Beige Saree with Black Traditional Motifs and Rust Red Geometric Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Discover timeless ethnic elegance with this beautiful beige saree featuring delicate black ornamental motifs scattered across the body. The soft beige base is c</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/maroon-striped-saree-with-mustard-beige-contrast-panel-and-traditional-floral-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/2a/02/a1/2a02a13875d6cdf4a80dda764f64da16.jpg</image:loc>
+      <image:title>Maroon Striped Saree with Mustard Beige Contrast Panel and Traditional Floral Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Add a touch of traditional elegance to your collection with this beautiful saree featuring a rich maroon base adorned with fine diagonal stripes and delicate mu</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/rust-red-floral-printed-saree-with-cream-traditional-border-and-maroon-pallu</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/d2/ee/b6/d2eeb62408011ada4c1809caea9dbfc5.jpg</image:loc>
+      <image:title>Rust Red Floral Printed Saree with Cream Traditional Border and Maroon Pallu | SRI FABRIC Surat</image:title>
+      <image:caption>Bring timeless ethnic charm to your collection with this beautiful rust red saree featuring intricate floral and botanical motifs in earthy green, mustard, beig</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-printed-kurta-set-with-rust-pink-floral-motifs-and-matching-designer-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/53/22/48/53224833995ecb3594be3aef6bc95316.jpg</image:loc>
+      <image:title>Black Printed Kurta Set with Rust Pink Floral Motifs and Matching Designer Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Elevate your ethnic collection with this elegant black kurta set featuring delicate floral motifs in rust pink, muted blue, and earthy beige. The kurta showcase</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-and-taupe-printed-kurta-set-with-pink-green-embroidered-style-neckline-and-lime-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/82/3f/a8/823fa858ffbf9382c1bc8ae911ab7586.jpg</image:loc>
+      <image:title>Beige and Taupe Printed Kurta Set with Pink Green Embroidered-Style Neckline and Lime Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Refresh your ethnic collection with this elegant kurta set featuring a beautiful combination of beige, taupe brown, pink, green, and lime yellow. The kurta show</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-printed-kurta-set-with-teal-green-and-rust-floral-border-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/8e/0c/4b/8e0c4b6bb8f4ebbc4cd2709df24e0549.jpg</image:loc>
+      <image:title>Beige Printed Kurta Set with Teal Green and Rust Floral Border Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Discover elegant ethnic styling with this beautifully coordinated kurta set featuring a soft beige base with delicate brown floral prints and a taupe centre pan</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/cream-printed-kurta-set-with-rust-orange-ornamental-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/d7/18/b1/d718b1a70b053623f8f87c3474986a6f.jpg</image:loc>
+      <image:title>Cream Printed Kurta Set with Rust Orange Ornamental Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Refresh your ethnic collection with this elegant cream kurta set featuring delicate all-over black motifs and a beautifully detailed rust orange neckline panel </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/wine-purple-printed-kurta-set-with-chevron-patterns-and-multicolor-floral-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/e0/fa/35/e0fa35053faf2b10c9c2164352d1ef7f.jpg</image:loc>
+      <image:title>Wine Purple Printed Kurta Set with Chevron Patterns and Multicolor Floral Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Add a vibrant touch to your ethnic collection with this stylish wine purple kurta set featuring bold cream chevron patterns across the front. The kurta is highl</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-and-cream-chevron-printed-kurta-set-with-multicolor-floral-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/3d/c1/ef/3dc1ef8465185099a41510196a579e2f.jpg</image:loc>
+      <image:title>Black and Cream Chevron Printed Kurta Set with Multicolor Floral Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Refresh your ethnic collection with this striking black and cream kurta set featuring bold chevron patterns arranged in a distinctive zigzag design. The kurta i</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/cream-printed-kurta-set-with-dusty-pink-dupatta-and-grey-floral-motifs</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/ca/2c/2d/ca2c2d4bad415e3b3e07d20813de770a.jpg</image:loc>
+      <image:title>Cream Printed Kurta Set with Dusty Pink Dupatta and Grey Floral Motifs | SRI FABRIC Surat</image:title>
+      <image:caption>Discover graceful ethnic styling with this elegant cream kurta set featuring delicate grey floral and ornamental prints. The kurta showcases a beautifully detai</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/beige-printed-kurta-set-with-magenta-floral-panel-and-traditional-border-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/92/97/93/9297933c8d97f5cd7ce5412d428597dd.jpg</image:loc>
+      <image:title>Beige Printed Kurta Set with Magenta Floral Panel and Traditional Border Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this elegant beige kurta set featuring delicate all-over traditional motifs and a rich magenta floral neckline panel. The ku</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/cream-printed-kurta-set-with-maroon-ornamental-dupatta-and-navy-blue-borders</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/9e/8d/ed/9e8ded83ce75edeffaff4d33b3161f8a.jpg</image:loc>
+      <image:title>Cream Printed Kurta Set with Maroon Ornamental Dupatta and Navy Blue Borders | SRI FABRIC Surat</image:title>
+      <image:caption>Add timeless elegance to your ethnic collection with this beautiful cream kurta set featuring delicate all-over dark motifs and a richly detailed maroon necklin</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/charcoal-grey-printed-kurta-set-with-multicolour-floral-dupatta-and-rust-brown-borders</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/4c/a8/b6/4ca8b618daf1c287e96a10b87e299efa.jpg</image:loc>
+      <image:title>Charcoal Grey Printed Kurta Set with Multicolour Floral Dupatta and Rust Brown Borders | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this sophisticated charcoal grey kurta set featuring intricate white floral and geometric prints. The kurta showcases a beau</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/light-grey-printed-kurta-set-with-pink-and-mustard-yellow-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/f1/63/e8/f163e845d3413e8a3baddc4e3c8eca4d.jpg</image:loc>
+      <image:title>Light Grey Printed Kurta Set with Pink and Mustard Yellow Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Refresh your ethnic collection with this elegant light grey kurta set featuring delicate all-over traditional motifs and subtle floral prints. The kurta is high</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/light-grey-printed-kurta-set-with-charcoal-floral-panels-and-bright-pink-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/39/e6/de/39e6de7f1a41f3cde59d65817dfbe904.jpg</image:loc>
+      <image:title>Light Grey Printed Kurta Set with Charcoal Floral Panels and Bright Pink Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Add a touch of elegance to your ethnic collection with this sophisticated light grey kurta set featuring delicate all-over charcoal motifs and contrasting dark </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/dusty-pink-and-black-printed-kurta-set-with-ivory-floral-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/fe/b5/3c/feb53c90e8914ad4e741df3ab2054d3c.jpg</image:loc>
+      <image:title>Dusty Pink and Black Printed Kurta Set with Ivory Floral Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Elevate your ethnic collection with this elegant kurta set featuring a sophisticated combination of dusty pink, black, ivory, and antique-gold tones. The kurta </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/sky-blue-and-black-printed-kurta-set-with-pink-borders-and-ivory-floral-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/ac/ee/67/acee67acdb15763450acb00d3ed9f299.jpg</image:loc>
+      <image:title>Sky Blue and Black Printed Kurta Set with Pink Borders and Ivory Floral Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Introduce a refreshing touch to your ethnic collection with this elegant sky blue kurta set featuring a striking black centre panel adorned with intricate white</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-printed-kurta-set-with-beige-ornamental-neckline-and-red-mustard-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/7b/78/ac/7b78aca4fcbbd43694d0be282b50889c.jpg</image:loc>
+      <image:title>Black Printed Kurta Set with Beige Ornamental Neckline and Red Mustard Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this striking black kurta set featuring intricate all-over beige and grey circular floral motifs. The kurta is highlighted b</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/mustard-yellow-and-black-printed-kurta-set-with-maroon-borders-and-cream-floral-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/37/60/60/37606049fc90bf828ff8bf0081e6d477.jpg</image:loc>
+      <image:title>Mustard Yellow and Black Printed Kurta Set with Maroon Borders and Cream Floral Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Refresh your ethnic collection with this stylish kurta set featuring a striking combination of mustard yellow, charcoal black, cream, and maroon. The kurta show</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/rani-pink-printed-kurta-set-with-olive-green-ornamental-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/25/f4/03/25f40368c89d51b08ce6be5c4af4c434.jpg</image:loc>
+      <image:title>Rani Pink Printed Kurta Set with Olive Green Ornamental Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Add a vibrant touch to your ethnic collection with this elegant rani pink kurta set featuring intricate white circular floral motifs throughout. The kurta is hi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/red-and-black-printed-kurta-set-with-designer-floral-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/61/ac/6e/61ac6e7c20fae865c817633d5f01a66d.jpg</image:loc>
+      <image:title>Red and Black Printed Kurta Set with Designer Floral Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Enhance your ethnic collection with this elegant red and black printed kurta set, featuring a striking combination of rich red floral prints and a black-and-whi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/magenta-printed-kurta-set-with-ornate-beige-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/14/85/5c/14855cd47470d2c227aa74d647a41bf5.jpg</image:loc>
+      <image:title>Magenta Printed Kurta Set with Ornate Beige Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Discover timeless ethnic elegance with this beautiful magenta kurta set, featuring delicate all-over motifs and an intricately patterned beige front panel. The </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/teal-blue-printed-kurta-set-with-mustard-ornamental-dupatta</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/93/0d/03/930d034cff8922282c55ea3b889d69ea.jpg</image:loc>
+      <image:title>Teal Blue Printed Kurta Set with Mustard Ornamental Dupatta | SRI FABRIC Surat</image:title>
+      <image:caption>Elevate your ethnic collection with this elegant teal blue kurta set, featuring intricate circular prints and an ornate cream neckline design. The kurta is beau</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/pink-floral-printed-fabric-with-orange-botanical-motifs</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/1f/5c/a9/1f5ca9276a9da3b3c41c2452a505863b.jpg</image:loc>
+      <image:title>Pink Floral Printed Fabric with Orange Botanical Motifs | SRI FABRIC Surat</image:title>
+      <image:caption>A beautiful blush pink printed fabric featuring oversized orange and white floral blooms, delicate black botanical outlines, and muted olive-green leaves. The e</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/ivory-floral-printed-fabric-with-teal-blue-botanical-motifs</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/55/b0/aa/55b0aa2fb08f93db27e3404cdf619cf7.jpg</image:loc>
+      <image:title>Ivory Floral Printed Fabric with Teal Blue Botanical Motifs | SRI FABRIC Surat</image:title>
+      <image:caption>An elegant ivory-based printed fabric featuring delicate teal blue floral blooms, fine black botanical outlines, and muted olive-green leaves. The artistic all-</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/ivory-botanical-printed-fabric-with-multicolour-tropical-leaves</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/9e/2e/30/9e2e302d96d0e2ed219588ccd7b610aa.jpg</image:loc>
+      <image:title>Ivory Botanical Printed Fabric with Multicolour Tropical Leaves | SRI FABRIC Surat</image:title>
+      <image:caption>A sophisticated ivory-based printed fabric featuring artistic tropical foliage, oversized botanical leaves, and delicate floral elements in muted teal blue, dus</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/traditional-ivory-ajrakh-inspired-printed-fabric-with-maroon-mustard-motifs</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/d1/f3/4b/d1f34bc9d9b466531697bcc22a5cf0d3.jpg</image:loc>
+      <image:title>Traditional Ivory Ajrakh-Inspired Printed Fabric with Maroon &amp; Mustard Motifs | SRI FABRIC Surat</image:title>
+      <image:caption>A striking traditional printed fabric featuring intricate geometric floral motifs, ornamental paisley-inspired patterns, and delicate decorative detailing. The </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/multicolour-traditional-geometric-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/cb/30/4d/cb304d90f9f13affe234b888d4d01e30.jpg</image:loc>
+      <image:title>Multicolour Traditional Geometric Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>Explore a versatile collection of traditional printed fabrics featuring distinctive geometric, tribal-inspired, and handcrafted-style motifs. Showcasing an asso</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/blue-grey-geometric-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/55/7b/46/557b460b732acf19152e25fb2b0b40ac.jpg</image:loc>
+      <image:title>Blue &amp; Grey Geometric Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A contemporary printed fabric collection featuring bold geometric patterns and traditional block-inspired motifs. Showcasing a sophisticated palette of navy blu</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-teal-geometric-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/65/81/13/65811349a538dac19697c0c50acd7a88.jpg</image:loc>
+      <image:title>Black &amp; Teal Geometric Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A striking printed fabric collection featuring traditional folk-inspired motifs, bold zigzag patterns, and decorative borders. The combination of deep black, na</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/botanical-floral-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/8c/c2/25/8cc225c6903063df722f0544af0ac65e.jpg</image:loc>
+      <image:title>Botanical Floral Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>An elegant floral printed fabric collection featuring oversized botanical blooms, delicate foliage, and nature-inspired detailing. Presented in soothing ivory, </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-botanical-floral-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/70/3e/30/703e3073ae05dca14293c3e61d451655.jpg</image:loc>
+      <image:title>Black Botanical Floral Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A sophisticated botanical printed fabric collection featuring oversized floral illustrations, delicate line-art blooms, and tropical foliage. The striking combi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/navy-blue-indigo-geometric-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/0b/92/92/0b92923a9ea7da2f6345b8d8f213a700.jpg</image:loc>
+      <image:title>Navy Blue Indigo Geometric Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A timeless printed fabric collection featuring bold chevron patterns, intricate linear detailing, and delicate botanical motifs. Presented in rich navy blue, de</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/indigo-blue-traditional-motif-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/8e/d4/b2/8ed4b21e21b59180d33daffaf5241bd1.jpg</image:loc>
+      <image:title>Indigo Blue Traditional Motif Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A contemporary indigo-inspired fabric collection featuring bold abstract motifs, rhythmic geometric patterns, and traditional handcrafted-style detailing. The c</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/mocha-brown-floral-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/f8/f2/24/f8f224491b34bf9028a1bcaf219bc91b.jpg</image:loc>
+      <image:title>Mocha Brown Floral Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A charming floral fabric collection featuring delicate all-over micro-floral prints in soft pastel shades. The mocha brown fabric showcases tiny multicolour blo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/indigo-blue-beige-traditional-block-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/2e/e0/f2/2ee0f2fcd8813d1c0a5490be903c3e42.jpg</image:loc>
+      <image:title>Indigo Blue &amp; Beige Traditional Block Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A sophisticated ethnic fabric collection featuring traditional geometric, paisley, and ornamental block-inspired prints. The deep indigo blue fabric showcases b</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/indigo-blue-handcrafted-kantha-dabu-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/7e/43/88/7e43887b35484affe8f412ce4c66721b.jpg</image:loc>
+      <image:title>Indigo Blue Handcrafted Kantha &amp; Dabu Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A striking traditional fabric collection featuring rich indigo blue tones, handcrafted-inspired white tie-dye motifs and delicate running stitch detailing. The </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/emerald-green-floral-printed-fabric</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/16/4a/bf/164abff7b3e08cbd640d9aa2a8a02262.jpg</image:loc>
+      <image:title>Emerald Green Floral Printed Fabric | SRI FABRIC Surat</image:title>
+      <image:caption>A vibrant emerald green fabric featuring delicate floral prints in soft ivory, blush pink and subtle red accents. The elegant all-over botanical design creates </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/earthy-brown-rust-geometric-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/8c/06/6e/8c066ee5d1711e34ee0a6528267ed608.jpg</image:loc>
+      <image:title>Earthy Brown &amp; Rust Geometric Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A beautiful designer fabric collection featuring contemporary geometric and handcrafted-inspired prints in warm earthy tones. The collection showcases bold semi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/indigo-blue-geometric-shibori-kantha-stitch-printed-fabric</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/d5/ea/48/d5ea48abfab16370ba7a1646a0f132a6.jpg</image:loc>
+      <image:title>Indigo Blue Geometric Shibori &amp; Kantha Stitch Printed Fabric | SRI FABRIC Surat</image:title>
+      <image:caption>A striking indigo fabric collection featuring traditional handcrafted-inspired patterns in deep navy blue and ivory. The design combines bold geometric shibori-</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/blush-pink-persian-floral-ornamental-printed-fabric</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/47/c9/7d/47c97d409d9449cb37b91c43c44b9f78.jpg</image:loc>
+      <image:title>Blush Pink Persian Floral &amp; Ornamental Printed Fabric | SRI FABRIC Surat</image:title>
+      <image:caption>An elegant designer fabric featuring intricate Persian-inspired floral and ornamental patterns in a beautiful blend of blush pink, dusty rose, muted blue, sage </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/peach-floral-ivory-botanical-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/5f/64/67/5f646709be4e868904b74b991421fb7d.jpg</image:loc>
+      <image:title>Peach Floral &amp; Ivory Botanical Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>A graceful designer fabric collection featuring delicate botanical and floral artwork in elegant pastel-inspired shades. The peach fabric showcases fine outline</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://srifabrics.com/fabrics/black-botanical-floral-tropical-printed-fabric-collection</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.pinimg.com/736x/30/a5/24/30a5248934e31edfff462985ab14252f.jpg</image:loc>
+      <image:title>Black Botanical Floral &amp; Tropical Printed Fabric Collection | SRI FABRIC Surat</image:title>
+      <image:caption>An elegant designer fabric collection featuring three distinctive botanical prints on a sophisticated black base. The designs showcase delicate ivory floral ill</image:caption>
+    </image:image>
   </url>
 </urlset>

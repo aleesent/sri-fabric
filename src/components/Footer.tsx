@@ -369,13 +369,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               Terms of Supply
             </button>
-            <span className="text-stone-700">·</span>
-            <button
-              onClick={() => onNavigate('/admin')}
-              className="hover:text-[#dfb15b] text-stone-500 transition-colors"
-            >
-              Portal Login
-            </button>
+
           </div>
         </div>
       </div>

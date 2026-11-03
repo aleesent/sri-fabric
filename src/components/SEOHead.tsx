@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 export interface SEOHeadProps {
   title?: string;
   description?: string;
+  keywords?: string;
   canonicalPath?: string;
   ogImage?: string;
   ogType?: 'website' | 'article' | 'product';
@@ -10,12 +11,14 @@ export interface SEOHeadProps {
 }
 
 const DEFAULT_TITLE = 'SRI FABRIC – Fabric Wholesale Surat | B2B Textile Manufacturer & Wholesaler';
-const DEFAULT_DESCRIPTION = 'SRI FABRIC is Surat\'s leading B2B fabric wholesaler, textile manufacturer & custom digital printing supplier. Ready stock & made-to-order pure silks, chinon, organza & designer sarees.';
+const DEFAULT_DESCRIPTION = "SRI FABRIC is Surat's premier B2B fabric wholesaler, textile manufacturer & custom digital printing supplier. Ready stock & made-to-order pure silks, chinon, organza & designer sarees directly from Surat looms.";
+const DEFAULT_KEYWORDS = 'fabric wholesale Surat, wholesale sarees Surat, B2B textile manufacturer Surat, pure silk fabric wholesale, Banarasi sarees wholesale, chinon fabric Surat, organza fabric wholesale, viscose georgette manufacturer, Surat textile market Ring Road, bulk fabric supplier India, custom digital fabric printing Surat, textile mill Surat';
 const DEFAULT_IMAGE = '/slides/hero-fabrics-home.jpg';
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
+  keywords = DEFAULT_KEYWORDS,
   canonicalPath,
   ogImage = DEFAULT_IMAGE,
   ogType = 'website',
@@ -42,10 +45,20 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       el.setAttribute(attr, value);
     };
 
-    // 2. Standard Meta Description
+    // 2. Standard Meta Tags
     setMetaTag('meta[name="description"]', 'content', description);
+    setMetaTag('meta[name="keywords"]', 'content', keywords);
+    setMetaTag('meta[name="robots"]', 'content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    setMetaTag('meta[name="author"]', 'content', 'SRI FABRIC Surat');
+    setMetaTag('meta[name="publisher"]', 'content', 'SRI FABRIC');
 
-    // 3. OpenGraph tags
+    // 3. Geographic / Local B2B SEO Tags
+    setMetaTag('meta[name="geo.region"]', 'content', 'IN-GJ');
+    setMetaTag('meta[name="geo.placename"]', 'content', 'Surat, Gujarat, India');
+    setMetaTag('meta[name="geo.position"]', 'content', '21.1959;72.8302');
+    setMetaTag('meta[name="ICBM"]', 'content', '21.1959, 72.8302');
+
+    // 4. OpenGraph tags
     setMetaTag('meta[property="og:title"]', 'content', title);
     setMetaTag('meta[property="og:description"]', 'content', description);
     setMetaTag('meta[property="og:type"]', 'content', ogType);
@@ -60,16 +73,18 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     setMetaTag('meta[property="og:url"]', 'content', resolvedCanonical);
 
-    const resolvedImage = ogImage.startsWith('http') ? ogImage : `${origin}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
+    const resolvedImage = ogImage.startsWith('http')
+      ? ogImage
+      : `${origin}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
     setMetaTag('meta[property="og:image"]', 'content', resolvedImage);
 
-    // 4. Twitter tags
+    // 5. Twitter tags
     setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image');
     setMetaTag('meta[name="twitter:title"]', 'content', title);
     setMetaTag('meta[name="twitter:description"]', 'content', description);
     setMetaTag('meta[name="twitter:image"]', 'content', resolvedImage);
 
-    // 5. Canonical Link tag
+    // 6. Canonical Link tag
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
@@ -78,7 +93,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     }
     canonicalLink.setAttribute('href', resolvedCanonical);
 
-    // 6. JSON-LD Structured Data
+    // 7. JSON-LD Structured Data
     let scriptTag = document.getElementById('dynamic-page-jsonld') as HTMLScriptElement | null;
     if (jsonLd) {
       if (!scriptTag) {
@@ -93,9 +108,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     }
 
     return () => {
-      // Optional cleanup on unmount
+      // Clean up dynamic script if needed
     };
-  }, [title, description, canonicalPath, ogImage, ogType, jsonLd]);
+  }, [title, description, keywords, canonicalPath, ogImage, ogType, jsonLd]);
 
   return null;
 };

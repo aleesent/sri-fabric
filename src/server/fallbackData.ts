@@ -176,10 +176,10 @@ export const FALLBACK_HERO_SLIDES: HeroSlide[] = [
 export const FALLBACK_TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
-    clientName: 'Aarav Singhania',
-    company: 'Singhania Couture, Mumbai',
+    clientName: 'Praveenbhai Patel (Surat)',
+    company: 'Surat Textile Market',
     country: 'India',
-    testimonial: 'SRI FABRICS has been our primary source for pure zari brocades and Mulberry silks for over 5 years. Uncompromising quality and reliable delivery.',
+    testimonial: 'We have been regular buyers of digital printed viscose chinon and organza fabrics from SRI FABRIC for our wholesale counter on Ring Road. Their lot-to-lot color fastness, sharpness of print, and ready dispatch within 48 hours have made them our most dependable textile partner in Surat.',
     rating: 5,
     featured: true,
     status: 'ACTIVE',
@@ -187,10 +187,10 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 2,
-    clientName: 'Meera Deshmukh',
-    company: 'Deshmukh Bridal House, Delhi',
+    clientName: 'Rajeshbhai Shah (Ahmedabad)',
+    company: 'Maskati Cloth Market',
     country: 'India',
-    testimonial: 'The Top + Dupatta ensembles and pure tissue organzas consistently sell out within days of release. Superior finishing and flawless colors.',
+    testimonial: 'The quality of their Top + Dupatta sets and heavy modal chanderi yardage is unmatched across Gujarat markets. Flawless fall, vibrant color matching, and consistent GSM in every shipment. Our retail buyers in Ahmedabad always ask for SRI FABRIC lots.',
     rating: 5,
     featured: true,
     status: 'ACTIVE',
@@ -198,14 +198,36 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 3,
-    clientName: 'Rohit Verma',
-    company: 'Loom & Weft Exports, Kolkata',
+    clientName: 'Dipeshbhai Mehta (Jaipur)',
+    company: 'Johari Bazar & B2B Textile Hub, Jaipur',
     country: 'India',
-    testimonial: 'Timely bulk production, exact GSM consistency, and responsive customer care make SRI FABRICS an indispensable manufacturing partner.',
+    testimonial: 'Finding a genuine manufacturer in Surat that guarantees zero-defect fabric rolls and exact meterage across bulk orders of 3,000+ metres was rare until we started working with SRI FABRIC. Transparent dealing, honest rates, and exceptional mill finishing.',
     rating: 5,
     featured: true,
     status: 'ACTIVE',
     sortOrder: 3,
+  },
+  {
+    id: 4,
+    clientName: 'Hiteshbhai Vora (Rajkot)',
+    company: 'Dharmendra Road Wholesale',
+    country: 'India',
+    testimonial: 'SRI FABRIC’s digital printing definition and rich fabric luster give our ethnic collections a distinct edge across Saurashtra. Immediate dispatch of sample swatches and reliable freight dispatch every single season.',
+    rating: 5,
+    featured: true,
+    status: 'ACTIVE',
+    sortOrder: 4,
+  },
+  {
+    id: 5,
+    clientName: 'Bhaveshbhai Gajera (Surat)',
+    company: 'Millennium Textile Market, Surat',
+    country: 'India',
+    testimonial: 'Their printed saree fabrics and viscose crepe collections move off our shelves faster than any other supplier. Consistent fabric strength, zero dye bleeding during wash testing, and highly cooperative management.',
+    rating: 5,
+    featured: true,
+    status: 'ACTIVE',
+    sortOrder: 5,
   },
 ];
 
@@ -502,6 +524,7 @@ export function loadFabricsFromExcel(): Fabric[] {
   const files = [
     path.resolve(process.cwd(), 'public/SRI_FABRIC_Product_Catalog_Template.xlsx'),
     path.resolve(process.cwd(), 'public/SRI_FABRIC1_Product_Catalog_Template.xlsx'),
+    path.resolve(process.cwd(), 'public/SRI_FABRIC3_Product_Catalog_Template.xlsx'),
   ];
 
   let nextId = 1;
@@ -520,12 +543,13 @@ export function loadFabricsFromExcel(): Fabric[] {
       if (!rows || rows.length === 0) continue;
 
       const isTDFile = file.includes('SRI_FABRIC1');
+      const isFabricFile = file.includes('SRI_FABRIC3');
 
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         const title = (row['Product Title'] || '').trim();
         const desc = (row['Product Description'] || '').trim();
-        const catName = (row['Category'] || '').trim() || (isTDFile ? 'Top + Dupatta' : 'Saree');
+        const catName = (row['Category'] || '').trim() || (isFabricFile ? 'Fabric' : (isTDFile ? 'Top + Dupatta' : 'Saree'));
         const img1 = (row['Image Link 1'] || '').trim();
         const img2 = (row['Image Link 2'] || '').trim();
         const img3 = (row['Image Link 3'] || '').trim();
@@ -533,29 +557,37 @@ export function loadFabricsFromExcel(): Fabric[] {
 
         if (!title || !img1) continue;
 
-        const isTD =
+        const isFabric =
+          isFabricFile ||
+          catName.toLowerCase() === 'fabric' ||
+          catName.toLowerCase().includes('printed fabric') ||
+          catName.toLowerCase().includes('designer fabric');
+
+        const isTD = !isFabric && (
           catName.toLowerCase().includes('top') ||
           catName.toLowerCase().includes('dupatta') ||
           title.toLowerCase().includes('kurta set') ||
-          isTDFile;
+          isTDFile
+        );
 
         const baseSlug = title
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '');
 
-        const designPrefix = isTD ? 'SRI-TD' : 'SRI-SAR';
+        const designPrefix = isFabric ? 'SRI-FAB' : (isTD ? 'SRI-TD' : 'SRI-SAR');
         const designId = `${designPrefix}-${String(1000 + nextId).padStart(4, '0')}`;
         const images = [img1, img2, img3, img4].filter(Boolean);
 
-        const categoryId = isTD ? 2 : 1; // 2: Top+Dupatta, 1: Sarees
+        const categoryId = isFabric ? 3 : (isTD ? 2 : 1); // 3: Fabrics, 2: Top+Dupatta, 1: Sarees
+        const fabricType = isFabric ? 'Printed Fabric' : (isTD ? 'Top + Dupatta' : 'Saree');
 
         items.push({
           id: nextId,
           name: title,
           slug: baseSlug,
           categoryId,
-          fabricType: isTD ? 'Top + Dupatta' : 'Saree',
+          fabricType,
           description: desc,
           longDescription: desc,
           primaryImageUrl: img1,
@@ -567,9 +599,11 @@ export function loadFabricsFromExcel(): Fabric[] {
             sortOrder: idx + 1,
           })),
           gsm: 'Customizable per buyer requirement',
-          width: isTD ? 'Standard Kurta & Dupatta Cut (44" Width)' : '44 Inches (Standard Saree Width)',
+          width: isFabric
+            ? '44" / 58" (Customizable Width)'
+            : (isTD ? 'Standard Kurta & Dupatta Cut (44" Width)' : '44 Inches (Standard Saree Width)'),
           moq: 'Wholesale Bulk Orders & Custom Yardages on Request',
-          keywords: designId,
+          keywords: `${designId} ${catName} ${fabricType}`,
           designId,
           featured: true,
           inStock: true,

@@ -281,46 +281,56 @@ export async function seedDatabase() {
     }
 
     // 6. Testimonials
-    const priyaImg = createTextileSvg('Priya Sharma', 'Designer', '#301319', '#dfb15b', 'zari');
-    const davidImg = createTextileSvg('David Laurent', 'Director', '#11221b', '#e6c387', 'crepe');
-    const fatimaImg = createTextileSvg('Fatima Al-Maktoum', 'Couturier', '#281a14', '#c9a050', 'floral');
-
     await db.insert(testimonials).values([
       {
-        clientName: 'Priya Sharma',
-        company: 'Priya Sharma Haute Couture',
-        designation: 'Lead Fashion Designer',
+        clientName: 'Praveenbhai Patel (Surat)',
+        company: 'Surat Textile Market',
         country: 'India',
-        photoUrl: priyaImg,
-        testimonial: '“SRI Fabrics has been our trusted partner for premium textiles. The quality, finish and collection are simply outstanding. Their custom fabric development team delivered our runway order on an 18-day schedule with impeccable color consistency.”',
+        testimonial: '“We have been regular buyers of digital printed viscose chinon and organza fabrics from SRI FABRIC for our wholesale counter on Ring Road. Their lot-to-lot color fastness, sharpness of print, and ready dispatch within 48 hours have made them our most dependable textile partner in Surat.”',
         rating: 5,
         featured: true,
         status: 'ACTIVE',
         sortOrder: 1,
       },
       {
-        clientName: 'David Laurent',
-        company: 'Maison Laurent Paris',
-        designation: 'Creative Director',
-        country: 'France',
-        photoUrl: davidImg,
-        testimonial: '“Sourcing luxury silks and chinon from SRI Fabrics has elevated our ready-to-wear seasonal lines across Europe. Seamless export documentation and supreme hand-feel.”',
+        clientName: 'Rajeshbhai Shah (Ahmedabad)',
+        company: 'Maskati Cloth Market',
+        country: 'India',
+        testimonial: '“The quality of their Top + Dupatta sets and heavy modal chanderi yardage is unmatched across Gujarat markets. Flawless fall, vibrant color matching, and consistent GSM in every shipment. Our retail buyers in Ahmedabad always ask for SRI FABRIC lots.”',
         rating: 5,
         featured: true,
         status: 'ACTIVE',
         sortOrder: 2,
       },
       {
-        clientName: 'Fatima Al-Maktoum',
-        company: 'Al-Noor Bridal Atelier',
-        designation: 'Managing Director',
-        country: 'United Arab Emirates',
-        photoUrl: fatimaImg,
-        testimonial: '“Their Banarasi weaves and embroidered organzas are the crown jewel of our bespoke wedding couture clients in the GCC. The gold zari luster never fades.”',
+        clientName: 'Dipeshbhai Mehta (Jaipur)',
+        company: 'Johari Bazar & B2B Textile Hub, Jaipur',
+        country: 'India',
+        testimonial: '“Finding a genuine manufacturer in Surat that guarantees zero-defect fabric rolls and exact meterage across bulk orders of 3,000+ metres was rare until we started working with SRI FABRIC. Transparent dealing, honest rates, and exceptional mill finishing.”',
         rating: 5,
         featured: true,
         status: 'ACTIVE',
         sortOrder: 3,
+      },
+      {
+        clientName: 'Hiteshbhai Vora (Rajkot)',
+        company: 'Dharmendra Road Wholesale',
+        country: 'India',
+        testimonial: '“SRI FABRIC’s digital printing definition and rich fabric luster give our ethnic collections a distinct edge across Saurashtra. Immediate dispatch of sample swatches and reliable freight dispatch every single season.”',
+        rating: 5,
+        featured: true,
+        status: 'ACTIVE',
+        sortOrder: 4,
+      },
+      {
+        clientName: 'Bhaveshbhai Gajera (Surat)',
+        company: 'Millennium Textile Market, Surat',
+        country: 'India',
+        testimonial: '“Their printed saree fabrics and viscose crepe collections move off our shelves faster than any other supplier. Consistent fabric strength, zero dye bleeding during wash testing, and highly cooperative management.”',
+        rating: 5,
+        featured: true,
+        status: 'ACTIVE',
+        sortOrder: 5,
       },
     ]);
 
@@ -780,7 +790,7 @@ Whether you are launching a bespoke fashion line, producing boutique ethnic wear
       { key: 'seo_title', value: 'SRI Fabrics – Premium B2B Textile Manufacturer & Fabric Exporter', description: 'Global SEO Title' },
       { key: 'seo_description', value: 'SRI Fabrics is India’s premier B2B manufacturer and global exporter of luxury pure silks, chinon, organza, banarasi, and designer apparel textiles.', description: 'Global Meta Description' },
       { key: 'footer_text', value: 'We create premium fabrics that blend tradition with innovation, serving fashion brands, garment exporters, and couturiers across the globe with uncompromising excellence.', description: 'Footer summary' },
-      { key: 'shop_the_look_videos', value: JSON.stringify(DEFAULT_SHOP_THE_LOOK_ITEMS), description: 'Shop The Look video carousel items with Cloudinary video references' },
+      { key: 'shop_the_look_videos', value: JSON.stringify(DEFAULT_SHOP_THE_LOOK_ITEMS), description: 'Shop The Look video carousel items with Sri Fabrics Cloudinary reels' },
     ];
 
     for (const s of settings) {

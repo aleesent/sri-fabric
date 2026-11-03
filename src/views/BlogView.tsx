@@ -286,6 +286,7 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
         <SEOHead
           title={`${selectedPost.title} | SRI FABRIC Surat`}
           description={selectedPost.excerpt}
+          keywords={`${selectedPost.title}, textile blog Surat, fabric sourcing guide India, B2B textile manufacturing insights, Surat textile market trends`}
           canonicalPath={`/blog/${selectedPost.slug}`}
           ogImage={selectedPost.featuredImageUrl || '/slides/hero-fabrics-home.jpg'}
           ogType="article"

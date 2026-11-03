@@ -454,4 +454,211 @@ export const SEO_LOCATIONS: Record<string, LocationSEOData> = {
       },
     ],
   },
+  kolkata: {
+    slug: 'kolkata',
+    name: 'Kolkata',
+    state: 'West Bengal',
+    country: 'India',
+    metaTitle: 'Wholesale Fabric & Saree Supplier in Kolkata | Burrabazar Sourcing | SRI FABRIC',
+    metaDescription: 'Premier wholesale fabric & saree supplier for Kolkata fashion houses, Burrabazar textile merchants & boutiques. Pure silk, organza, chinon & sarees from Surat.',
+    h1: 'Wholesale Fabric & Saree Suppliers in Kolkata – Burrabazar Direct Mill Sourcing',
+    subheading: 'Supplying Kolkata’s rich bridal, Durga Puja festive, and artisanal fashion markets with direct Surat mill textiles.',
+    marketContext: 'Kolkata, anchored by the iconic Burrabazar textile and saree trade district, is Eastern India\'s paramount marketplace for luxury sarees, festive ethnic wear, and bespoke bridal wear. SRI FABRIC provides Kolkata merchants, boutique ateliers in South Kolkata, and garment exporters with direct Surat mill pricing, certified pure silks, high-twist chinon, and rapid freight to Howrah and Shalimar terminals.',
+    keyProducts: [
+      'Wholesale Sarees (Dola Silk, Banarasi Katan, Tissue Organza & Festive Weaves)',
+      'Pure Silk Yardages for Traditional Draping & Modern Couture',
+      'Digital Printed Chinon & Viscose Georgette for Bridal Ensembles',
+      'Unstitched Top + Dupatta Muslin and Cotton Suits',
+      'Designer Jacquard Weaves for Puja and Wedding Collections',
+    ],
+    logistics: {
+      dispatchTime: '24-48 hours from Surat central mill warehouse',
+      transitTime: '2 to 3 days via express road freight / overnight express air cargo',
+      primaryCarriers: 'Direct transport to Burrabazar, Howrah parcel booking & BlueDart express',
+      sampleAvailability: 'Physical fabric swatch folders and sample cuts dispatched to Kolkata within 48h',
+      moq: '50 metres per shade for solid dyed fabrics; ready saree bundles in low-MOQ lots',
+    },
+    whyChooseUs: [
+      {
+        title: 'Burrabazar Direct Freight Lines',
+        description: 'Established daily road and train cargo links directly into Kolkata’s wholesale textile nerve centre.',
+      },
+      {
+        title: 'Curated Festive & Bridal Repertoire',
+        description: 'Rich metallic zaripatti, katan brocades, and vibrant crimson weaves tailored for Bengali weddings and Durga Puja.',
+      },
+      {
+        title: 'Uncompromised Mill Quality Control',
+        description: 'Electronic inspection ensuring flawless warp density, colorfastness, and zero yarn knots.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Do you supply directly to Burrabazar saree wholesalers and boutique owners?',
+        answer: 'Yes, we supply hundreds of wholesale traders in Burrabazar, Gariahat, and New Market with bulk saree lots and cut yardages.',
+      },
+      {
+        question: 'What is the standard delivery time from Surat to Kolkata?',
+        answer: 'Standard road cargo arrives within 48-72 hours. Urgent sample yardages and wedding order lots can be delivered via air express in 24 hours.',
+      },
+    ],
+  },
+  chennai: {
+    slug: 'chennai',
+    name: 'Chennai',
+    state: 'Tamil Nadu',
+    country: 'India',
+    metaTitle: 'Wholesale Fabric & Saree Supplier in Chennai | Sowcarpet Textile Hub | SRI FABRIC',
+    metaDescription: 'Direct mill wholesale fabric & designer saree supplier for Chennai apparel makers, Sowcarpet wholesalers & T. Nagar retailers. Pure silk & jacquards.',
+    h1: 'Wholesale Fabric & Saree Suppliers in Chennai – Sowcarpet Direct Mill Supply',
+    subheading: 'Powering Tamil Nadu’s bridal boutiques, textile showrooms, and garment exporters with premium Surat silk, organza, and sarees.',
+    marketContext: 'Chennai is the gateway to South India\'s thriving textile trade, combining the historic wholesale lanes of Sowcarpet and George Town with premier retail epicentres in T. Nagar. SRI FABRIC partners with Chennai fashion houses, bridal saree emporiums, and apparel exporters, delivering certified pure silks, shimmering organzas, and innovative micro-crepes at direct mill prices.',
+    keyProducts: [
+      'Bridal Silk & Katan Weaves with Fine Metallic Zari Borders',
+      'Translucent Glass Organza & Tissue Silk Fabrics',
+      'Pure Viscose Chinon & Satin Crepe for Designer Anarkalis',
+      'Wholesale Dola Silk and Handloom Kadwa Border Sarees',
+      'Digital Floral and Traditional Motif Printed Base Fabrics',
+    ],
+    logistics: {
+      dispatchTime: 'Same-day or next-day dispatch from our Surat facility',
+      transitTime: '48 to 72 hours via dedicated South India transport lines',
+      primaryCarriers: 'Direct cargo services to Sowcarpet transport hubs and Chennai Central logistics',
+      sampleAvailability: 'Physical sample swatches available for design studios across Chennai',
+      moq: '50m per shade / print; flexible wholesale saree catalogues',
+    },
+    whyChooseUs: [
+      {
+        title: 'South India Specialized Palettes',
+        description: 'Deep temple golds, rich jewel tones, and refined traditional zari motifs aligned with Tamil bridal traditions.',
+      },
+      {
+        title: 'Factory-Direct Pricing',
+        description: 'Eliminate middleman margins by sourcing straight from our Surat manufacturing looms.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How fast can wholesale orders be delivered to Chennai?',
+        answer: 'Our dedicated transport lines deliver from Surat to Sowcarpet and Chennai transport godowns in 48 to 60 hours.',
+      },
+    ],
+  },
+  hyderabad: {
+    slug: 'hyderabad',
+    name: 'Hyderabad',
+    state: 'Telangana',
+    country: 'India',
+    metaTitle: 'Wholesale Fabric & Saree Supplier in Hyderabad | General Bazar Sourcing | SRI FABRIC',
+    metaDescription: 'Leading B2B wholesale fabric & saree supplier for Hyderabad boutiques, Secunderabad General Bazar traders & bridal couture ateliers. Direct Surat mill.',
+    h1: 'Wholesale Fabric & Saree Suppliers in Hyderabad – Direct Mill Sourcing',
+    subheading: 'Delivering royal silk, Banarasi brocades, and modern printed yardages to Hyderabad’s thriving ethnic fashion landscape.',
+    marketContext: 'Hyderabad’s royal Nizami textile heritage and booming contemporary fashion industry create immense demand for opulent silks, ornate brocades, and fine printed fabrics. Serving wholesale merchants in Secunderabad’s General Bazar, Madina Market, and Banjara Hills boutiques, SRI FABRIC provides mill-direct rates, rapid dispatch, and consistent textile excellence.',
+    keyProducts: [
+      'Royal Banarasi & Jacquard Brocades for Bridal Khada Dupattas & Lehengas',
+      'Pure Chinon and Georgette Base Fabrics for Zardozi Embroidery',
+      'Wholesale Silk & Organza Saree Lots for Wedding Seasons',
+      'Custom Printed Yardages with Modern & Heritage Motifs',
+    ],
+    logistics: {
+      dispatchTime: '24-48 hours from Surat loom inventory',
+      transitTime: '36 to 48 hours to Hyderabad & Secunderabad parcel centres',
+      primaryCarriers: 'Direct Surat-Hyderabad transport lines and express couriers',
+      sampleAvailability: 'Sample swatch book service dispatched daily',
+      moq: '50m per color/weave; wholesale saree bundle packs',
+    },
+    whyChooseUs: [
+      {
+        title: 'Nizami Couture Compatible Fabrics',
+        description: 'Heavy GSM chinon and pure silk bases designed specifically to carry intricate zardozi, kundan, and pearl embroidery.',
+      },
+      {
+        title: 'Direct Looms Sourcing',
+        description: 'Manufactured on electronic Jacquard looms for unmatched weave precision and rich zari luster.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Can you deliver directly to Madina Market and General Bazar traders?',
+        answer: 'Yes, we supply top wholesalers across Hyderabad with door-delivery and godown dispatch daily.',
+      },
+    ],
+  },
+  varanasi: {
+    slug: 'varanasi',
+    name: 'Varanasi',
+    state: 'Uttar Pradesh',
+    country: 'India',
+    metaTitle: 'Wholesale Fabric & Silk Textile Sourcing Varanasi | Chowk B2B Hub | SRI FABRIC',
+    metaDescription: 'Wholesale fabric supplier for Varanasi textile traders, Chowk saree merchants & weavers. High-twist yarns, tissue organza & digital print fabrics.',
+    h1: 'Wholesale Fabric Sourcing in Varanasi – Direct Surat Mill Textiles',
+    subheading: 'Connecting Varanasi’s historic weaving district and trade houses with Surat’s advanced rapier loom production and raw textiles.',
+    marketContext: 'Varanasi is world-renowned for its handloom silk heritage and the bustling Chowk textile emporiums. SRI FABRIC collaborates with Varanasi master weavers, wholesale saree traders, and garment manufacturers, supplying high-tensile base yardages, tissue organzas, and digital printed textiles that enhance local artisanal production.',
+    keyProducts: [
+      'High-Twist Viscose Chinon & Georgette Base Fabrics',
+      'Pure Tissue Organza with Metallic Filament Highlights',
+      'Wholesale Bridal Silk Sarees with Fine Zari Weaving',
+      'Plain Dyeable Base Fabrics with Superior Yarn Luster',
+    ],
+    logistics: {
+      dispatchTime: '24-48 hours from our Surat looms',
+      transitTime: '48 to 72 hours via rail and road transport',
+      primaryCarriers: 'Direct UP freight transport and express rail parcel services',
+      sampleAvailability: 'Sample books delivered within 48 hours',
+      moq: '50 metres for fabric bases; catalog packs for sarees',
+    },
+    whyChooseUs: [
+      {
+        title: 'Weaving Base Integrity',
+        description: 'Engineered for high tensile strength, dimensional stability, and flawless dye absorption.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Do you supply un-dyed and plain fabrics for Varanasi dyers and printers?',
+        answer: 'Yes, we offer ready-for-dyeing (RFD) pure silks, chinon, and organzas in consistent bulk quantities.',
+      },
+    ],
+  },
+  'surat-textile-market': {
+    slug: 'surat-textile-market',
+    name: 'Surat Textile Market',
+    state: 'Gujarat',
+    country: 'India',
+    metaTitle: 'Surat Textile Market Wholesale Fabric & Saree Mill | Ring Road B2B Sourcing',
+    metaDescription: 'Direct mill sourcing at Surat Textile Market, Ring Road. Wholesale sarees, pure silks, chinon, digital printing & ready stock fabrics at mill rates.',
+    h1: 'Surat Textile Market – Ring Road Direct Mill Wholesale Sourcing',
+    subheading: 'Operating from the heart of Surat’s famous Ring Road textile corridor for immediate local and national B2B supply.',
+    marketContext: 'Surat Textile Market along Ring Road is Asia’s largest single wholesale cluster for synthetic, art-silk, and luxury designer fabrics. Operating modern manufacturing units nearby and a prime commercial office on Ring Road, SRI FABRIC gives buyers instant access to 500,000+ metres of monthly production, ready stock rolls, and zero broker markups.',
+    keyProducts: [
+      'Wholesale Sarees (Dola Silk, Banarasi Katan, Shimmer Organza)',
+      'Digital Print Yardages on Chinon, Georgette & Muslin',
+      'Plain Viscose & Pure Silk Base Fabrics',
+      'Top + Dupatta Coordinated Wholesale Catalogues',
+      'Custom Dyeing & Rapid Strike-Off Sampling',
+    ],
+    logistics: {
+      dispatchTime: 'Immediate same-day pickup or dispatch from Ring Road warehouses',
+      transitTime: 'Same-day local Surat delivery; 24-72 hours pan-India',
+      primaryCarriers: 'Ring Road transport hub agencies, dedicated trucks & express air cargo',
+      sampleAvailability: 'Walk-in showroom collection or instant local courier delivery',
+      moq: '50m per shade / print; flexible wholesale lots for startups and retail chains',
+    },
+    whyChooseUs: [
+      {
+        title: 'Epicentre of Surat Textile Trade',
+        description: 'Immediate access to local transport networks, zero freight lag, and direct mill inspection.',
+      },
+      {
+        title: 'True Mill Direct Pricing',
+        description: 'No brokerages or commission agents — deal directly with the manufacturing management.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Can I visit the mill and warehouse in Surat?',
+        answer: 'Yes, B2B buyers and trade delegations are welcome to visit our facility and inspect live looms. Contact +91 9875198837 to schedule.',
+      },
+    ],
+  },
 };

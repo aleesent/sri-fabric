@@ -39,7 +39,7 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
   const [fabrics, setFabrics] = useState<Fabric[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const isZeroProductCategory = collectionType === 'fabric';
+  const isZeroProductCategory = false;
 
   const pageTitle =
     collectionType === 'fabric'
@@ -135,13 +135,23 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
         const isTD =
           (fabric.fabricType && (fabric.fabricType.toLowerCase().includes('top') || fabric.fabricType.toLowerCase().includes('dupatta'))) ||
           (fabric.name && fabric.name.toLowerCase().includes('kurta set')) ||
-          (fabric.keywords && fabric.keywords.includes('SRI-TD'));
+          (fabric.keywords && fabric.keywords.includes('SRI-TD')) ||
+          fabric.categoryId === 2;
         if (!isTD) return false;
+      } else if (collectionType === 'fabric') {
+        const isFabric =
+          fabric.categoryId === 3 ||
+          (fabric.keywords && fabric.keywords.includes('SRI-FAB')) ||
+          (fabric.fabricType && (fabric.fabricType.toLowerCase().includes('fabric') || fabric.fabricType.toLowerCase().includes('printed')));
+        if (!isFabric) return false;
       } else if (collectionType === 'saree') {
         const isSaree =
-          (fabric.fabricType && fabric.fabricType.toLowerCase().includes('saree')) ||
-          (fabric.keywords && fabric.keywords.includes('SRI-SAR')) ||
-          (!fabric.fabricType?.toLowerCase().includes('top') && !fabric.name?.toLowerCase().includes('kurta set'));
+          (fabric.categoryId === 1 ||
+           (fabric.fabricType && fabric.fabricType.toLowerCase().includes('saree')) ||
+           (fabric.keywords && fabric.keywords.includes('SRI-SAR'))) &&
+          !fabric.fabricType?.toLowerCase().includes('top') &&
+          !fabric.name?.toLowerCase().includes('kurta set') &&
+          !fabric.keywords?.includes('SRI-FAB');
         if (!isSaree) return false;
       }
       // 1. Text Search

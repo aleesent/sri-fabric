@@ -1,6 +1,32 @@
+# ======================================================================
+# SRI FABRIC — B2B Wholesale Textile Manufacturer & Exporter
+# Technical Robots Directives & Search Indexing Optimization
+# ======================================================================
+
 User-agent: *
 Allow: /
 Disallow: /admin
-Disallow: /api/admin
+Disallow: /admin/*
+Disallow: /arvexa
+Disallow: /arvexa/*
+Disallow: /api/
 
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /arvexa
+Disallow: /arvexa/*
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /arvexa
+Disallow: /arvexa/*
+Disallow: /api/
+
+# Host and Master XML Sitemap
+Host: srifabrics.com
 Sitemap: https://srifabrics.com/sitemap.xml

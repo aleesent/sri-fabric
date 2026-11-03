@@ -179,6 +179,7 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
       <SEOHead
         title={`${fabric.name} | Wholesale Fabric & Saree Mill Surat`}
         description={`Wholesale ${fabric.name} (${categoryName}) direct from SRI FABRIC Surat. Premium quality, ready stock & custom bulk orders. Inquire at +91 9875198837.`}
+        keywords={`${fabric.name}, ${fabric.name} wholesale, ${categoryName} wholesale Surat, ${fabric.fabricType || ''} fabric Surat, ${fabric.composition || ''} textile mill, buy ${fabric.name} bulk India`}
         canonicalPath={`/fabrics/${fabric.slug}`}
         ogImage={fabric.primaryImageUrl || '/slides/hero-fabrics-home.jpg'}
         ogType="product"

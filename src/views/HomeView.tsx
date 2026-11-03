@@ -189,16 +189,29 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const featuredSarees = useMemo(() => {
     const sarees = allFabrics.filter((fabric) => {
       const typeStr = (fabric.fabricType || '').toLowerCase();
-      const nameStr = (fabric.name || '').toLowerCase();
       const kwStr = (fabric.keywords || '').toLowerCase();
       return (
-        typeStr.includes('saree') ||
+        fabric.categoryId === 1 ||
         kwStr.includes('sri-sar') ||
-        (!typeStr.includes('top') && !nameStr.includes('kurta') && !nameStr.includes('kurti') && !nameStr.includes('top + dupatta'))
+        (typeStr.includes('saree') && !kwStr.includes('sri-fab') && !kwStr.includes('sri-td'))
       );
     });
     return sarees.length > 0 ? sarees.slice(0, 8) : featuredFabrics;
   }, [allFabrics, featuredFabrics]);
+
+  // Dedicated Featured Fabrics (Printed Fabrics from SRI_FABRIC3 catalog)
+  const featuredMillFabrics = useMemo(() => {
+    const fabList = allFabrics.filter((fabric) => {
+      const typeStr = (fabric.fabricType || '').toLowerCase();
+      const kwStr = (fabric.keywords || '').toLowerCase();
+      return (
+        fabric.categoryId === 3 ||
+        kwStr.includes('sri-fab') ||
+        (typeStr.includes('fabric') && !kwStr.includes('sri-sar') && !kwStr.includes('sri-td'))
+      );
+    });
+    return fabList.length > 0 ? fabList.slice(0, 8) : [];
+  }, [allFabrics]);
 
   useEffect(() => {
     fetchAllHomeData(false);
@@ -243,11 +256,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
   };
 
   const activeTestimonial = testimonials[currentTestimonial] || {
-    clientName: 'Priya Sharma',
-    company: 'Priya Sharma Haute Couture',
-    designation: 'Fashion Designer, India',
+    clientName: 'Praveenbhai Patel (Surat)',
     country: 'India',
-    testimonial: '“SRI Fabrics has been our trusted partner for premium textiles. The quality, finish and collection are simply outstanding.”',
+    testimonial: '“We have been regular buyers of digital printed viscose chinon and organza fabrics from SRI FABRIC for our wholesale counter on Ring Road. Their lot-to-lot color fastness, sharpness of print, and ready dispatch within 48 hours have made them our most dependable textile partner in Surat.”',
     rating: 5,
   };
 
@@ -361,43 +372,45 @@ export const HomeView: React.FC<HomeViewProps> = ({
       />
 
       {/* ============================================================ */}
-      {/* 3B. EXCLUSIVE MILL COLLECTION — FEATURED SAREES              */}
+      {/* 3B. EXCLUSIVE MILL COLLECTION — FEATURED PRINTED FABRICS     */}
       {/* (Positioned directly above "OUR PREMIUM SELECTION")           */}
       {/* ============================================================ */}
-      <section className="bg-[#faf7f2] py-16 px-4 sm:px-8 border-b border-stone-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-10 pb-4 border-b border-stone-300">
-            <div>
-              <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
-                EXCLUSIVE MILL COLLECTION
-              </span>
-              <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
-                FEATURED SAREES
-              </h2>
+      {featuredMillFabrics.length > 0 && (
+        <section className="bg-[#faf7f2] py-16 px-4 sm:px-8 border-b border-stone-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-10 pb-4 border-b border-stone-300">
+              <div>
+                <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
+                  EXCLUSIVE MILL COLLECTION
+                </span>
+                <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
+                  FEATURED PRINTED FABRICS
+                </h2>
+              </div>
+
+              <button
+                onClick={() => onNavigate('/fabrics')}
+                className="text-xs font-semibold uppercase tracking-wider text-[#4a1122] hover:text-[#781934] transition-colors flex items-center gap-1"
+              >
+                <span>VIEW ALL FABRICS</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
 
-            <button
-              onClick={() => onNavigate('/sarees')}
-              className="text-xs font-semibold uppercase tracking-wider text-[#4a1122] hover:text-[#781934] transition-colors flex items-center gap-1"
-            >
-              <span>VIEW ALL SAREES</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            {/* Cards Grid - 3:4 Portrait Cards Grid matching Exclusive Mill styling */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
+              {featuredMillFabrics.map((fabric) => (
+                <FabricCard
+                  key={fabric.id}
+                  fabric={fabric}
+                  onViewDetails={onViewFabric}
+                  onRequestEnquiry={onRequestEnquiry}
+                />
+              ))}
+            </div>
           </div>
-
-          {/* Cards Grid - 3:4 Portrait Cards Grid matching Exclusive Mill styling */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
-            {featuredSarees.map((fabric) => (
-              <FabricCard
-                key={fabric.id}
-                fabric={fabric}
-                onViewDetails={onViewFabric}
-                onRequestEnquiry={onRequestEnquiry}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ============================================================ */}
       {/* 4. PREMIUM FABRICS SECTION (9:16 Minimal Cards - 5 Cards)   */}
@@ -490,35 +503,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* ============================================================ */}
       <section className="bg-[#faf6f0] py-16 px-4 sm:px-8 border-b border-stone-200">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left: Manufacturing Facility Visual with Video Trigger */}
-          <div className="lg:col-span-6 relative rounded-xl overflow-hidden shadow-2xl border border-stone-300 aspect-[16/10] bg-[#1a050b] group">
-            <img
-              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
-              alt="SRI Fabrics Advanced Looms Facility"
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          {/* Left: Manufacturing Facility Video Container */}
+          <div className="lg:col-span-6 relative rounded-xl overflow-hidden shadow-2xl border border-stone-300 aspect-[16/10] bg-[#1a050b]">
+            <video
+              src="https://res.cloudinary.com/isjnpcvp/video/upload/v1793690411/1103.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
-
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button
-                onClick={() => setIsVideoModalOpen(true)}
-                className="w-16 h-16 rounded-full bg-[#dfb15b] hover:bg-white text-[#24060d] flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer border-4 border-[#24060d]/50"
-                aria-label="Watch manufacturing film"
-              >
-                <Play className="w-6 h-6 fill-current translate-x-0.5" />
-              </button>
-            </div>
-
-            <div className="absolute bottom-4 left-4 right-4 bg-black/75 backdrop-blur-xs p-3.5 rounded border border-white/15 text-white flex items-center justify-between text-xs">
-              <div>
-                <p className="font-semibold text-[#dfb15b]">SRI Fabrics Mill Floor — Surat, India</p>
-                <p className="text-[11px] text-white/70">500,000+ Metres Monthly Weaving Capacity</p>
-              </div>
-              <span className="text-[10px] uppercase font-mono px-2 py-0.5 bg-[#dfb15b] text-[#24060d] font-bold rounded">
-                HD TOUR
-              </span>
-            </div>
           </div>
 
           {/* Right: Editorial About Copy */}
@@ -582,99 +577,46 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* 6. WHY CHOOSE SRI FABRICS                                     */}
-      {/* ============================================================ */}
-      <section className="bg-white py-16 px-4 sm:px-8 border-b border-stone-200">
-        <div className="max-w-7xl mx-auto text-center space-y-3 mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#4a1122]">
-            WHY CHOOSE SRI FABRICS?
-          </h2>
-          <p className="font-serif italic text-stone-500 text-base">
-            More Than Just Fabrics — A Promise of Excellence
-          </p>
-        </div>
-
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="p-6 bg-[#faf7f2] rounded-lg border border-stone-200/80 hover:border-[#dfb15b] transition-all text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
-              <Diamond className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif font-bold text-[#4a1122] text-base">Premium Quality</h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Only the finest raw mulberry silk, high-twist viscose, and tested zari filaments used in our fabric warps.
-            </p>
-          </div>
-
-          <div className="p-6 bg-[#faf7f2] rounded-lg border border-stone-200/80 hover:border-[#dfb15b] transition-all text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif font-bold text-[#4a1122] text-base">Innovative Designs</h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Seasonal trend analysis, proprietary CAD pattern development, and bespoke Jacquard card punches.
-            </p>
-          </div>
-
-          <div className="p-6 bg-[#faf7f2] rounded-lg border border-stone-200/80 hover:border-[#dfb15b] transition-all text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
-              <Truck className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif font-bold text-[#4a1122] text-base">Reliable Bulk Supply</h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Consistently supplying fashion houses, boutique designers, and garment manufacturers on schedule.
-            </p>
-          </div>
-
-          <div className="p-6 bg-[#faf7f2] rounded-lg border border-stone-200/80 hover:border-[#dfb15b] transition-all text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-[#4a1122] text-[#dfb15b] flex items-center justify-center mx-auto">
-              <Leaf className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif font-bold text-[#4a1122] text-base">Sustainable Approach</h3>
-            <p className="text-xs text-stone-600 leading-relaxed">
-              Eco-friendly zero-discharge wet processing, biodegradable dyes, and safe working conditions.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* ============================================================ */}
-      {/* 7. EXCLUSIVE MILL COLLECTION — FEATURED TOP + DUPATTA        */}
+      {/* 7. EXCLUSIVE MILL COLLECTION — FEATURED SAREES               */}
       {/* ============================================================ */}
-      <section className="bg-[#faf7f2] py-16 px-4 sm:px-8 border-b border-stone-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-10 pb-4 border-b border-stone-300">
-            <div>
-              <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
-                EXCLUSIVE MILL COLLECTION
-              </span>
-              <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
-                FEATURED TOP + DUPATTA
-              </h2>
+      {featuredSarees.length > 0 && (
+        <section className="bg-[#faf7f2] py-16 px-4 sm:px-8 border-b border-stone-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-10 pb-4 border-b border-stone-300">
+              <div>
+                <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
+                  EXCLUSIVE MILL COLLECTION
+                </span>
+                <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
+                  FEATURED SAREES
+                </h2>
+              </div>
+
+              <button
+                onClick={() => onNavigate('/sarees')}
+                className="text-xs font-semibold uppercase tracking-wider text-[#4a1122] hover:text-[#781934] transition-colors flex items-center gap-1"
+              >
+                <span>VIEW ALL SAREES</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
 
-            <button
-              onClick={() => onNavigate('/top-dupatta')}
-              className="text-xs font-semibold uppercase tracking-wider text-[#4a1122] hover:text-[#781934] transition-colors flex items-center gap-1"
-            >
-              <span>VIEW ALL TOP + DUPATTA</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            {/* Cards Grid - 3:4 Portrait Cards Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
+              {featuredSarees.map((fabric) => (
+                <FabricCard
+                  key={fabric.id}
+                  fabric={fabric}
+                  onViewDetails={onViewFabric}
+                  onRequestEnquiry={onRequestEnquiry}
+                />
+              ))}
+            </div>
           </div>
-
-          {/* Cards Grid - 3:4 Portrait Cards Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
-            {featuredTopDupatta.map((fabric) => (
-              <FabricCard
-                key={fabric.id}
-                fabric={fabric}
-                onViewDetails={onViewFabric}
-                onRequestEnquiry={onRequestEnquiry}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ============================================================ */}
       {/* CATEGORY CARDS SECTION: SHOP BY COLLECTION CAROUSEL          */}
@@ -684,6 +626,46 @@ export const HomeView: React.FC<HomeViewProps> = ({
         onViewFabric={onViewFabric}
         products={allFabrics}
       />
+
+      {/* ============================================================ */}
+      {/* 7B. EXCLUSIVE MILL COLLECTION — FEATURED TOP + DUPATTA       */}
+      {/* ============================================================ */}
+      {featuredTopDupatta.length > 0 && (
+        <section className="bg-white py-16 px-4 sm:px-8 border-b border-stone-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-10 pb-4 border-b border-stone-300">
+              <div>
+                <span className="text-[#4a1122] text-xs font-semibold uppercase tracking-[0.2em]">
+                  EXCLUSIVE MILL COLLECTION
+                </span>
+                <h2 className="font-serif text-3xl font-bold text-[#4a1122]">
+                  FEATURED TOP + DUPATTA
+                </h2>
+              </div>
+
+              <button
+                onClick={() => onNavigate('/top-dupatta')}
+                className="text-xs font-semibold uppercase tracking-wider text-[#4a1122] hover:text-[#781934] transition-colors flex items-center gap-1"
+              >
+                <span>VIEW ALL TOP + DUPATTA</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Cards Grid - 3:4 Portrait Cards Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
+              {featuredTopDupatta.map((fabric) => (
+                <FabricCard
+                  key={fabric.id}
+                  fabric={fabric}
+                  onViewDetails={onViewFabric}
+                  onRequestEnquiry={onRequestEnquiry}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ============================================================ */}
       {/* 8. TESTIMONIALS SECTION ("WHY OUR CLIENTS SAY")               */}
@@ -700,27 +682,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           {/* Client info */}
           <div className="flex flex-col items-center gap-2 pt-2">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#dfb15b] bg-[#20050c] shadow-lg">
-              {activeTestimonial.photoUrl ? (
-                <img
-                  src={activeTestimonial.photoUrl}
-                  alt={activeTestimonial.clientName}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center font-serif text-lg font-bold text-[#dfb15b]">
-                  {activeTestimonial.clientName.charAt(0)}
-                </div>
-              )}
-            </div>
-
             <div className="text-center">
-              <h4 className="font-serif font-bold text-base text-white tracking-wide">
+              <h4 className="font-serif font-semibold text-lg sm:text-xl text-[#dfb15b] tracking-wide">
                 {activeTestimonial.clientName}
               </h4>
-              <p className="text-xs text-[#dfb15b]">
-                {activeTestimonial.designation || activeTestimonial.company}
-              </p>
             </div>
 
             {/* Stars */}

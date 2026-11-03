@@ -188,7 +188,7 @@ apiRouter.get('/shop-the-look', async (_req: Request, res: Response) => {
   try {
     const cacheKey = 'shop-the-look:all';
     const cached = getCached<ShopTheLookItem[]>(cacheKey);
-    if (cached && Array.isArray(cached) && cached.length === 8 && cached.every(i => i.videoUrl?.includes('f_auto,q_auto'))) {
+    if (cached && Array.isArray(cached) && cached.length > 0) {
       return res.json(cached);
     }
 
@@ -203,17 +203,8 @@ apiRouter.get('/shop-the-look', async (_req: Request, res: Response) => {
       if (setting.length && setting[0].value) {
         try {
           items = JSON.parse(setting[0].value);
-          const isOptimized = Array.isArray(items) && items.length === 8 && items.every(i => i.videoUrl?.includes('f_auto,q_auto'));
-          if (!isOptimized) {
+          if (!Array.isArray(items) || items.length === 0) {
             items = DEFAULT_SHOP_THE_LOOK_ITEMS;
-            await db
-              .update(siteSettings)
-              .set({
-                value: JSON.stringify(DEFAULT_SHOP_THE_LOOK_ITEMS),
-                description: 'Shop The Look video carousel items with Cloudinary f_auto,q_auto video references',
-              })
-              .where(eq(siteSettings.key, 'shop_the_look_videos'))
-              .catch(() => {});
           }
         } catch {
           items = DEFAULT_SHOP_THE_LOOK_ITEMS;
@@ -223,7 +214,7 @@ apiRouter.get('/shop-the-look', async (_req: Request, res: Response) => {
         await db.insert(siteSettings).values({
           key: 'shop_the_look_videos',
           value: JSON.stringify(DEFAULT_SHOP_THE_LOOK_ITEMS),
-          description: 'Shop The Look video carousel items with Cloudinary f_auto,q_auto video references',
+          description: 'Shop The Look video carousel items',
         }).catch(() => {});
       }
 
@@ -454,7 +445,7 @@ apiRouter.get('/fabrics', async (req: Request, res: Response) => {
       if (items.length > 0) {
         const mappedItems = items.map((f: any) => ({
           ...f,
-          designId: f.keywords && f.keywords.startsWith('FAB') ? f.keywords : (f.keywords || `FAB${31003100 + f.id}`),
+          designId: f.keywords ? f.keywords.split(' ')[0] : (f.designId || `FAB${31003100 + f.id}`),
           inStock: true,
         }));
         return res.json(mappedItems);
@@ -473,6 +464,8 @@ apiRouter.get('/fabrics', async (req: Request, res: Response) => {
         excelFabrics = excelFabrics.filter((f) => f.fabricType?.toLowerCase().includes('saree') || f.categoryId === 1);
       } else if (catLower === 'top-dupatta' || catLower === 'kurti-set' || catLower === 'kurti-sets') {
         excelFabrics = excelFabrics.filter((f) => f.fabricType?.toLowerCase().includes('top') || f.fabricType?.toLowerCase().includes('dupatta') || f.categoryId === 2);
+      } else if (catLower === 'fabrics' || catLower === 'fabric') {
+        excelFabrics = excelFabrics.filter((f) => f.fabricType?.toLowerCase().includes('fabric') || f.categoryId === 3 || f.keywords?.includes('SRI-FAB'));
       }
     }
     if (search && typeof search === 'string') {
@@ -1632,7 +1625,7 @@ apiRouter.get('/admin/shop-the-look', requireAuth, async (_req: AuthRequest, res
     if (setting.length && setting[0].value) {
       try {
         const parsed = JSON.parse(setting[0].value);
-        if (Array.isArray(parsed) && parsed.length === 8 && parsed.every(i => i.videoUrl?.includes('f_auto,q_auto'))) {
+        if (Array.isArray(parsed) && parsed.length > 0) {
           return res.json(parsed);
         }
       } catch {}

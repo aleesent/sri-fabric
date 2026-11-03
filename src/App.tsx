@@ -86,20 +86,20 @@ export default function App() {
     setAdminUser(admin);
     localStorage.setItem('sri_admin_token', token);
     localStorage.setItem('sri_admin_user', JSON.stringify(admin));
-    navigateTo('/admin');
+    navigateTo('/arvexa');
   };
 
   const handleAdminLogout = () => {
     setAdminToken(null);
     localStorage.removeItem('sri_admin_token');
     localStorage.removeItem('sri_admin_user');
-    navigateTo('/admin/login');
+    navigateTo('/arvexa');
   };
 
   // Route Dispatcher
   const renderContent = () => {
-    // 1. Admin Routing
-    if (currentPath.startsWith('/admin')) {
+    // 1. Admin Routing (Hidden route accessible via /arvexa)
+    if (currentPath.startsWith('/arvexa') || currentPath.startsWith('/admin')) {
       if (!adminToken) {
         return (
           <AdminLogin
@@ -206,9 +206,24 @@ export default function App() {
         return (
           <>
             <SEOHead
-              title="Fabric Wholesale Surat | Pure Silk, Chinon & Georgette Yardages"
-              description="Wholesale fabrics directly from Surat looms. Sourcing pure mulberry silks, viscose chinon, organza, georgette & plain dyed bases for apparel makers."
+              title="Fabric Wholesale Surat | Pure Silk, Chinon & Georgette Yardages | SRI FABRIC"
+              description="Wholesale fabrics directly from Surat looms. Sourcing pure mulberry silks, viscose chinon, organza, georgette & plain dyed bases for apparel makers & designers."
+              keywords="fabric wholesale Surat, wholesale fabrics Surat, pure silk fabric wholesale, viscose chinon Surat, organza fabric wholesale, georgette fabric mill, Surat textile market Ring Road, bulk fabric supplier India"
               canonicalPath="/fabrics"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Wholesale Fabrics Surat',
+                description: 'Wholesale fabrics directly from Surat looms including pure silks, chinon, organza, and georgettes.',
+                url: 'https://srifabrics.com/fabrics',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Wholesale Fabrics', item: 'https://srifabrics.com/fabrics' },
+                  ],
+                },
+              }}
             />
             <CatalogueView
               key="fabric-catalogue"
@@ -229,9 +244,24 @@ export default function App() {
         return (
           <>
             <SEOHead
-              title="Top + Dupatta Sets Wholesale Surat | Artisanal Suit Lengths"
-              description="Wholesale unstitched designer top & dupatta sets from Surat. Premium combed cotton, muslin, digital printed chinon & coordinated ethnic ensembles."
+              title="Top + Dupatta Sets Wholesale Surat | Artisanal Suit Lengths | SRI FABRIC"
+              description="Wholesale unstitched designer top & dupatta sets from Surat. Premium combed cotton, muslin, digital printed chinon & coordinated ethnic ensembles for boutiques."
+              keywords="top dupatta wholesale Surat, unstitched suit wholesale, wholesale kurti fabric Surat, muslin suit sets wholesale, digital print dupatta wholesale, boutique salwar suit fabrics"
               canonicalPath="/top-dupatta"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Top + Dupatta Wholesale Sets',
+                description: 'Designer unstitched top and dupatta sets for boutiques and retailers.',
+                url: 'https://srifabrics.com/top-dupatta',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Top + Dupatta Sets', item: 'https://srifabrics.com/top-dupatta' },
+                  ],
+                },
+              }}
             />
             <CatalogueView
               key="top-dupatta-catalogue"
@@ -253,13 +283,27 @@ export default function App() {
       case '/dress':
       case '/kurti-set':
       case '/kurti-sets':
-      case '/collections':
         return (
           <>
             <SEOHead
-              title="Wholesale Sarees Surat | Direct Mill Banarasi, Dola Silk & Organza"
-              description="Explore wholesale sarees from Surat's premier textile mill. Regal Banarasi katan, Dola silk, tissue organza & festive bridal sarees in bulk supply."
+              title="Wholesale Sarees Surat | Direct Mill Banarasi, Dola Silk & Organza | SRI FABRIC"
+              description="Explore wholesale sarees from Surat's premier textile mill. Regal Banarasi katan, Dola silk, tissue organza & festive bridal sarees in bulk trade bundles."
+              keywords="wholesale sarees Surat, Surat saree manufacturer, Banarasi sarees wholesale, Dola silk saree wholesale, organza saree supplier Surat, bridal saree wholesale Surat, B2B saree manufacturer Surat"
               canonicalPath="/sarees"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Wholesale Sarees Surat',
+                description: 'Direct mill wholesale sarees from Surat looms including Banarasi katan, Dola silk, and organza sarees.',
+                url: 'https://srifabrics.com/sarees',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Wholesale Sarees', item: 'https://srifabrics.com/sarees' },
+                  ],
+                },
+              }}
             />
             <CatalogueView
               key={`sarees-${catQuery || 'all'}`}
@@ -274,13 +318,58 @@ export default function App() {
           </>
         );
 
+      case '/collections':
+        return (
+          <>
+            <SEOHead
+              title="Designer Textile Collections & Lookbooks | SRI FABRIC Surat"
+              description="Explore curated fabric & saree collections from SRI FABRIC Surat. Royal Chinon, Pure Silk Heritage, Organza Radiance, and Luxe Georgette lookbooks."
+              keywords="fabric collections Surat, luxury textile lookbook, pure silk collections, organza textile edit, designer saree lookbook, Surat mill collections"
+              canonicalPath="/collections"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Curated Textile Collections',
+                description: 'Curated fabric and saree capsules for couture ateliers and fashion houses.',
+                url: 'https://srifabrics.com/collections',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Collections', item: 'https://srifabrics.com/collections' },
+                  ],
+                },
+              }}
+            />
+            <CollectionsView
+              onViewFabric={(slug) => navigateTo(`/fabrics/${slug}`)}
+              onRequestEnquiry={handleOpenEnquiry}
+            />
+          </>
+        );
+
       case '/about':
         return (
           <>
             <SEOHead
-              title="About SRI FABRIC | Leading B2B Textile Manufacturer in Surat"
+              title="About SRI FABRIC | Three Decades of Textile Manufacturing in Surat"
               description="Discover SRI FABRIC Surat: Three decades of textile heritage, direct mill weaving, sustainable AZO-free practices, and global B2B fabric export."
+              keywords="textile mill Surat, SRI FABRIC history, fabric manufacturer Surat, B2B textile export India, Surat weaving looms, about SRI FABRIC"
               canonicalPath="/about"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'AboutPage',
+                name: 'About SRI FABRIC',
+                description: 'Three decades of textile heritage and rapier loom manufacturing in Surat, Gujarat.',
+                url: 'https://srifabrics.com/about',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://srifabrics.com/about' },
+                  ],
+                },
+              }}
             />
             <AboutView
               onNavigate={navigateTo}
@@ -293,9 +382,24 @@ export default function App() {
         return (
           <>
             <SEOHead
-              title="Textile Manufacturing in Surat | High-Speed Looms & Digital Printing"
+              title="Textile Manufacturing in Surat | High-Speed Looms & Digital Printing | SRI FABRIC"
               description="Advanced textile manufacturing and custom digital fabric printing in Surat, Gujarat. Rapier looms, electronic Jacquards, 500,000m monthly capacity."
+              keywords="textile manufacturing Surat, rapier looms Surat, digital textile printing Surat, electronic Jacquard weaving, fabric production capacity Surat, textile dyeing mill"
               canonicalPath="/manufacturing"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'ItemPage',
+                name: 'Textile Manufacturing Facility Surat',
+                description: 'Advanced rapier loom weaving and digital printing facility in Surat, Gujarat.',
+                url: 'https://srifabrics.com/manufacturing',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Manufacturing', item: 'https://srifabrics.com/manufacturing' },
+                  ],
+                },
+              }}
             />
             <ManufacturingView
               onRequestEnquiry={() => handleOpenEnquiry()}
@@ -307,9 +411,24 @@ export default function App() {
         return (
           <>
             <SEOHead
-              title="Global Textile Export from Surat | SRI FABRIC International"
+              title="Global Textile Export from Surat | International B2B Fabric Supply | SRI FABRIC"
               description="Exporting luxury Indian textiles and wholesale fabrics to 35+ countries worldwide. Certified quality documentation and seamless port-to-port freight."
+              keywords="Indian fabric export, textile export Surat, wholesale saree exporter India, international fabric shipping, B2B textile supplier USA UK UAE"
               canonicalPath="/global-reach"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'ItemPage',
+                name: 'Global Textile Export Network',
+                description: 'International fabric export from Surat to 35+ countries worldwide.',
+                url: 'https://srifabrics.com/global-reach',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Global Export', item: 'https://srifabrics.com/global-reach' },
+                  ],
+                },
+              }}
             />
             <AboutView
               onNavigate={navigateTo}
@@ -324,7 +443,22 @@ export default function App() {
             <SEOHead
               title="Textile Sourcing & Fabric Wholesale Blog | SRI FABRIC Surat"
               description="Expert B2B textile sourcing guides, Surat fabric wholesale market insights, digital printing advice, and apparel manufacturing tips from SRI FABRIC."
+              keywords="textile blog India, fabric sourcing guide, Surat wholesale market tips, silk fabric care, B2B textile insights, textile trends India"
               canonicalPath="/blog"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'Blog',
+                name: 'SRI FABRIC Textile Insights & Sourcing Guide',
+                description: 'B2B fabric sourcing guides and industry news from Surat.',
+                url: 'https://srifabrics.com/blog',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://srifabrics.com/blog' },
+                  ],
+                },
+              }}
             />
             <BlogView onNavigate={navigateTo} />
           </>
@@ -336,7 +470,22 @@ export default function App() {
             <SEOHead
               title="Contact SRI FABRIC Surat | B2B Fabric Inquiry & Swatch Request"
               description="Connect with SRI FABRIC in Surat, Gujarat. Request fabric swatch folders, custom mill quotations, and schedule a factory visit. Call +91 9875198837."
+              keywords="contact SRI FABRIC, Surat textile mill address, fabric sample request Surat, B2B fabric quotation, Surat wholesale office"
               canonicalPath="/contact"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'ContactPage',
+                name: 'Contact SRI FABRIC',
+                description: 'B2B inquiry desk, showroom appointments, and fabric swatch orders.',
+                url: 'https://srifabrics.com/contact',
+                breadcrumb: {
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Contact Us', item: 'https://srifabrics.com/contact' },
+                  ],
+                },
+              }}
             />
             <ContactView />
           </>
@@ -349,7 +498,19 @@ export default function App() {
             <SEOHead
               title="SRI FABRIC – Fabric Wholesale Surat | B2B Textile Manufacturer"
               description="SRI FABRIC is Surat's leading B2B fabric wholesaler & textile manufacturer. Ready stock & made-to-order pure silks, wholesale sarees, chinon & digital prints."
+              keywords="fabric wholesale Surat, wholesale sarees Surat, B2B textile manufacturer India, Surat textile market Ring Road, pure silk fabric wholesale, Banarasi katan silk manufacturer, Dola silk wholesale Surat, chinon fabric supplier, tissue organza wholesale"
               canonicalPath="/"
+              jsonLd={{
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: 'SRI FABRIC Surat',
+                url: 'https://srifabrics.com/',
+                potentialAction: {
+                  '@type': 'SearchAction',
+                  target: 'https://srifabrics.com/sarees?search={search_term_string}',
+                  'query-input': 'required name=search_term_string',
+                },
+              }}
             />
             <HomeView
               onNavigate={navigateTo}
@@ -361,7 +522,7 @@ export default function App() {
     }
   };
 
-  const isAdminRoute = currentPath.startsWith('/admin');
+  const isAdminRoute = currentPath.startsWith('/arvexa') || currentPath.startsWith('/admin');
 
   return (
     <div className="min-h-screen flex flex-col justify-between selection:bg-[#4a1122] selection:text-[#f7e6c4]">
