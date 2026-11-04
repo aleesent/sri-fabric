@@ -234,7 +234,10 @@ const SlideImageRenderer: React.FC<{
         alt={slide.heading || 'Sri Fabrics Luxury Textiles'}
         className="block md:hidden w-full h-full object-cover object-center"
         loading={isPriority ? 'eager' : 'lazy'}
-        decoding="async"
+        fetchPriority={isPriority ? 'high' : 'auto'}
+        decoding={isPriority ? 'sync' : 'async'}
+        width={1080}
+        height={1920}
         onError={() => {
           if (!mobileError) setMobileError(true);
         }}
@@ -245,7 +248,10 @@ const SlideImageRenderer: React.FC<{
         alt={slide.heading || 'Sri Fabrics Luxury Textiles'}
         className="hidden md:block w-full h-full object-cover object-center"
         loading={isPriority ? 'eager' : 'lazy'}
-        decoding="async"
+        fetchPriority={isPriority ? 'high' : 'auto'}
+        decoding={isPriority ? 'sync' : 'async'}
+        width={1920}
+        height={1080}
         onError={() => {
           if (!desktopError) setDesktopError(true);
         }}

@@ -52,6 +52,10 @@ export const Logo: React.FC<LogoProps> = ({
           alt="SRI Fabrics Official Seal"
           className="w-full h-full object-cover"
           loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+          width={80}
+          height={80}
         />
       </div>
     );
@@ -67,6 +71,10 @@ export const Logo: React.FC<LogoProps> = ({
           onError={() => setImageError(true)}
           className={`${containerSizes[size]} w-auto object-contain transition-transform duration-200 hover:scale-[1.02]`}
           loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+          width={260}
+          height={72}
         />
       </div>
     );
@@ -83,6 +91,10 @@ export const Logo: React.FC<LogoProps> = ({
           alt="SRI Fabrics Official Emblem"
           className="w-full h-full object-cover scale-[1.04]"
           loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+          width={64}
+          height={64}
         />
       </div>
 

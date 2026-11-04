@@ -106,6 +106,10 @@ export const CollectionsView: React.FC<CollectionsViewProps> = ({
               <img
                 src={selectedCol.imageUrl}
                 alt={selectedCol.name}
+                loading="lazy"
+                decoding="async"
+                width={600}
+                height={450}
                 className="w-full h-full object-cover object-center"
               />
             </div>

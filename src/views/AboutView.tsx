@@ -88,8 +88,12 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
               <img 
                 src="/company intro.png" 
                 alt="SRI FABRIC — Company Introduction & Printing Services"
+                width={1682}
+                height={935}
                 className="w-full h-full object-cover block select-none pointer-events-none"
                 loading="eager"
+                fetchPriority="high"
+                decoding="sync"
               />
 
               {/* 1. TOP-RIGHT BURGUNDY PANEL: "for all your printing needs..." + DIRECT MILL INQUIRIES */}
@@ -251,8 +255,11 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
                 <img 
                   src="/printing1.png" 
                   alt="SRI FABRICS — Digital Textile Printing Production & Machinery"
+                  width={1672}
+                  height={941}
                   className="w-full h-full object-cover block select-none pointer-events-none"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -400,9 +407,12 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
                 <img 
                   src="/our founder.png" 
                   alt="SRI FABRIC — Founder Story Mr. Jignessh Mehta" 
+                  width={800}
+                  height={600}
                   style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'right center' }}
                   className="w-full h-full block object-cover select-none pointer-events-none"
                   loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Right Brocade Overlay: A VISION WOVEN WITH PASSION */}
@@ -471,9 +481,12 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
               <img 
                 src="/our founder.png" 
                 alt="SRI FABRIC — Founder Story Mr. Jignessh Mehta" 
+                width={800}
+                height={600}
                 style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'right center' }}
                 className="w-full h-full block object-cover select-none pointer-events-none"
                 loading="lazy"
+                decoding="async"
               />
 
               {/* Mobile Verse Overlay */}
@@ -511,8 +524,11 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
               <img 
                 src="/why sri all in.png" 
                 alt="SRI FABRIC — Why Us? Quality & Commitment"
+                width={1683}
+                height={935}
                 className="w-full h-full object-cover block select-none pointer-events-none"
                 loading="lazy"
+                decoding="async"
               />
 
               {/* 1. TOP-RIGHT IVORY PANEL */}
@@ -655,8 +671,11 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
                 <img 
                   src="/why sri1.png" 
                   alt="SRI FABRICS — Fabrics For A Brighter Tomorrow"
+                  width={1882}
+                  height={836}
                   className="w-full h-full object-contain block select-none pointer-events-none"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

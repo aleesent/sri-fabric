@@ -380,7 +380,12 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
                   <img
                     src={selectedPost.featuredImageUrl}
                     alt={selectedPost.title}
+                    width={1280}
+                    height={720}
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
               </div>
@@ -462,7 +467,11 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
                       <img
                         src={otherPost.featuredImageUrl}
                         alt={otherPost.title}
+                        width={384}
+                        height={216}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div className="flex-1 space-y-2 text-left">
@@ -549,8 +558,11 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
                   <img
                     src={post.featuredImageUrl}
                     alt={post.title}
+                    width={640}
+                    height={360}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 left-4 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
                     {post.categoryName || 'SOURCING GUIDE'}

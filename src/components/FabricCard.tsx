@@ -32,6 +32,9 @@ export const FabricCard: React.FC<FabricCardProps> = ({
           onError={() => setImageError(true)}
           className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           loading="lazy"
+          decoding="async"
+          width={300}
+          height={400}
         />
       </div>
 

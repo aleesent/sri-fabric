@@ -220,6 +220,10 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
                         alt={slot.alt}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover object-top"
+                        loading="lazy"
+                        decoding="async"
+                        width={72}
+                        height={96}
                       />
                     ) : (
                       <div className="w-full h-full flex flex-col items-center justify-center p-1 text-stone-300">
@@ -240,6 +244,11 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
                   alt={fabric.name}
                   referrerPolicy="no-referrer"
                   className="w-full h-full max-h-full max-w-full object-contain p-1.5 transition-opacity duration-200"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                  width={800}
+                  height={1067}
                 />
               ) : (
                 <div className="w-full h-full min-h-[380px] flex flex-col items-center justify-center text-stone-300 gap-2">

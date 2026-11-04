@@ -10,9 +10,10 @@ interface ShopTheLookProps {
 interface ReelCardProps {
   item: ShopTheLookItem;
   onClick: () => void;
+  isNearViewport: boolean;
 }
 
-const ReelCard: React.FC<ReelCardProps> = ({ item, onClick }) => {
+const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) => {
   const [videoError, setVideoError] = useState(false);
 
   return (
@@ -21,18 +22,21 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick }) => {
       className="relative shrink-0 w-[215px] sm:w-[235px] md:w-[250px] aspect-[9/16] rounded-[16px] sm:rounded-[18px] overflow-hidden bg-[#1f0910] shadow-2xl cursor-pointer group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8)]"
       style={{ userSelect: 'none' }}
     >
-      {/* Background Poster Image */}
+      {/* Background Poster Image - Instant zero-CLS display with native lazy loading */}
       {item.posterUrl && (
         <img
           src={item.posterUrl}
           alt={item.title}
+          width={250}
+          height={444}
           className="absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
         />
       )}
 
-      {/* HTML5 Autoplaying Looping Fashion Video */}
-      {!videoError && (
+      {/* HTML5 Autoplaying Looping Fashion Video - Lazy loaded when section nears viewport */}
+      {isNearViewport && !videoError && (
         <video
           src={item.videoUrl}
           poster={item.posterUrl}
@@ -40,7 +44,7 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick }) => {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           onError={() => setVideoError(true)}
           className="absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none"
         />
@@ -51,8 +55,10 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick }) => {
 
 export const ShopTheLook: React.FC<ShopTheLookProps> = ({ onNavigate, onRequestEnquiry }) => {
   const [items, setItems] = useState<ShopTheLookItem[]>(DEFAULT_SHOP_THE_LOOK_ITEMS);
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const set1Ref = useRef<HTMLDivElement>(null);
+  const [isNearViewport, setIsNearViewport] = useState(false);
 
   const [isHovered, setIsHovered] = useState(false);
   const isDraggingRef = useRef(false);
@@ -79,6 +85,31 @@ export const ShopTheLook: React.FC<ShopTheLookProps> = ({ onNavigate, onRequestE
     return () => {
       isMounted = false;
     };
+  }, []);
+
+  // Intersection Observer to lazy load fashion videos only when section nears viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsNearViewport(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '350px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   // Initialize scroll position to Set 2 (middle set) so users can scroll left or right infinitely
@@ -231,7 +262,7 @@ export const ShopTheLook: React.FC<ShopTheLookProps> = ({ onNavigate, onRequestE
   };
 
   return (
-    <section className="bg-[#18060b] py-14 sm:py-20 lg:py-24 overflow-hidden relative select-none">
+    <section ref={sectionRef} className="bg-[#18060b] py-14 sm:py-20 lg:py-24 overflow-hidden relative select-none">
       {/* Centered Master White Serif Heading */}
       <div className="text-center mb-8 sm:mb-12 md:mb-14 px-4">
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-normal leading-tight">
@@ -269,6 +300,7 @@ export const ShopTheLook: React.FC<ShopTheLookProps> = ({ onNavigate, onRequestE
                 key={`set1-${item.id}`}
                 item={item}
                 onClick={handleCardClick}
+                isNearViewport={isNearViewport}
               />
             ))}
           </div>
@@ -280,6 +312,7 @@ export const ShopTheLook: React.FC<ShopTheLookProps> = ({ onNavigate, onRequestE
                 key={`set2-${item.id}`}
                 item={item}
                 onClick={handleCardClick}
+                isNearViewport={isNearViewport}
               />
             ))}
           </div>
@@ -291,6 +324,7 @@ export const ShopTheLook: React.FC<ShopTheLookProps> = ({ onNavigate, onRequestE
                 key={`set3-${item.id}`}
                 item={item}
                 onClick={handleCardClick}
+                isNearViewport={isNearViewport}
               />
             ))}
           </div>

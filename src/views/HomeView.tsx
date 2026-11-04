@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Fabric,
   Collection,
@@ -55,6 +55,57 @@ const FabricLoomIcon: React.FC<{ className?: string }> = ({ className = 'w-7 h-7
     <line x1="15" y1="4" x2="15" y2="20" />
   </svg>
 );
+
+// LazyVideo component for heavy below-the-fold manufacturing video
+const LazyVideo: React.FC<{
+  src: string;
+  className?: string;
+}> = ({ src, className }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="w-full h-full">
+      {shouldLoad ? (
+        <video
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className={className}
+        />
+      ) : (
+        <div className="w-full h-full bg-[#1a050b]" />
+      )}
+    </div>
+  );
+};
 
 // Memory cache for instantaneous page switches and fast load
 let cachedHomeData: {
@@ -494,6 +545,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             height={793}
             className="w-full h-auto block object-contain border-0 outline-none"
             loading="lazy"
+            decoding="async"
           />
         </div>
       </section>
@@ -505,13 +557,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left: Manufacturing Facility Video Container */}
           <div className="lg:col-span-6 relative rounded-xl overflow-hidden shadow-2xl border border-stone-300 aspect-[16/10] bg-[#1a050b]">
-            <video
+            <LazyVideo
               src="https://res.cloudinary.com/isjnpcvp/video/upload/v1793690411/1103.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
               className="w-full h-full object-cover"
             />
           </div>
@@ -764,8 +811,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <img
                     src={post.featuredImageUrl}
                     alt={post.title}
+                    width={480}
+                    height={270}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-3.5 left-3.5 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
                     {post.categoryName || 'FABRICS'}

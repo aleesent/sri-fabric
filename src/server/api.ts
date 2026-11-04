@@ -20,6 +20,8 @@ import {
   newsletterSubscribers,
   media,
   siteSettings,
+  promotionalCampaigns,
+  promotionalDrafts,
 } from '../db/schema.ts';
 import { eq, desc, asc, and, ilike, or, count } from 'drizzle-orm';
 import bcrypt from 'bcryptjs';
@@ -41,7 +43,18 @@ import {
   inMemoryEnquiries,
   inMemoryContacts,
   inMemorySubscribers,
+  inMemoryCampaigns,
+  inMemoryDrafts,
 } from './fallbackData.ts';
+import {
+  sendEnquiryNotification,
+  sendEnquiryCustomerConfirmation,
+  sendContactNotification,
+  sendNewsletterWelcome,
+  sendTestEmail,
+  sendPromotionalCampaign,
+  getBrevoConfig,
+} from './emailService.ts';
 
 export const apiRouter = express.Router();
 
@@ -746,6 +759,14 @@ apiRouter.post('/enquiries', async (req: Request, res: Response) => {
       createdAt: new Date().toISOString(),
     };
 
+    // Asynchronously dispatch Brevo SMTP emails (notification to admin & confirmation to buyer)
+    sendEnquiryNotification(newEnquiry).catch((err) =>
+      console.error('[Brevo SMTP Enquiry Alert Error]:', err?.message || err)
+    );
+    sendEnquiryCustomerConfirmation(newEnquiry).catch((err) =>
+      console.error('[Brevo SMTP Customer Confirmation Error]:', err?.message || err)
+    );
+
     if (isDatabaseConfigured()) {
       try {
         const [created] = await db.insert(enquiries).values(newEnquiry as any).returning();
@@ -797,6 +818,11 @@ apiRouter.post('/contacts', async (req: Request, res: Response) => {
       createdAt: new Date().toISOString(),
     };
 
+    // Asynchronously dispatch Brevo SMTP contact notification
+    sendContactNotification(newContact).catch((err) =>
+      console.error('[Brevo SMTP Contact Alert Error]:', err?.message || err)
+    );
+
     if (isDatabaseConfigured()) {
       try {
         const [created] = await db.insert(contacts).values(newContact as any).returning();
@@ -835,6 +861,11 @@ apiRouter.post('/newsletter', async (req: Request, res: Response) => {
     }
 
     const cleanEmail = email.toLowerCase().trim();
+
+    // Asynchronously dispatch Brevo welcome email to subscriber
+    sendNewsletterWelcome(cleanEmail).catch((err) =>
+      console.error('[Brevo SMTP Newsletter Welcome Error]:', err?.message || err)
+    );
 
     if (isDatabaseConfigured()) {
       try {
@@ -1669,4 +1700,305 @@ apiRouter.put('/admin/shop-the-look', requireAuth, async (req: AuthRequest, res:
     res.status(500).json({ error: error.message });
   }
 });
+
+// ==========================================
+// BREVO SMTP DIAGNOSTICS & MANAGEMENT
+// ==========================================
+apiRouter.get('/admin/smtp/status', requireAuth, async (_req: AuthRequest, res: Response) => {
+  try {
+    const config = await getBrevoConfig();
+    res.json({
+      configured: config.isConfigured,
+      host: config.host,
+      port: config.port,
+      user: config.user ? (config.user.includes('@') ? config.user.replace(/(?<=.{3}).(?=.*@)/g, '*') : '***') : '',
+      fromEmail: config.fromEmail,
+      fromName: config.fromName,
+      adminEmail: config.adminEmail,
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+apiRouter.post('/admin/smtp/test', requireAuth, async (req: AuthRequest, res: Response) => {
+  try {
+    const { toEmail } = req.body;
+    const result = await sendTestEmail(toEmail);
+    res.json(result);
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// ==========================================
+// PROMOTIONAL EMAIL SUITE ENDPOINTS
+// ==========================================
+
+// 1. Get Sent Campaigns History
+apiRouter.get('/admin/promotional/campaigns', requireAuth, async (_req: AuthRequest, res: Response) => {
+  try {
+    if (isDatabaseConfigured()) {
+      try {
+        const list = await db
+          .select()
+          .from(promotionalCampaigns)
+          .orderBy(desc(promotionalCampaigns.sentAt), desc(promotionalCampaigns.id));
+        return res.json(list);
+      } catch (dbErr) {
+        console.warn('DB promotional campaigns fetch failed, using fallback:', dbErr);
+      }
+    }
+    res.json(inMemoryCampaigns);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 2. Dispatch Promotional Campaign via Brevo SMTP
+apiRouter.post('/admin/promotional/send', requireAuth, async (req: AuthRequest, res: Response) => {
+  try {
+    const {
+      title,
+      subject,
+      preheader,
+      senderName,
+      senderEmail,
+      htmlContent,
+      recipients,
+      templateId,
+    } = req.body;
+
+    if (!subject || !htmlContent) {
+      return res.status(400).json({ error: 'Subject and email content are required.' });
+    }
+
+    if (!Array.isArray(recipients) || recipients.length === 0) {
+      return res.status(400).json({ error: 'Please specify at least one recipient email address.' });
+    }
+
+    const campaignTitle = title?.trim() || subject;
+    const config = await getBrevoConfig();
+    const effectiveSenderName = senderName?.trim() || config.fromName;
+    const effectiveSenderEmail = senderEmail?.trim() || config.fromEmail;
+
+    // Execute bulk sending via Brevo SMTP relay
+    const sendResult = await sendPromotionalCampaign({
+      title: campaignTitle,
+      subject,
+      preheader: preheader || '',
+      senderName: effectiveSenderName,
+      senderEmail: effectiveSenderEmail,
+      htmlContent,
+      recipients,
+    });
+
+    const campaignRecord = {
+      id: Date.now(),
+      title: campaignTitle,
+      subject,
+      preheader: preheader || null,
+      senderName: effectiveSenderName,
+      senderEmail: effectiveSenderEmail,
+      htmlContent,
+      recipientCount: sendResult.total,
+      recipientsList: JSON.stringify(recipients),
+      status: sendResult.failed === 0 ? 'SENT' : sendResult.delivered > 0 ? 'PARTIAL' : 'FAILED',
+      templateId: templateId || 'custom',
+      deliveredCount: sendResult.delivered,
+      failedCount: sendResult.failed,
+      errorLog: sendResult.errorLog || null,
+      sentAt: new Date(),
+      createdAt: new Date(),
+    };
+
+    if (isDatabaseConfigured()) {
+      try {
+        const [saved] = await db
+          .insert(promotionalCampaigns)
+          .values(campaignRecord as any)
+          .returning();
+        return res.status(201).json({
+          success: true,
+          message: `Campaign dispatched to ${sendResult.delivered} of ${sendResult.total} recipients.`,
+          campaign: saved,
+          sendResult,
+        });
+      } catch (err) {
+        console.warn('DB campaign insert error, storing in memory:', err);
+      }
+    }
+
+    inMemoryCampaigns.unshift(campaignRecord);
+    res.status(201).json({
+      success: true,
+      message: `Campaign dispatched to ${sendResult.delivered} of ${sendResult.total} recipients.`,
+      campaign: campaignRecord,
+      sendResult,
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 3. Get Saved Drafts
+apiRouter.get('/admin/promotional/drafts', requireAuth, async (_req: AuthRequest, res: Response) => {
+  try {
+    if (isDatabaseConfigured()) {
+      try {
+        const list = await db
+          .select()
+          .from(promotionalDrafts)
+          .orderBy(desc(promotionalDrafts.updatedAt));
+        return res.json(list);
+      } catch {}
+    }
+    res.json(inMemoryDrafts);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 4. Save or Update Draft
+apiRouter.post('/admin/promotional/drafts', requireAuth, async (req: AuthRequest, res: Response) => {
+  try {
+    const { id, title, subject, preheader, recipients, htmlContent, templateId } = req.body;
+
+    const draftRecord = {
+      title: title || subject || 'Untitled Promotional Draft',
+      subject: subject || '',
+      preheader: preheader || '',
+      recipients: typeof recipients === 'string' ? recipients : Array.isArray(recipients) ? recipients.join(', ') : '',
+      htmlContent: htmlContent || '',
+      templateId: templateId || 'custom',
+      updatedAt: new Date(),
+    };
+
+    if (id && isDatabaseConfigured()) {
+      try {
+        const [updated] = await db
+          .update(promotionalDrafts)
+          .set(draftRecord)
+          .where(eq(promotionalDrafts.id, Number(id)))
+          .returning();
+        if (updated) return res.json(updated);
+      } catch {}
+    }
+
+    if (isDatabaseConfigured()) {
+      try {
+        const [created] = await db
+          .insert(promotionalDrafts)
+          .values(draftRecord as any)
+          .returning();
+        return res.status(201).json(created);
+      } catch {}
+    }
+
+    // In-memory fallback
+    if (id) {
+      const idx = inMemoryDrafts.findIndex((d) => d.id === Number(id));
+      if (idx !== -1) {
+        inMemoryDrafts[idx] = { ...inMemoryDrafts[idx], ...draftRecord };
+        return res.json(inMemoryDrafts[idx]);
+      }
+    }
+
+    const createdInMemory = {
+      id: Date.now(),
+      ...draftRecord,
+      createdAt: new Date(),
+    };
+    inMemoryDrafts.unshift(createdInMemory);
+    res.status(201).json(createdInMemory);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 5. Delete Draft
+apiRouter.delete('/admin/promotional/drafts/:id', requireAuth, async (req: AuthRequest, res: Response) => {
+  try {
+    const draftId = Number(req.params.id);
+    if (isDatabaseConfigured()) {
+      try {
+        await db.delete(promotionalDrafts).where(eq(promotionalDrafts.id, draftId));
+      } catch {}
+    }
+    const idx = inMemoryDrafts.findIndex((d) => d.id === draftId);
+    if (idx !== -1) inMemoryDrafts.splice(idx, 1);
+
+    res.json({ success: true });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 6. Get All Active Subscriber Emails for Easy Recipient Inclusion
+apiRouter.get('/admin/promotional/subscribers', requireAuth, async (_req: AuthRequest, res: Response) => {
+  try {
+    let emailList: string[] = [];
+    if (isDatabaseConfigured()) {
+      try {
+        const rows = await db
+          .select({ email: newsletterSubscribers.email })
+          .from(newsletterSubscribers)
+          .where(eq(newsletterSubscribers.status, 'SUBSCRIBED'));
+        emailList = rows.map((r) => r.email);
+      } catch {}
+    }
+
+    const merged = Array.from(new Set([...emailList, ...inMemorySubscribers]));
+    res.json(merged);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 7. Public Unsubscribe Endpoint
+apiRouter.get('/unsubscribe', async (req: Request, res: Response) => {
+  const email = typeof req.query.email === 'string' ? req.query.email.trim().toLowerCase() : '';
+
+  if (email && isDatabaseConfigured()) {
+    try {
+      await db
+        .update(newsletterSubscribers)
+        .set({ status: 'UNSUBSCRIBED' })
+        .where(eq(newsletterSubscribers.email, email));
+    } catch {}
+  }
+
+  // Render a clean branded unsubscribe confirmation page
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(`
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe Confirmation – SRI FABRICS</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #faf7f2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; color: #222; }
+    .card { background: white; max-width: 480px; width: 90%; padding: 40px 30px; border-radius: 8px; border: 1px solid #e0d5c1; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    h1 { color: #4a1122; font-family: Georgia, serif; font-size: 22px; margin: 0 0 10px; }
+    p { font-size: 14px; color: #666; line-height: 1.6; margin: 0 0 20px; }
+    .badge { display: inline-block; padding: 6px 14px; background: #faf4e6; border: 1px solid #dfb15b; border-radius: 4px; font-weight: bold; color: #4a1122; font-size: 12px; margin-bottom: 20px; word-break: break-all; }
+    .btn { display: inline-block; background: #4a1122; color: #f7eedf; padding: 10px 24px; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>SRI FABRICS</h1>
+    <div style="font-size: 11px; letter-spacing: 0.15em; color: #786144; text-transform: uppercase; margin-bottom: 20px;">Surat Textile Hub</div>
+    ${email ? `<div class="badge">${email}</div>` : ''}
+    <p>You have been unsubscribed from SRI FABRICS promotional campaigns and collection previews.</p>
+    <p style="font-size: 12px; color: #888;">If this was done in error or you wish to resubscribe later, you can sign up again through our website.</p>
+    <a href="https://srifabrics.com" class="btn">Return to Website</a>
+  </div>
+</body>
+</html>
+  `);
+});
+
+
 

@@ -266,6 +266,8 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
                     alt={item.name}
                     loading="lazy"
                     decoding="async"
+                    width={250}
+                    height={444}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                     onError={(e) => {
                       const img = e.currentTarget;

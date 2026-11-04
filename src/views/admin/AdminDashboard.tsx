@@ -12,6 +12,7 @@ import {
   Clock,
   Sparkles,
   AlertCircle,
+  Send,
 } from 'lucide-react';
 
 interface AdminDashboardProps {
@@ -67,7 +68,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ token, onNavigat
         </div>
 
         {/* Quick action shortcuts */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            onClick={() => onNavigateTab('promotional-emails')}
+            className="px-4 py-2 bg-[#781832] hover:bg-[#8f1d3c] text-white text-xs font-semibold rounded shadow transition-colors cursor-pointer flex items-center gap-1.5"
+          >
+            <Send className="w-3.5 h-3.5" />
+            Promotional Emails
+          </button>
           <button
             onClick={() => onNavigateTab('fabrics')}
             className="px-4 py-2 bg-[#4a1122] hover:bg-[#5e162b] text-[#f7eedf] text-xs font-semibold rounded shadow transition-colors cursor-pointer"

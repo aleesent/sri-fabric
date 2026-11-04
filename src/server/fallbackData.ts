@@ -11,6 +11,8 @@ const XLSX = require('xlsx');
 export const inMemoryEnquiries: any[] = [];
 export const inMemoryContacts: any[] = [];
 export const inMemorySubscribers: string[] = [];
+export const inMemoryCampaigns: any[] = [];
+export const inMemoryDrafts: any[] = [];
 
 // Fallback Categories
 export const FALLBACK_CATEGORIES: Category[] = [

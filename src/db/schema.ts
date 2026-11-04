@@ -248,6 +248,39 @@ export const siteSettings = pgTable('site_settings', {
   updatedAt: timestamp('updated_at').defaultNow(),
 });
 
+// Promotional Campaigns & Sent History
+export const promotionalCampaigns = pgTable('promotional_campaigns', {
+  id: serial('id').primaryKey(),
+  title: text('title').notNull(),
+  subject: text('subject').notNull(),
+  preheader: text('preheader'),
+  senderName: text('sender_name').notNull(),
+  senderEmail: text('sender_email').notNull(),
+  htmlContent: text('html_content').notNull(),
+  recipientCount: integer('recipient_count').default(0),
+  recipientsList: text('recipients_list'), // JSON string array of recipients
+  status: text('status').default('SENT'), // DRAFT | SENT | FAILED | SENDING
+  templateId: text('template_id'),
+  deliveredCount: integer('delivered_count').default(0),
+  failedCount: integer('failed_count').default(0),
+  errorLog: text('error_log'),
+  sentAt: timestamp('sent_at').defaultNow(),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+// Promotional Drafts
+export const promotionalDrafts = pgTable('promotional_drafts', {
+  id: serial('id').primaryKey(),
+  title: text('title').notNull(),
+  subject: text('subject').default(''),
+  preheader: text('preheader').default(''),
+  recipients: text('recipients').default(''),
+  htmlContent: text('html_content').default(''),
+  templateId: text('template_id').default('blank'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
 // Relations
 export const fabricsRelations = relations(fabrics, ({ one, many }) => ({
   category: one(categories, {

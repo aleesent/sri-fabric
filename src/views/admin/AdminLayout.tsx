@@ -19,6 +19,7 @@ import {
   Menu,
   X,
   ExternalLink,
+  Send,
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -51,6 +52,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     { id: 'testimonials', label: 'Testimonials', icon: Quote },
     { id: 'manufacturing', label: 'Manufacturing', icon: Factory },
     { id: 'subscribers', label: 'Subscribers', icon: Users },
+    { id: 'promotional-emails', label: 'Promotional Emails', icon: Send },
     { id: 'media', label: 'Media Library', icon: ImageIcon },
     { id: 'settings', label: 'Site & SEO Settings', icon: Settings },
   ];

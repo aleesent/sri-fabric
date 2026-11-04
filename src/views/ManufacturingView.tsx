@@ -103,6 +103,10 @@ export const ManufacturingView: React.FC<ManufacturingViewProps> = ({ onRequestE
                   <img
                     src={proc.imageUrl}
                     alt={proc.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={480}
+                    height={300}
                     className="w-full h-full object-cover"
                   />
                 </div>

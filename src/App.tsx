@@ -32,6 +32,7 @@ import { AdminSubscribers } from './views/admin/AdminSubscribers.tsx';
 import { AdminMedia } from './views/admin/AdminMedia.tsx';
 import { AdminSettings } from './views/admin/AdminSettings.tsx';
 import { AdminShopTheLook } from './views/admin/AdminShopTheLook.tsx';
+import { AdminPromotionalEmails } from './views/admin/AdminPromotionalEmails.tsx';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => window.location.pathname || '/');
@@ -130,6 +131,7 @@ export default function App() {
           {adminTab === 'testimonials' && <AdminTestimonials token={adminToken} />}
           {adminTab === 'manufacturing' && <AdminManufacturing token={adminToken} />}
           {adminTab === 'subscribers' && <AdminSubscribers token={adminToken} />}
+          {adminTab === 'promotional-emails' && <AdminPromotionalEmails token={adminToken} />}
           {adminTab === 'media' && <AdminMedia token={adminToken} />}
           {adminTab === 'settings' && <AdminSettings token={adminToken} />}
         </AdminLayout>
