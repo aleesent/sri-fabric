@@ -435,18 +435,41 @@ apiRouter.get('/fabrics', async (req: Request, res: Response) => {
         conditions.push(ilike(fabrics.fabricType, `%${fabricType}%`));
       }
 
-      if (search && typeof search === 'string') {
-        const term = `%${search}%`;
-        conditions.push(
-          or(
-            ilike(fabrics.name, term),
-            ilike(fabrics.fabricType, term),
-            ilike(fabrics.description, term),
-            ilike(fabrics.composition, term),
-            ilike(fabrics.applications, term),
-            ilike(fabrics.keywords, term)
-          )
-        );
+      if (search && typeof search === 'string' && search.trim()) {
+        const rawTokens = search.trim().toLowerCase().split(/\s+/).filter(Boolean);
+        const SYNONYMS: Record<string, string[]> = {
+          kurti: ['top', 'dupatta', 'kurta', 'set'],
+          kurtis: ['top', 'dupatta', 'kurta', 'set'],
+          suit: ['top', 'dupatta', 'kurta'],
+          suits: ['top', 'dupatta', 'kurta'],
+          sari: ['saree'],
+          saris: ['saree'],
+          sarees: ['saree'],
+          silk: ['saree', 'zari', 'gold', 'pallu', 'woven'],
+          cotton: ['kurta', 'dupatta', 'top', 'fabric'],
+          muslin: ['kurta', 'dupatta', 'top', 'fabric'],
+          organza: ['fabric', 'printed', 'dupatta', 'saree'],
+          georgette: ['fabric', 'printed', 'saree'],
+          yardage: ['fabric', 'printed'],
+          yardages: ['fabric', 'printed'],
+          unstitched: ['top', 'dupatta', 'fabric'],
+        };
+
+        for (const token of rawTokens) {
+          const variants = [token, ...(SYNONYMS[token] || [])];
+          const variantConditions = variants.flatMap((v) => {
+            const term = `%${v}%`;
+            return [
+              ilike(fabrics.name, term),
+              ilike(fabrics.fabricType, term),
+              ilike(fabrics.description, term),
+              ilike(fabrics.composition, term),
+              ilike(fabrics.applications, term),
+              ilike(fabrics.keywords, term),
+            ];
+          });
+          conditions.push(or(...variantConditions));
+        }
       }
 
       const items = await db
@@ -481,15 +504,33 @@ apiRouter.get('/fabrics', async (req: Request, res: Response) => {
         excelFabrics = excelFabrics.filter((f) => f.fabricType?.toLowerCase().includes('fabric') || f.categoryId === 3 || f.keywords?.includes('SRI-FAB'));
       }
     }
-    if (search && typeof search === 'string') {
-      const q = search.toLowerCase();
-      excelFabrics = excelFabrics.filter(
-        (f) =>
-          f.name.toLowerCase().includes(q) ||
-          f.fabricType?.toLowerCase().includes(q) ||
-          f.description?.toLowerCase().includes(q) ||
-          f.keywords?.toLowerCase().includes(q)
-      );
+    if (search && typeof search === 'string' && search.trim()) {
+      const rawTokens = search.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const SYNONYMS: Record<string, string[]> = {
+        kurti: ['top', 'dupatta', 'kurta', 'set'],
+        kurtis: ['top', 'dupatta', 'kurta', 'set'],
+        suit: ['top', 'dupatta', 'kurta'],
+        suits: ['top', 'dupatta', 'kurta'],
+        sari: ['saree'],
+        saris: ['saree'],
+        sarees: ['saree'],
+        silk: ['saree', 'zari', 'gold', 'pallu', 'woven'],
+        cotton: ['kurta', 'dupatta', 'top', 'fabric'],
+        muslin: ['kurta', 'dupatta', 'top', 'fabric'],
+        organza: ['fabric', 'printed', 'dupatta', 'saree'],
+        georgette: ['fabric', 'printed', 'saree'],
+        yardage: ['fabric', 'printed'],
+        yardages: ['fabric', 'printed'],
+        unstitched: ['top', 'dupatta', 'fabric'],
+      };
+
+      excelFabrics = excelFabrics.filter((f) => {
+        const full = `${f.name} ${f.fabricType || ''} ${f.description || ''} ${f.keywords || ''} ${f.composition || ''} ${f.applications || ''}`.toLowerCase();
+        return rawTokens.every((tok) => {
+          const variants = [tok, ...(SYNONYMS[tok] || [])];
+          return variants.some((v) => full.includes(v));
+        });
+      });
     }
     res.json(excelFabrics);
   } catch (_error: any) {
@@ -1709,6 +1750,10 @@ apiRouter.get('/admin/smtp/status', requireAuth, async (_req: AuthRequest, res: 
     const config = await getBrevoConfig();
     res.json({
       configured: config.isConfigured,
+      hasApiKey: config.hasApiKey,
+      mode: config.hasApiKey
+        ? 'Brevo HTTPS REST API (Port 443 — Render & Cloud Host Recommended)'
+        : `Brevo SMTP Relay (Port ${config.port})`,
       host: config.host,
       port: config.port,
       user: config.user ? (config.user.includes('@') ? config.user.replace(/(?<=.{3}).(?=.*@)/g, '*') : '***') : '',
@@ -1993,7 +2038,7 @@ apiRouter.get('/unsubscribe', async (req: Request, res: Response) => {
     ${email ? `<div class="badge">${email}</div>` : ''}
     <p>You have been unsubscribed from SRI FABRICS promotional campaigns and collection previews.</p>
     <p style="font-size: 12px; color: #888;">If this was done in error or you wish to resubscribe later, you can sign up again through our website.</p>
-    <a href="https://srifabrics.com" class="btn">Return to Website</a>
+    <a href="https://www.srifabric.com" class="btn">Return to Website</a>
   </div>
 </body>
 </html>

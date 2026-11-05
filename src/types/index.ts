@@ -30,6 +30,9 @@ export interface Fabric {
   designId?: string;
   inStock?: boolean;
   categoryId?: number | null;
+  categoryName?: string;
+  weaveType?: string;
+  collectionType?: 'saree' | 'fabric' | 'top-dupatta' | string;
   collectionId?: number | null;
   fabricType: string;
   description: string;

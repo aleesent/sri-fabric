@@ -20,7 +20,7 @@ import { generateRobotsTxt, generateSitemapXml } from './src/server/sitemapGener
 
 app.get('/robots.txt', (req, res) => {
   const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-  const host = req.headers['x-forwarded-host'] || req.headers.host || 'srifabrics.com';
+  const host = req.headers['x-forwarded-host'] || req.headers.host || 'www.srifabric.com';
   const baseUrl = `${protocol}://${host}`;
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=86400');
@@ -29,7 +29,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', async (req, res) => {
   const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-  const host = req.headers['x-forwarded-host'] || req.headers.host || 'srifabrics.com';
+  const host = req.headers['x-forwarded-host'] || req.headers.host || 'www.srifabric.com';
   const baseUrl = `${protocol}://${host}`;
   try {
     const xml = await generateSitemapXml(baseUrl);

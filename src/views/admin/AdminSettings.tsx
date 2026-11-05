@@ -271,24 +271,59 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ token }) => {
             
             {/* Real-time Status Badge */}
             {smtpStatus && (
-              <span
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide ${
-                  smtpStatus.configured
-                    ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                    : 'bg-amber-50 text-amber-800 border border-amber-200'
-                }`}
-              >
+              <div className="flex flex-col sm:items-end gap-1">
                 <span
-                  className={`w-2 h-2 rounded-full ${
-                    smtpStatus.configured ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide ${
+                    smtpStatus.configured
+                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                      : 'bg-amber-50 text-amber-800 border border-amber-200'
                   }`}
-                />
-                <span>{smtpStatus.configured ? 'Brevo SMTP Active' : 'Credentials Needed'}</span>
-              </span>
+                >
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      smtpStatus.configured ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'
+                    }`}
+                  />
+                  <span>{smtpStatus.configured ? (smtpStatus.hasApiKey ? 'Brevo REST API Active (Render Safe)' : 'Brevo SMTP Active') : 'Credentials Needed'}</span>
+                </span>
+                {smtpStatus.mode && (
+                  <span className="text-[10px] text-stone-500 font-mono">
+                    Mode: {smtpStatus.mode}
+                  </span>
+                )}
+              </div>
             )}
           </div>
 
+          {/* Render Cloud Notice */}
+          <div className="p-3 bg-amber-50/70 border border-amber-200 rounded-lg text-xs text-amber-900 flex items-start gap-2.5">
+            <span className="text-base shrink-0">💡</span>
+            <div>
+              <strong className="font-semibold">Hosting on Render.com?</strong>
+              <p className="mt-0.5 text-stone-600 text-[11px] leading-relaxed">
+                Render blocks outbound SMTP ports (25, 465, 587) by default. For 100% reliable delivery on live Render, add your <strong>Brevo API Key (xkeysib-...)</strong> below. Our dual engine will automatically send via Brevo&apos;s HTTPS REST API over port 443, bypassing cloud firewall blocks.
+              </p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="sm:col-span-2">
+              <label className="block font-semibold text-stone-700 mb-1 flex items-center justify-between">
+                <span>Brevo API Key (xkeysib-...) — <span className="text-[#4a1122] font-bold">Recommended for Render</span></span>
+                <span className="text-[10px] text-stone-400 font-normal">Works via HTTPS Port 443</span>
+              </label>
+              <input
+                type="password"
+                value={settings.brevo_api_key || ''}
+                onChange={(e) => handleChange('brevo_api_key', e.target.value)}
+                placeholder="xkeysib-..."
+                className="w-full bg-stone-50 border border-amber-300 rounded px-3 py-2 text-stone-900 focus:outline-none focus:border-[#4a1122] font-mono text-xs"
+              />
+              <span className="text-[10px] text-stone-500 mt-0.5 block">
+                Found in Brevo: SMTP &amp; API &gt; API Keys &gt; Generate a new API key. Bypasses Render&apos;s SMTP port blocking.
+              </span>
+            </div>
+
             <div>
               <label className="block font-semibold text-stone-700 mb-1">
                 Brevo SMTP Host
@@ -310,9 +345,12 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ token }) => {
                 type="text"
                 value={settings.brevo_smtp_port || '587'}
                 onChange={(e) => handleChange('brevo_smtp_port', e.target.value)}
-                placeholder="587"
+                placeholder="587 (or 2525 for cloud hosts)"
                 className="w-full bg-stone-50 border border-stone-300 rounded px-3 py-2 text-stone-900 focus:outline-none focus:border-[#4a1122]"
               />
+              <span className="text-[10px] text-stone-400 mt-0.5 block">
+                Brevo supports 587, 2525 (alternate cloud port), or 465 (SSL)
+              </span>
             </div>
 
             <div>
@@ -340,7 +378,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ token }) => {
                 value={settings.brevo_smtp_key || ''}
                 onChange={(e) => handleChange('brevo_smtp_key', e.target.value)}
                 placeholder="xsmtpsib-..."
-                className="w-full bg-stone-50 border border-stone-300 rounded px-3 py-2 text-stone-900 focus:outline-none focus:border-[#4a1122] font-mono"
+                className="w-full bg-stone-50 border border-stone-300 rounded px-3 py-2 text-stone-900 focus:outline-none focus:border-[#4a1122] font-mono text-xs"
               />
               <span className="text-[10px] text-stone-400 mt-0.5 block">
                 Your Brevo SMTP key (or set via BREVO_SMTP_KEY env var)

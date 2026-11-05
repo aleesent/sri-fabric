@@ -36,6 +36,11 @@ export const FabricCard: React.FC<FabricCardProps> = ({
           width={300}
           height={400}
         />
+        {fabric.fabricType && (
+          <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#1c050d]/85 backdrop-blur-xs text-[#dfb15b] text-[9.5px] font-bold tracking-wider uppercase rounded-xs border border-[#dfb15b]/30 shadow-xs">
+            {fabric.fabricType}
+          </span>
+        )}
       </div>
 
       {/* Product Title - Consistent height for perfect horizontal row alignment */}

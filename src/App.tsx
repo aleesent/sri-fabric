@@ -197,12 +197,36 @@ export default function App() {
     const searchParams = new URLSearchParams(window.location.search);
     const catQuery = searchParams.get('category') || undefined;
     const colQuery = searchParams.get('collection') || undefined;
-    const searchQuery = searchParams.get('search') || undefined;
-    const typeQuery = searchParams.get('fabricType') || undefined;
+    const searchQuery = searchParams.get('search') || searchParams.get('q') || undefined;
+    const typeQuery = searchParams.get('fabricType') || searchParams.get('type') || undefined;
 
     const normalizedPath = currentPath.split('?')[0];
 
     switch (normalizedPath) {
+      case '/search':
+      case '/catalogue':
+      case '/all-products':
+      case '/all':
+        return (
+          <>
+            <SEOHead
+              title={searchQuery ? `Search: "${searchQuery}" | SRI FABRIC Surat` : 'Complete Textile Catalogue | SRI FABRIC Surat'}
+              description="Search all Surat pure silk sarees, designer printed fabrics, and top + dupatta ensembles directly from our manufacturing looms."
+              canonicalPath="/search"
+            />
+            <CatalogueView
+              key={`search-${searchQuery || 'all'}-${typeQuery || 'all'}`}
+              collectionType={typeQuery === 'fabric' ? 'fabric' : typeQuery === 'top-dupatta' ? 'top-dupatta' : typeQuery === 'saree' ? 'saree' : 'all'}
+              initialCategory={catQuery}
+              initialSearch={searchQuery}
+              initialFabricType={typeQuery}
+              onViewFabric={(slug) => navigateTo(`/fabrics/${slug}`)}
+              onRequestEnquiry={handleOpenEnquiry}
+              onNavigate={navigateTo}
+            />
+          </>
+        );
+
       case '/fabrics':
       case '/fabric':
         return (
@@ -217,12 +241,12 @@ export default function App() {
                 '@type': 'CollectionPage',
                 name: 'Wholesale Fabrics Surat',
                 description: 'Wholesale fabrics directly from Surat looms including pure silks, chinon, organza, and georgettes.',
-                url: 'https://srifabrics.com/fabrics',
+                url: 'https://www.srifabric.com/fabrics',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Wholesale Fabrics', item: 'https://srifabrics.com/fabrics' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Wholesale Fabrics', item: 'https://www.srifabric.com/fabrics' },
                   ],
                 },
               }}
@@ -255,12 +279,12 @@ export default function App() {
                 '@type': 'CollectionPage',
                 name: 'Top + Dupatta Wholesale Sets',
                 description: 'Designer unstitched top and dupatta sets for boutiques and retailers.',
-                url: 'https://srifabrics.com/top-dupatta',
+                url: 'https://www.srifabric.com/top-dupatta',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Top + Dupatta Sets', item: 'https://srifabrics.com/top-dupatta' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Top + Dupatta Sets', item: 'https://www.srifabric.com/top-dupatta' },
                   ],
                 },
               }}
@@ -297,12 +321,12 @@ export default function App() {
                 '@type': 'CollectionPage',
                 name: 'Wholesale Sarees Surat',
                 description: 'Direct mill wholesale sarees from Surat looms including Banarasi katan, Dola silk, and organza sarees.',
-                url: 'https://srifabrics.com/sarees',
+                url: 'https://www.srifabric.com/sarees',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Wholesale Sarees', item: 'https://srifabrics.com/sarees' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Wholesale Sarees', item: 'https://www.srifabric.com/sarees' },
                   ],
                 },
               }}
@@ -333,12 +357,12 @@ export default function App() {
                 '@type': 'CollectionPage',
                 name: 'Curated Textile Collections',
                 description: 'Curated fabric and saree capsules for couture ateliers and fashion houses.',
-                url: 'https://srifabrics.com/collections',
+                url: 'https://www.srifabric.com/collections',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Collections', item: 'https://srifabrics.com/collections' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Collections', item: 'https://www.srifabric.com/collections' },
                   ],
                 },
               }}
@@ -363,12 +387,12 @@ export default function App() {
                 '@type': 'AboutPage',
                 name: 'About SRI FABRIC',
                 description: 'Three decades of textile heritage and rapier loom manufacturing in Surat, Gujarat.',
-                url: 'https://srifabrics.com/about',
+                url: 'https://www.srifabric.com/about',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://srifabrics.com/about' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://www.srifabric.com/about' },
                   ],
                 },
               }}
@@ -393,12 +417,12 @@ export default function App() {
                 '@type': 'ItemPage',
                 name: 'Textile Manufacturing Facility Surat',
                 description: 'Advanced rapier loom weaving and digital printing facility in Surat, Gujarat.',
-                url: 'https://srifabrics.com/manufacturing',
+                url: 'https://www.srifabric.com/manufacturing',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Manufacturing', item: 'https://srifabrics.com/manufacturing' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Manufacturing', item: 'https://www.srifabric.com/manufacturing' },
                   ],
                 },
               }}
@@ -422,12 +446,12 @@ export default function App() {
                 '@type': 'ItemPage',
                 name: 'Global Textile Export Network',
                 description: 'International fabric export from Surat to 35+ countries worldwide.',
-                url: 'https://srifabrics.com/global-reach',
+                url: 'https://www.srifabric.com/global-reach',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Global Export', item: 'https://srifabrics.com/global-reach' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Global Export', item: 'https://www.srifabric.com/global-reach' },
                   ],
                 },
               }}
@@ -452,12 +476,12 @@ export default function App() {
                 '@type': 'Blog',
                 name: 'SRI FABRIC Textile Insights & Sourcing Guide',
                 description: 'B2B fabric sourcing guides and industry news from Surat.',
-                url: 'https://srifabrics.com/blog',
+                url: 'https://www.srifabric.com/blog',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://srifabrics.com/blog' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.srifabric.com/blog' },
                   ],
                 },
               }}
@@ -479,12 +503,12 @@ export default function App() {
                 '@type': 'ContactPage',
                 name: 'Contact SRI FABRIC',
                 description: 'B2B inquiry desk, showroom appointments, and fabric swatch orders.',
-                url: 'https://srifabrics.com/contact',
+                url: 'https://www.srifabric.com/contact',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://srifabrics.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Contact Us', item: 'https://srifabrics.com/contact' },
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
+                    { '@type': 'ListItem', position: 2, name: 'Contact Us', item: 'https://www.srifabric.com/contact' },
                   ],
                 },
               }}
@@ -506,10 +530,10 @@ export default function App() {
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
                 name: 'SRI FABRIC Surat',
-                url: 'https://srifabrics.com/',
+                url: 'https://www.srifabric.com/',
                 potentialAction: {
                   '@type': 'SearchAction',
-                  target: 'https://srifabrics.com/sarees?search={search_term_string}',
+                  target: 'https://www.srifabric.com/sarees?search={search_term_string}',
                   'query-input': 'required name=search_term_string',
                 },
               }}

@@ -15,7 +15,7 @@ import {
   fabricMatchesCategory,
 } from '../utils/shopData.ts';
 
-export type CollectionType = 'saree' | 'fabric' | 'top-dupatta';
+export type CollectionType = 'all' | 'saree' | 'fabric' | 'top-dupatta';
 
 interface CatalogueViewProps {
   collectionType?: CollectionType;
@@ -28,7 +28,7 @@ interface CatalogueViewProps {
 }
 
 export const CatalogueView: React.FC<CatalogueViewProps> = ({
-  collectionType = 'saree',
+  collectionType = 'all',
   initialCategory,
   initialSearch = '',
   initialFabricType,
@@ -38,22 +38,33 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
 }) => {
   const [fabrics, setFabrics] = useState<Fabric[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeType, setActiveType] = useState<CollectionType>(collectionType);
+
+  useEffect(() => {
+    setActiveType(collectionType);
+  }, [collectionType]);
 
   const isZeroProductCategory = false;
 
   const pageTitle =
-    collectionType === 'fabric'
-      ? 'FABRIC'
-      : collectionType === 'top-dupatta'
+    activeType === 'fabric'
+      ? 'FABRIC YARDAGES'
+      : activeType === 'top-dupatta'
       ? 'TOP + DUPATTA'
-      : 'SAREES';
+      : activeType === 'saree'
+      ? 'SAREES'
+      : initialSearch || ''
+      ? `SEARCH RESULTS`
+      : 'ALL PRODUCTS & FABRICS';
 
   const breadcrumbLabel =
-    collectionType === 'fabric'
+    activeType === 'fabric'
       ? 'Fabric'
-      : collectionType === 'top-dupatta'
+      : activeType === 'top-dupatta'
       ? 'Top + Dupatta'
-      : 'Sarees';
+      : activeType === 'saree'
+      ? 'Sarees'
+      : 'All Catalogue';
 
   // Search input state
   const [search, setSearch] = useState(initialSearch);
@@ -123,6 +134,26 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
     selectedCategories.length > 0 ||
     selectedWeaves.length > 0;
 
+  // Precompute segment counts across the entire loaded catalogue
+  const counts = useMemo(() => {
+    let saree = 0, fabric = 0, topDupatta = 0;
+    fabrics.forEach((f) => {
+      const ft = (f.fabricType || '').toLowerCase();
+      const kw = (f.keywords || '').toLowerCase();
+      const name = (f.name || '').toLowerCase();
+      if (ft.includes('saree') || kw.includes('sri-sar')) saree++;
+      else if (ft.includes('top') || ft.includes('dupatta') || name.includes('kurta set') || kw.includes('sri-td')) topDupatta++;
+      else if (ft.includes('fabric') || ft.includes('printed') || kw.includes('sri-fab')) fabric++;
+      else saree++;
+    });
+    return {
+      all: fabrics.length,
+      saree,
+      fabric,
+      topDupatta,
+    };
+  }, [fabrics]);
+
   // Filtered & Sorted Fabrics
   const filteredFabrics = useMemo(() => {
     if (isZeroProductCategory) {
@@ -130,35 +161,48 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
     }
 
     let result = fabrics.filter((fabric) => {
-      // 0. Filter by Collection Type (Top + Dupatta vs Saree vs Fabric)
-      if (collectionType === 'top-dupatta') {
-        const isTD =
-          (fabric.fabricType && (fabric.fabricType.toLowerCase().includes('top') || fabric.fabricType.toLowerCase().includes('dupatta'))) ||
-          (fabric.name && fabric.name.toLowerCase().includes('kurta set')) ||
-          (fabric.keywords && fabric.keywords.includes('SRI-TD')) ||
-          fabric.categoryId === 2;
-        if (!isTD) return false;
-      } else if (collectionType === 'fabric') {
-        const isFabric =
-          fabric.categoryId === 3 ||
-          (fabric.keywords && fabric.keywords.includes('SRI-FAB')) ||
-          (fabric.fabricType && (fabric.fabricType.toLowerCase().includes('fabric') || fabric.fabricType.toLowerCase().includes('printed')));
-        if (!isFabric) return false;
-      } else if (collectionType === 'saree') {
-        const isSaree =
-          (fabric.categoryId === 1 ||
-           (fabric.fabricType && fabric.fabricType.toLowerCase().includes('saree')) ||
-           (fabric.keywords && fabric.keywords.includes('SRI-SAR'))) &&
-          !fabric.fabricType?.toLowerCase().includes('top') &&
-          !fabric.name?.toLowerCase().includes('kurta set') &&
-          !fabric.keywords?.includes('SRI-FAB');
-        if (!isSaree) return false;
-      }
-      // 1. Text Search
+      const ft = (fabric.fabricType || '').toLowerCase();
+      const kw = (fabric.keywords || '').toLowerCase();
+      const name = (fabric.name || '').toLowerCase();
+      const isSaree = ft.includes('saree') || kw.includes('sri-sar');
+      const isTD = ft.includes('top') || ft.includes('dupatta') || name.includes('kurta set') || kw.includes('sri-td');
+      const isFabric = ft.includes('fabric') || ft.includes('printed') || kw.includes('sri-fab');
+
+      // 0. Filter by activeType
+      if (activeType === 'saree' && !isSaree) return false;
+      if (activeType === 'top-dupatta' && !isTD) return false;
+      if (activeType === 'fabric' && !isFabric) return false;
+
+      // 1. Smart Multi-Token & Synonym Text Search
       if (search.trim()) {
         const query = search.trim().toLowerCase();
-        const fullText = `${fabric.name} ${fabric.description} ${fabric.designId || ''} ${fabric.keywords || ''}`.toLowerCase();
-        if (!fullText.includes(query)) return false;
+        const tokens = query.split(/\s+/).filter(Boolean);
+        const searchableFields = [
+          fabric.name,
+          fabric.fabricType,
+          fabric.categoryName,
+          fabric.description,
+          fabric.designId,
+          fabric.keywords,
+          fabric.composition,
+          fabric.applications,
+          fabric.weaveType,
+          isSaree ? 'saree sari saris' : '',
+          isTD ? 'top dupatta suit kurti set kurta' : '',
+          isFabric ? 'fabric yardage cloth textile than digital print printed' : '',
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+
+        const allMatch = tokens.every((tok) => {
+          if (searchableFields.includes(tok)) return true;
+          const singular = tok.replace(/s$/, '');
+          if (singular.length >= 3 && searchableFields.includes(singular)) return true;
+          return false;
+        });
+
+        if (!allMatch) return false;
       }
 
       // 2. Category Checkboxes
@@ -171,7 +215,7 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
 
       // 3. Weave / Texture
       if (selectedWeaves.length > 0) {
-        const text = `${fabric.fabricType} ${fabric.description}`.toLowerCase();
+        const text = `${fabric.fabricType} ${fabric.description} ${fabric.weaveType || ''}`.toLowerCase();
         const matchWeave = selectedWeaves.some((w) => text.includes(w.toLowerCase()));
         if (!matchWeave) return false;
       }
@@ -179,7 +223,7 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
       return true;
     });
 
-    // Sorting (Name & Newness only - Price sorting removed)
+    // Sorting
     result.sort((a, b) => {
       if (sortBy === 'name-asc') {
         return a.name.localeCompare(b.name);
@@ -187,7 +231,6 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
       if (sortBy === 'name-desc') {
         return b.name.localeCompare(a.name);
       }
-      // default: newness / id
       return a.id - b.id;
     });
 
@@ -195,6 +238,7 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
   }, [
     isZeroProductCategory,
     fabrics,
+    activeType,
     search,
     selectedCategories,
     selectedWeaves,
@@ -436,7 +480,75 @@ export const CatalogueView: React.FC<CatalogueViewProps> = ({
           {/* ---------------------------------------------------------- */}
           {/* RIGHT COLUMN: TOOLBAR & 4-COLUMN PRODUCT GRID              */}
           {/* ---------------------------------------------------------- */}
-          <main className="flex-1 min-w-0 w-full space-y-6">
+          <main className="flex-1 min-w-0 w-full space-y-4">
+            {/* Scope Filter Segment Tabs (All | Sarees | Fabrics | Top + Dupatta) */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-white p-2.5 sm:p-3 border border-stone-200 shadow-2xs">
+              <span className="text-[11px] font-bold text-stone-500 uppercase tracking-wider mr-1 sm:mr-2">Category:</span>
+              <button
+                type="button"
+                onClick={() => { setActiveType('all'); setCurrentPage(1); }}
+                className={`px-3 py-1.5 rounded text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  activeType === 'all'
+                    ? 'bg-[#4a1122] text-[#f7eedf] shadow-xs'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                All Products ({counts.all})
+              </button>
+              <button
+                type="button"
+                onClick={() => { setActiveType('saree'); setCurrentPage(1); }}
+                className={`px-3 py-1.5 rounded text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  activeType === 'saree'
+                    ? 'bg-[#4a1122] text-[#f7eedf] shadow-xs'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                Sarees ({counts.saree})
+              </button>
+              <button
+                type="button"
+                onClick={() => { setActiveType('fabric'); setCurrentPage(1); }}
+                className={`px-3 py-1.5 rounded text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  activeType === 'fabric'
+                    ? 'bg-[#4a1122] text-[#f7eedf] shadow-xs'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                Fabric Yardages ({counts.fabric})
+              </button>
+              <button
+                type="button"
+                onClick={() => { setActiveType('top-dupatta'); setCurrentPage(1); }}
+                className={`px-3 py-1.5 rounded text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                  activeType === 'top-dupatta'
+                    ? 'bg-[#4a1122] text-[#f7eedf] shadow-xs'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                Top + Dupatta Sets ({counts.topDupatta})
+              </button>
+            </div>
+
+            {/* Active Search Banner */}
+            {search.trim() && (
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded text-xs text-amber-950 flex items-center justify-between gap-3 shadow-2xs">
+                <div className="flex items-center gap-2">
+                  <Search className="w-4 h-4 text-[#4a1122] shrink-0" />
+                  <span>
+                    Results for <strong className="text-[#4a1122]">&ldquo;{search.trim()}&rdquo;</strong> — found <strong>{totalItems}</strong> matching {totalItems === 1 ? 'product' : 'products'} in <strong>{activeType === 'all' ? 'All Collections' : activeType === 'saree' ? 'Sarees' : activeType === 'fabric' ? 'Fabric Yardages' : 'Top + Dupatta Sets'}</strong>.
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSearch('')}
+                  className="px-2.5 py-1 bg-white hover:bg-amber-100 border border-amber-300 rounded text-[11px] font-semibold text-[#4a1122] shrink-0 cursor-pointer"
+                >
+                  Clear Search ×
+                </button>
+              </div>
+            )}
+
             {/* Top Toolbar Controls - Full width, clean alignment */}
             <div className="w-full bg-white px-4 py-3 sm:px-5 border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-stone-700 shadow-2xs">
               {/* Left: Results Count & View Count Selector */}
