@@ -13,8 +13,33 @@ interface ReelCardProps {
   isNearViewport: boolean;
 }
 
+const isImage = (url?: string) => {
+  if (!url) return false;
+  return !url.endsWith('.mp4') && !url.includes('.mp4') && !url.includes('/video/');
+};
+
 const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) => {
   const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const posterImage = isImage(item.posterUrl) ? item.posterUrl : undefined;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    if (isNearViewport && !videoError) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          video.muted = true;
+          video.play().catch(() => {});
+        });
+      }
+    }
+  }, [isNearViewport, item.videoUrl, videoError]);
 
   return (
     <div
@@ -23,13 +48,15 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) =>
       style={{ userSelect: 'none' }}
     >
       {/* Background Poster Image - Instant zero-CLS display with native lazy loading */}
-      {item.posterUrl && (
+      {posterImage && (
         <img
-          src={item.posterUrl}
+          src={posterImage}
           alt={item.title}
           width={250}
           height={444}
-          className="absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none"
+          className={`absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none transition-opacity duration-500 ${
+            videoLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
           loading="lazy"
           decoding="async"
         />
@@ -38,13 +65,16 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) =>
       {/* HTML5 Autoplaying Looping Fashion Video - Lazy loaded when section nears viewport */}
       {isNearViewport && !videoError && (
         <video
+          ref={videoRef}
           src={item.videoUrl}
-          poster={item.posterUrl}
+          poster={posterImage}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          onPlaying={() => setVideoLoaded(true)}
           onError={() => setVideoError(true)}
           className="absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none"
         />

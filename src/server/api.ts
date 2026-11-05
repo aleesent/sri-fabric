@@ -216,8 +216,14 @@ apiRouter.get('/shop-the-look', async (_req: Request, res: Response) => {
       if (setting.length && setting[0].value) {
         try {
           items = JSON.parse(setting[0].value);
-          if (!Array.isArray(items) || items.length === 0) {
+          const hasOldLinks = Array.isArray(items) && items.some((it: any) => it.videoUrl?.includes('cloudinary.com'));
+          if (hasOldLinks || !Array.isArray(items) || items.length === 0) {
             items = DEFAULT_SHOP_THE_LOOK_ITEMS;
+            await db
+              .update(siteSettings)
+              .set({ value: JSON.stringify(DEFAULT_SHOP_THE_LOOK_ITEMS), updatedAt: new Date() })
+              .where(eq(siteSettings.key, 'shop_the_look_videos'))
+              .catch(() => {});
           }
         } catch {
           items = DEFAULT_SHOP_THE_LOOK_ITEMS;
