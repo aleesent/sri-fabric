@@ -28,5 +28,5 @@ Disallow: /arvexa/*
 Disallow: /api/
 
 # Host and Master XML Sitemap
-Host: srifabrics.com
-Sitemap: https://srifabrics.com/sitemap.xml
+Host: www.srifabric.com
+Sitemap: https://www.srifabric.com/sitemap.xml

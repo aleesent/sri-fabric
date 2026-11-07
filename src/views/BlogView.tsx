@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead.tsx';
+import { LazyImage } from '../components/LazyImage.tsx';
 
 interface BlogViewProps {
   initialSlug?: string;
@@ -238,7 +239,7 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
         '@type': 'Article',
         headline: selectedPost.title,
         description: selectedPost.excerpt,
-        image: selectedPost.featuredImageUrl ? [`https://srifabrics.com${selectedPost.featuredImageUrl}`] : ['https://srifabrics.com/slides/hero-fabrics-home.jpg'],
+        image: selectedPost.featuredImageUrl ? [`https://www.srifabric.com${selectedPost.featuredImageUrl}`] : ['https://www.srifabric.com/slides/hero-fabrics-home.jpg'],
         datePublished: selectedPost.publishDate || '2026-01-15T09:00:00+05:30',
         dateModified: selectedPost.publishDate || '2026-03-20T10:00:00+05:30',
         author: {
@@ -250,10 +251,10 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
           name: 'SRI FABRIC',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://srifabrics.com/logo.png',
+            url: 'https://www.srifabric.com/logo.png',
           },
         },
-        mainEntityOfPage: `https://srifabrics.com/blog/${selectedPost.slug}`,
+        mainEntityOfPage: `https://www.srifabric.com/blog/${selectedPost.slug}`,
       },
       {
         '@context': 'https://schema.org',
@@ -263,19 +264,19 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://srifabrics.com/',
+            item: 'https://www.srifabric.com/',
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Blog',
-            item: 'https://srifabrics.com/blog',
+            item: 'https://www.srifabric.com/blog',
           },
           {
             '@type': 'ListItem',
             position: 3,
             name: selectedPost.title,
-            item: `https://srifabrics.com/blog/${selectedPost.slug}`,
+            item: `https://www.srifabric.com/blog/${selectedPost.slug}`,
           },
         ],
       },
@@ -464,14 +465,13 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
                     className="group bg-white rounded-xl border border-stone-200/90 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-5 cursor-pointer hover:border-[#dfb15b] hover:shadow-md transition-all duration-300"
                   >
                     <div className="w-full sm:w-48 aspect-[16/9] rounded-lg overflow-hidden bg-[#24060d] shrink-0">
-                      <img
+                      <LazyImage
                         src={otherPost.featuredImageUrl}
                         alt={otherPost.title}
                         width={384}
                         height={216}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                        decoding="async"
+                        containerClassName="w-full h-full"
                       />
                     </div>
                     <div className="flex-1 space-y-2 text-left">
@@ -555,16 +555,15 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialSlug, onNavigate }) =
               >
                 {/* 16:9 Image Area */}
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#24060d]">
-                  <img
+                  <LazyImage
                     src={post.featuredImageUrl}
                     alt={post.title}
                     width={640}
                     height={360}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                    decoding="async"
+                    containerClassName="w-full h-full"
                   />
-                  <div className="absolute top-4 left-4 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
+                  <div className="absolute top-4 left-4 z-10 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
                     {post.categoryName || 'SOURCING GUIDE'}
                   </div>
                 </div>

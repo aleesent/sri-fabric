@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Collection, Fabric } from '../types/index.ts';
 import { FabricCard } from '../components/FabricCard.tsx';
+import { LazyImage } from '../components/LazyImage.tsx';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 interface CollectionsViewProps {
@@ -103,14 +104,13 @@ export const CollectionsView: React.FC<CollectionsViewProps> = ({
             </div>
 
             <div className="lg:col-span-5 aspect-[4/3] lg:aspect-auto overflow-hidden bg-black/40">
-              <img
+              <LazyImage
                 src={selectedCol.imageUrl}
                 alt={selectedCol.name}
-                loading="lazy"
-                decoding="async"
                 width={600}
                 height={450}
                 className="w-full h-full object-cover object-center"
+                containerClassName="w-full h-full"
               />
             </div>
           </div>

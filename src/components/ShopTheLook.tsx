@@ -21,16 +21,61 @@ const isImage = (url?: string) => {
 const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) => {
   const [videoError, setVideoError] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isCardInView, setIsCardInView] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const posterImage = isImage(item.posterUrl) ? item.posterUrl : undefined;
 
+  // Individual card intersection observer: only buffer video when card is approaching view
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    video.defaultMuted = true;
-    if (isNearViewport && !videoError) {
+    if (!isNearViewport) return;
+    const el = cardRef.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsCardInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsCardInView(true);
+          const video = videoRef.current;
+          if (video) {
+            video.muted = true;
+            video.defaultMuted = true;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                video.muted = true;
+                video.play().catch(() => {});
+              });
+            }
+          }
+        } else {
+          // Pause offscreen video to save bandwidth & GPU
+          const video = videoRef.current;
+          if (video && !video.paused) {
+            video.pause();
+          }
+        }
+      },
+      { rootMargin: '300px 100px', threshold: 0.05 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isNearViewport]);
+
+  useEffect(() => {
+    if (isCardInView && !videoError) {
+      const video = videoRef.current;
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
@@ -39,10 +84,11 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) =>
         });
       }
     }
-  }, [isNearViewport, item.videoUrl, videoError]);
+  }, [isCardInView, item.videoUrl, videoError]);
 
   return (
     <div
+      ref={cardRef}
       onClick={onClick}
       className="relative shrink-0 w-[215px] sm:w-[235px] md:w-[250px] aspect-[9/16] rounded-[16px] sm:rounded-[18px] overflow-hidden bg-[#1f0910] shadow-2xl cursor-pointer group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_45px_rgba(0,0,0,0.8)]"
       style={{ userSelect: 'none' }}
@@ -62,8 +108,8 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) =>
         />
       )}
 
-      {/* HTML5 Autoplaying Looping Fashion Video - Lazy loaded when section nears viewport */}
-      {isNearViewport && !videoError && (
+      {/* HTML5 Autoplaying Looping Fashion Video - Lazy loaded when card nears viewport */}
+      {isNearViewport && isCardInView && !videoError && (
         <video
           ref={videoRef}
           src={item.videoUrl}
@@ -72,11 +118,13 @@ const ReelCard: React.FC<ReelCardProps> = ({ item, onClick, isNearViewport }) =>
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           onLoadedData={() => setVideoLoaded(true)}
           onPlaying={() => setVideoLoaded(true)}
           onError={() => setVideoError(true)}
-          className="absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none"
+          className={`absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[18px] pointer-events-none transition-opacity duration-500 ${
+            videoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
       )}
     </div>

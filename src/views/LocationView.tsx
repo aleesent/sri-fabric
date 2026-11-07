@@ -38,7 +38,8 @@ export const LocationView: React.FC<LocationViewProps> = ({
     setOpenFaqIndex(openFaqIndex === idx ? null : idx);
   };
 
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://srifabrics.com';
+  const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.includes('run.app'));
+  const origin = isLocal ? window.location.origin : 'https://www.srifabric.com';
   const canonicalUrl = `${origin}/locations/${location.slug}`;
 
   // Build JSON-LD structured data: LocalBusiness + BreadcrumbList + FAQPage

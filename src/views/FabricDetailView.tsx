@@ -119,8 +119,10 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
   const designId = fabric.keywords || (isTopDupatta ? `SRI-TD-${String(1000 + fabric.id)}` : `SRI-SAR-${String(1000 + fabric.id)}`);
 
   // Build clean WhatsApp message URL
-  const productUrl = typeof window !== 'undefined' ? window.location.href : `https://srifabrics.com/fabrics/${slug}`;
-  const whatsappText = `Hello! I would like to enquire about ${fabric.name} (${categoryName}) on SRI FABRICS: ${productUrl}. Please share wholesale pricing, availability, and bulk order details.`;
+  const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.includes('run.app'));
+  const origin = isLocal ? window.location.origin : 'https://www.srifabric.com';
+  const productUrl = `${origin}/fabrics/${slug}`;
+  const whatsappText = `Hello! I would like to enquire about ${fabric.name} (${categoryName}) on SRI FABRIC: ${productUrl}. Please share wholesale pricing, availability, and bulk order details.`;
   const whatsappHref = `https://wa.me/919875198837?text=${encodeURIComponent(whatsappText)}`;
 
   const productJsonLd = [
@@ -128,7 +130,7 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
       '@context': 'https://schema.org',
       '@type': 'Product',
       name: fabric.name,
-      image: fabric.primaryImageUrl ? [`https://srifabrics.com${fabric.primaryImageUrl}`] : undefined,
+      image: fabric.primaryImageUrl ? [`https://www.srifabric.com${fabric.primaryImageUrl}`] : undefined,
       description: fabric.description || `Wholesale ${fabric.name} (${categoryName}) direct from Surat looms. Sourcing partner to retailers and fashion labels worldwide.`,
       sku: designId,
       brand: {
@@ -141,7 +143,7 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
         price: (fabric as any).price || '0.00',
         priceValidUntil: '2028-12-31',
         availability: 'https://schema.org/InStock',
-        url: `https://srifabrics.com/fabrics/${slug}`,
+        url: `https://www.srifabric.com/fabrics/${slug}`,
         seller: {
           '@type': 'Organization',
           name: 'SRI FABRIC',
@@ -156,19 +158,19 @@ export const FabricDetailView: React.FC<FabricDetailViewProps> = ({
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://srifabrics.com/',
+          item: 'https://www.srifabric.com/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: categoryName,
-          item: `https://srifabrics.com${categoryPath}`,
+          item: `https://www.srifabric.com${categoryPath}`,
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: fabric.name,
-          item: `https://srifabrics.com/fabrics/${slug}`,
+          item: `https://www.srifabric.com/fabrics/${slug}`,
         },
       ],
     },

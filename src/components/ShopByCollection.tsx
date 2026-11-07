@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Fabric } from '../types/index.ts';
+import { LazyImage } from './LazyImage.tsx';
 
 export interface CollectionCardItem {
   id: string;
@@ -261,20 +262,14 @@ export const ShopByCollection: React.FC<ShopByCollectionProps> = ({
               >
                 {/* Large Vertical Rectangular Image */}
                 <div className="absolute inset-0 w-full h-full bg-[#24060d] overflow-hidden">
-                  <img
+                  <LazyImage
                     src={item.imageUrl}
                     alt={item.name}
-                    loading="lazy"
-                    decoding="async"
+                    fallbackSrc="/slides/hero-fabrics-home.jpg"
                     width={250}
                     height={444}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      if (!img.src.includes('hero-fabrics-home.jpg')) {
-                        img.src = '/slides/hero-fabrics-home.jpg';
-                      }
-                    }}
+                    containerClassName="w-full h-full"
                   />
                 </div>
 

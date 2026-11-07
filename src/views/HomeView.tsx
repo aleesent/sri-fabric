@@ -11,6 +11,8 @@ import { FabricCard } from '../components/FabricCard.tsx';
 import { HeroSlider } from '../components/HeroSlider.tsx';
 import { ShopTheLook } from '../components/ShopTheLook.tsx';
 import { ShopByCollection } from '../components/ShopByCollection.tsx';
+import { LazyImage } from '../components/LazyImage.tsx';
+import { LazyVideo } from '../components/LazyVideo.tsx';
 import {
   ArrowRight,
   ChevronLeft,
@@ -56,56 +58,7 @@ const FabricLoomIcon: React.FC<{ className?: string }> = ({ className = 'w-7 h-7
   </svg>
 );
 
-// LazyVideo component for heavy below-the-fold manufacturing video
-const LazyVideo: React.FC<{
-  src: string;
-  className?: string;
-}> = ({ src, className }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    if (typeof IntersectionObserver === 'undefined') {
-      setShouldLoad(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '300px' }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={containerRef} className="w-full h-full">
-      {shouldLoad ? (
-        <video
-          src={src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className={className}
-        />
-      ) : (
-        <div className="w-full h-full bg-[#1a050b]" />
-      )}
-    </div>
-  );
-};
 
 // Memory cache for instantaneous page switches and fast load
 let cachedHomeData: {
@@ -505,16 +458,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   >
                     {/* 9:16 Portrait Card */}
                     <div className="relative aspect-[9/16] w-full overflow-hidden bg-black/40">
-                      <img
+                      <LazyImage
                         src={fabric.primaryImageUrl}
                         alt={fabric.name}
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src =
-                            'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80';
-                        }}
+                        fallbackSrc="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
                         className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                        containerClassName="w-full h-full"
                       />
 
                       {/* Subtle Bottom Vignette */}
@@ -538,14 +487,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* ============================================================ */}
       <section className="w-full bg-[#fcf9f2] overflow-hidden border-0">
         <div className="w-full max-w-[2000px] mx-auto">
-          <img
-            src="/sri3.png"
+          <LazyImage
+            src="/sri3.webp"
+            fallbackSrc="/sri3.png"
             alt="SRI FABRICS — Fabrics Beyond Boundaries Editorial Campaign"
             width={1983}
             height={793}
             className="w-full h-auto block object-contain border-0 outline-none"
-            loading="lazy"
-            decoding="async"
+            containerClassName="w-full"
+            showSkeleton={false}
           />
         </div>
       </section>
@@ -556,10 +506,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="bg-[#faf6f0] py-16 px-4 sm:px-8 border-b border-stone-200">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left: Manufacturing Facility Video Container */}
-          <div className="lg:col-span-6 relative rounded-xl overflow-hidden shadow-2xl border border-stone-300 aspect-[16/10] bg-[#1a050b]">
+          <div className="lg:col-span-6 w-full relative rounded-2xl overflow-hidden shadow-2xl border border-stone-300/80 aspect-video bg-[#1a050b] flex items-center justify-center">
             <LazyVideo
               src="https://res.cloudinary.com/isjnpcvp/video/upload/v1793690411/1103.mp4"
-              className="w-full h-full object-cover"
+              poster="/printing1.webp"
+              containerClassName="w-full h-full"
+              className="w-full h-full"
+              aspectRatio="16/9"
+              objectFit="cover"
+              showControls={true}
+              badgeText="Mill Facility • Surat"
             />
           </div>
 
@@ -808,16 +764,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 className="group bg-[#faf7f2] rounded-2xl overflow-hidden border border-stone-200/90 hover:border-[#dfb15b] shadow-xs hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#24060d]">
-                  <img
+                  <LazyImage
                     src={post.featuredImageUrl}
                     alt={post.title}
                     width={480}
                     height={270}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                    decoding="async"
+                    containerClassName="w-full h-full"
                   />
-                  <div className="absolute top-3.5 left-3.5 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
+                  <div className="absolute top-3.5 left-3.5 z-10 bg-[#4a1122]/90 backdrop-blur-xs text-[#f7eedf] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-[#dfb15b]/40 shadow-xs">
                     {post.categoryName || 'FABRICS'}
                   </div>
                 </div>
@@ -1053,13 +1008,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* ============================================================ */}
       <section className="w-full bg-[#2f040f] overflow-hidden border-0">
         <div className="w-full max-w-[2171px] mx-auto">
-          <img
-            src="/sri2.png"
+          <LazyImage
+            src="/sri2.webp"
+            fallbackSrc="/sri2.png"
             alt="SRI FABRICS — Fabrics For A Brighter Tomorrow"
             width={2171}
             height={724}
             className="w-full h-auto block object-contain border-0 outline-none"
-            loading="lazy"
+            containerClassName="w-full"
+            showSkeleton={false}
           />
         </div>
       </section>

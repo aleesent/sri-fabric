@@ -6,6 +6,8 @@ import {
   Sparkles,
   ArrowRight
 } from 'lucide-react';
+import { LazyImage } from '../components/LazyImage.tsx';
+import { LazyVideo } from '../components/LazyVideo.tsx';
 
 interface AboutViewProps {
   onNavigate?: (path: string) => void;
@@ -85,16 +87,19 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
             <div className="relative w-full aspect-[1682/935] [container-type:inline-size]">
               
               {/* Background Image Artwork */}
-              <img 
-                src="/company intro.png" 
-                alt="SRI FABRIC — Company Introduction & Printing Services"
-                width={1682}
-                height={935}
-                className="w-full h-full object-cover block select-none pointer-events-none"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
-              />
+              <picture>
+                <source srcSet="/company intro.webp" type="image/webp" />
+                <img 
+                  src="/company intro.png" 
+                  alt="SRI FABRIC — Company Introduction & Printing Services"
+                  width={1682}
+                  height={935}
+                  className="w-full h-full object-cover block select-none pointer-events-none"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                />
+              </picture>
 
               {/* 1. TOP-RIGHT BURGUNDY PANEL: "for all your printing needs..." + DIRECT MILL INQUIRIES */}
               <div className="absolute left-[81.4%] top-[7.2%] w-[17.5%] z-20 flex flex-col items-start text-white">
@@ -249,17 +254,18 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
               </div>
             </div>
 
-            {/* 2. Responsive Mill Artwork Preview (printing1.png for mobile view) */}
+            {/* 2. Responsive Mill Artwork Video Preview */}
             <div className="px-4 sm:px-5 py-4 bg-[#FAF7F2] border-b border-[#B69A67]/20">
-              <div className="relative w-full aspect-[1672/941] overflow-hidden rounded-[2px] border border-[#B69A67]/35 shadow-[0_4px_20px_-4px_rgba(19,0,0,0.08)] bg-[#130000]">
-                <img 
-                  src="/printing1.png" 
-                  alt="SRI FABRICS — Digital Textile Printing Production & Machinery"
-                  width={1672}
-                  height={941}
-                  className="w-full h-full object-cover block select-none pointer-events-none"
-                  loading="lazy"
-                  decoding="async"
+              <div className="relative w-full aspect-video overflow-hidden rounded-[2px] border border-[#B69A67]/35 shadow-[0_4px_20px_-4px_rgba(19,0,0,0.08)] bg-[#130000]">
+                <LazyVideo 
+                  src="https://res.cloudinary.com/isjnpcvp/video/upload/v1793690411/1103.mp4"
+                  poster="/printing1.webp"
+                  containerClassName="w-full h-full"
+                  className="w-full h-full"
+                  aspectRatio="16/9"
+                  objectFit="cover"
+                  showControls={true}
+                  badgeText="Surat Digital Textile Mill"
                 />
               </div>
             </div>
@@ -404,15 +410,14 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
 
               {/* RHS: Image Container (Full Right-Hand Available Width) */}
               <div className="relative w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-[520px] overflow-hidden bg-[#180409]">
-                <img 
-                  src="/our founder.png" 
+                <LazyImage 
+                  src="/our founder.webp" 
+                  fallbackSrc="/our founder.png"
                   alt="SRI FABRIC — Founder Story Mr. Jignessh Mehta" 
                   width={800}
                   height={600}
-                  style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'right center' }}
                   className="w-full h-full block object-cover select-none pointer-events-none"
-                  loading="lazy"
-                  decoding="async"
+                  containerClassName="w-full h-full"
                 />
 
                 {/* Right Brocade Overlay: A VISION WOVEN WITH PASSION */}
@@ -478,15 +483,14 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
 
             {/* 2. Mobile Founder Visual Banner */}
             <div className="relative w-full h-[260px] sm:h-[320px] overflow-hidden bg-[#180409]">
-              <img 
-                src="/our founder.png" 
+              <LazyImage 
+                src="/our founder.webp" 
+                fallbackSrc="/our founder.png"
                 alt="SRI FABRIC — Founder Story Mr. Jignessh Mehta" 
                 width={800}
                 height={600}
-                style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'right center' }}
                 className="w-full h-full block object-cover select-none pointer-events-none"
-                loading="lazy"
-                decoding="async"
+                containerClassName="w-full h-full"
               />
 
               {/* Mobile Verse Overlay */}
@@ -521,14 +525,14 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
             <div className="relative w-full aspect-[1683/935] [container-type:inline-size]">
               
               {/* Background Image Artwork */}
-              <img 
-                src="/why sri all in.png" 
+              <LazyImage 
+                src="/why sri all in.webp" 
+                fallbackSrc="/why sri all in.png"
                 alt="SRI FABRIC — Why Us? Quality & Commitment"
                 width={1683}
                 height={935}
                 className="w-full h-full object-cover block select-none pointer-events-none"
-                loading="lazy"
-                decoding="async"
+                containerClassName="w-full h-full"
               />
 
               {/* 1. TOP-RIGHT IVORY PANEL */}
@@ -668,14 +672,14 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onRequestEnqui
             {/* 3. Mobile Visual Artwork Banner (why sri1.png for mobile view) */}
             <div className="px-4 sm:px-5 py-4 bg-[#FAF7F2] border-b border-[#B69A67]/20">
               <div className="relative w-full aspect-[1882/836] overflow-hidden rounded-[2px] border border-[#B69A67]/35 shadow-[0_4px_20px_-4px_rgba(19,0,0,0.08)] bg-[#130000] flex items-center justify-center">
-                <img 
-                  src="/why sri1.png" 
+                <LazyImage 
+                  src="/why sri1.webp" 
+                  fallbackSrc="/why sri1.png"
                   alt="SRI FABRICS — Fabrics For A Brighter Tomorrow"
                   width={1882}
                   height={836}
                   className="w-full h-full object-contain block select-none pointer-events-none"
-                  loading="lazy"
-                  decoding="async"
+                  containerClassName="w-full h-full"
                 />
               </div>
             </div>

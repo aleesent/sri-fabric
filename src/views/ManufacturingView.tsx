@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ManufacturingProcess, ManufacturingCapability } from '../types/index.ts';
 import { Cog, CheckCircle, Factory, Shield, Sparkles, Truck } from 'lucide-react';
+import { LazyImage } from '../components/LazyImage.tsx';
 
 interface ManufacturingViewProps {
   onRequestEnquiry: () => void;
@@ -100,14 +101,13 @@ export const ManufacturingView: React.FC<ManufacturingViewProps> = ({ onRequestE
                 </div>
 
                 <div className="lg:col-span-3 aspect-[16/10] rounded-lg overflow-hidden bg-[#24060d] border border-stone-200">
-                  <img
+                  <LazyImage
                     src={proc.imageUrl}
                     alt={proc.title}
-                    loading="lazy"
-                    decoding="async"
                     width={480}
                     height={300}
                     className="w-full h-full object-cover"
+                    fallbackSrc="/slides/hero-fabrics-home.jpg"
                   />
                 </div>
               </div>

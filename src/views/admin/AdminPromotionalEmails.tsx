@@ -162,7 +162,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
   const displayHtmlInPreview = React.useMemo(() => {
     let html = activeCompiledHtml;
     if (personalizePreview) {
-      const unsubSample = `https://srifabrics.com/unsubscribe?email=${encodeURIComponent('arun@patelcouture.com')}`;
+      const unsubSample = `https://www.srifabric.com/unsubscribe?email=${encodeURIComponent('arun@patelcouture.com')}`;
       html = html
         .replace(/{{name}}/g, 'Arun Patel')
         .replace(/{{company}}/g, 'Patel Couture Mumbai')
@@ -386,7 +386,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
     setSendingTest(true);
     setTestResult(null);
     try {
-      const unsubUrl = `https://srifabrics.com/unsubscribe?email=${encodeURIComponent(testEmailAddress)}`;
+      const unsubUrl = `https://www.srifabric.com/unsubscribe?email=${encodeURIComponent(testEmailAddress)}`;
       let testHtml = activeCompiledHtml;
       if (content.preheader) {
         testHtml = `
@@ -549,7 +549,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
       imageUrl: '/slides/hero-fabrics-5.jpg',
       badge: 'Ready Stock',
       aspectRatio: '4:3',
-      linkUrl: 'https://srifabrics.com/fabrics',
+      linkUrl: 'https://www.srifabric.com/fabrics',
     };
     setContent((prev) => ({ ...prev, products: [...prev.products, newProd] }));
   };
@@ -583,7 +583,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
     const newCta: PromotionalCtaButton = {
       id: newId,
       text: 'Explore Collection',
-      url: 'https://srifabrics.com/fabrics',
+      url: 'https://www.srifabric.com/fabrics',
       style: 'primary-burgundy',
       alignment: content.ctas[0]?.alignment || 'center',
       enabled: true,
@@ -1479,7 +1479,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
                                   type="text"
                                   value={cta.url}
                                   onChange={(e) => handleUpdateCta(cta.id, { url: e.target.value })}
-                                  placeholder="https://srifabrics.com/fabrics"
+                                  placeholder="https://www.srifabric.com/fabrics"
                                   className="w-full text-xs px-3 py-1.5 border border-stone-300 rounded font-mono focus:ring-1 focus:ring-[#4a1122]"
                                 />
                               </div>
@@ -1496,7 +1496,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
                                         cta.id,
                                         'Explore Collection',
                                         'primary-burgundy',
-                                        'https://srifabrics.com/fabrics'
+                                        'https://www.srifabric.com/fabrics'
                                       )
                                     }
                                     className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded text-[10px] font-medium text-stone-800 cursor-pointer"
@@ -1509,7 +1509,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
                                         cta.id,
                                         'View Latest Designs',
                                         'primary-burgundy',
-                                        'https://srifabrics.com/fabrics'
+                                        'https://www.srifabric.com/fabrics'
                                       )
                                     }
                                     className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded text-[10px] font-medium text-stone-800 cursor-pointer"
@@ -1522,7 +1522,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
                                         cta.id,
                                         'Discover Our Catalogue',
                                         'primary-burgundy',
-                                        'https://srifabrics.com/fabrics'
+                                        'https://www.srifabric.com/fabrics'
                                       )
                                     }
                                     className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded text-[10px] font-medium text-stone-800 cursor-pointer"
@@ -1535,7 +1535,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
                                         cta.id,
                                         'Request Wholesale Pricing',
                                         'secondary-outline',
-                                        'https://srifabrics.com/contact'
+                                        'https://www.srifabric.com/contact'
                                       )
                                     }
                                     className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded text-[10px] font-medium text-[#4a1122] cursor-pointer"
@@ -1548,7 +1548,7 @@ export const AdminPromotionalEmails: React.FC<AdminPromotionalEmailsProps> = ({ 
                                         cta.id,
                                         'Enquire Now',
                                         'secondary-outline',
-                                        'https://srifabrics.com/contact'
+                                        'https://www.srifabric.com/contact'
                                       )
                                     }
                                     className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded text-[10px] font-medium text-[#4a1122] cursor-pointer"

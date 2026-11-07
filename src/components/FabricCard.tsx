@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Fabric } from '../types/index.ts';
+import { LazyImage } from './LazyImage.tsx';
 
 interface FabricCardProps {
   fabric: Fabric;
@@ -12,8 +13,6 @@ export const FabricCard: React.FC<FabricCardProps> = ({
   fabric,
   onViewDetails,
 }) => {
-  const [imageError, setImageError] = useState(false);
-
   return (
     <div
       onClick={() => onViewDetails(fabric.slug)}
@@ -21,23 +20,16 @@ export const FabricCard: React.FC<FabricCardProps> = ({
     >
       {/* 3:4 Portrait Image Container - Full garment visibility, no destructive crop */}
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-stone-100 border border-stone-200/60 group-hover:border-stone-300 transition-colors">
-        <img
-          src={
-            imageError
-              ? 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23f5f3ef"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23a8a29e" font-family="sans-serif" font-size="14">SRI FABRICS</text></svg>'
-              : fabric.primaryImageUrl
-          }
+        <LazyImage
+          src={fabric.primaryImageUrl}
           alt={fabric.name}
-          referrerPolicy="no-referrer"
-          onError={() => setImageError(true)}
-          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          loading="lazy"
-          decoding="async"
           width={300}
           height={400}
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          containerClassName="w-full h-full"
         />
         {fabric.fabricType && (
-          <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#1c050d]/85 backdrop-blur-xs text-[#dfb15b] text-[9.5px] font-bold tracking-wider uppercase rounded-xs border border-[#dfb15b]/30 shadow-xs">
+          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 bg-[#1c050d]/85 backdrop-blur-xs text-[#dfb15b] text-[9.5px] font-bold tracking-wider uppercase rounded-xs border border-[#dfb15b]/30 shadow-xs">
             {fabric.fabricType}
           </span>
         )}

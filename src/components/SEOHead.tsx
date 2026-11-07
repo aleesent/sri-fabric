@@ -64,7 +64,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     setMetaTag('meta[property="og:type"]', 'content', ogType);
     setMetaTag('meta[property="og:site_name"]', 'content', 'SRI FABRIC');
 
-    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.srifabric.com';
+    const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.includes('run.app'));
+    const origin = isLocal ? window.location.origin : 'https://www.srifabric.com';
     const resolvedCanonical = canonicalPath
       ? `${origin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`
       : typeof window !== 'undefined'

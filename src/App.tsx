@@ -9,30 +9,32 @@ import { CatalogueView } from './views/CatalogueView.tsx';
 import { FabricDetailView } from './views/FabricDetailView.tsx';
 import { CollectionsView } from './views/CollectionsView.tsx';
 import { AboutView } from './views/AboutView.tsx';
-import { ManufacturingView } from './views/ManufacturingView.tsx';
-import { BlogView } from './views/BlogView.tsx';
 import { ContactView } from './views/ContactView.tsx';
-import { LocationView } from './views/LocationView.tsx';
 import { SEOHead } from './components/SEOHead.tsx';
 
-// Admin Views
-import { AdminLayout } from './views/admin/AdminLayout.tsx';
-import { AdminLogin } from './views/admin/AdminLogin.tsx';
-import { AdminDashboard } from './views/admin/AdminDashboard.tsx';
-import { AdminFabrics } from './views/admin/AdminFabrics.tsx';
-import { AdminEnquiries } from './views/admin/AdminEnquiries.tsx';
-import { AdminCollections } from './views/admin/AdminCollections.tsx';
-import { AdminCategories } from './views/admin/AdminCategories.tsx';
-import { AdminHeroSlides } from './views/admin/AdminHeroSlides.tsx';
-import { AdminContacts } from './views/admin/AdminContacts.tsx';
-import { AdminBlog } from './views/admin/AdminBlog.tsx';
-import { AdminTestimonials } from './views/admin/AdminTestimonials.tsx';
-import { AdminManufacturing } from './views/admin/AdminManufacturing.tsx';
-import { AdminSubscribers } from './views/admin/AdminSubscribers.tsx';
-import { AdminMedia } from './views/admin/AdminMedia.tsx';
-import { AdminSettings } from './views/admin/AdminSettings.tsx';
-import { AdminShopTheLook } from './views/admin/AdminShopTheLook.tsx';
-import { AdminPromotionalEmails } from './views/admin/AdminPromotionalEmails.tsx';
+// Code-split secondary public routes (loaded on-demand when visited)
+const ManufacturingView = React.lazy(() => import('./views/ManufacturingView.tsx').then((m) => ({ default: m.ManufacturingView })));
+const BlogView = React.lazy(() => import('./views/BlogView.tsx').then((m) => ({ default: m.BlogView })));
+const LocationView = React.lazy(() => import('./views/LocationView.tsx').then((m) => ({ default: m.LocationView })));
+
+// Code-split all Admin Views (completely isolates admin bundle and Excel/email suites from public buyers)
+const AdminLayout = React.lazy(() => import('./views/admin/AdminLayout.tsx').then((m) => ({ default: m.AdminLayout })));
+const AdminLogin = React.lazy(() => import('./views/admin/AdminLogin.tsx').then((m) => ({ default: m.AdminLogin })));
+const AdminDashboard = React.lazy(() => import('./views/admin/AdminDashboard.tsx').then((m) => ({ default: m.AdminDashboard })));
+const AdminFabrics = React.lazy(() => import('./views/admin/AdminFabrics.tsx').then((m) => ({ default: m.AdminFabrics })));
+const AdminEnquiries = React.lazy(() => import('./views/admin/AdminEnquiries.tsx').then((m) => ({ default: m.AdminEnquiries })));
+const AdminCollections = React.lazy(() => import('./views/admin/AdminCollections.tsx').then((m) => ({ default: m.AdminCollections })));
+const AdminCategories = React.lazy(() => import('./views/admin/AdminCategories.tsx').then((m) => ({ default: m.AdminCategories })));
+const AdminHeroSlides = React.lazy(() => import('./views/admin/AdminHeroSlides.tsx').then((m) => ({ default: m.AdminHeroSlides })));
+const AdminContacts = React.lazy(() => import('./views/admin/AdminContacts.tsx').then((m) => ({ default: m.AdminContacts })));
+const AdminBlog = React.lazy(() => import('./views/admin/AdminBlog.tsx').then((m) => ({ default: m.AdminBlog })));
+const AdminTestimonials = React.lazy(() => import('./views/admin/AdminTestimonials.tsx').then((m) => ({ default: m.AdminTestimonials })));
+const AdminManufacturing = React.lazy(() => import('./views/admin/AdminManufacturing.tsx').then((m) => ({ default: m.AdminManufacturing })));
+const AdminSubscribers = React.lazy(() => import('./views/admin/AdminSubscribers.tsx').then((m) => ({ default: m.AdminSubscribers })));
+const AdminMedia = React.lazy(() => import('./views/admin/AdminMedia.tsx').then((m) => ({ default: m.AdminMedia })));
+const AdminSettings = React.lazy(() => import('./views/admin/AdminSettings.tsx').then((m) => ({ default: m.AdminSettings })));
+const AdminShopTheLook = React.lazy(() => import('./views/admin/AdminShopTheLook.tsx').then((m) => ({ default: m.AdminShopTheLook })));
+const AdminPromotionalEmails = React.lazy(() => import('./views/admin/AdminPromotionalEmails.tsx').then((m) => ({ default: m.AdminPromotionalEmails })));
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => window.location.pathname || '/');
@@ -562,7 +564,20 @@ export default function App() {
       )}
 
       {/* Main Page Area */}
-      <main className="flex-1">{renderContent()}</main>
+      <main className="flex-1">
+        <React.Suspense
+          fallback={
+            <div className="min-h-[50vh] flex flex-col items-center justify-center py-24 text-center">
+              <div className="w-8 h-8 border-2 border-[#4a1122] border-t-transparent rounded-full animate-spin mb-3"></div>
+              <p className="text-xs uppercase tracking-widest text-[#4a1122]/70 font-sans">
+                Loading SRI FABRIC Experience...
+              </p>
+            </div>
+          }
+        >
+          {renderContent()}
+        </React.Suspense>
+      </main>
 
       {/* Show Public Footer only on non-admin routes */}
       {!isAdminRoute && <Footer onNavigate={navigateTo} />}

@@ -374,6 +374,10 @@ export const Header: React.FC<HeaderProps> = ({
                         <img
                           src={item.primaryImageUrl}
                           alt={item.name}
+                          loading="lazy"
+                          decoding="async"
+                          width={40}
+                          height={52}
                           className="w-10 h-13 object-cover object-top rounded shrink-0 border border-white/10"
                         />
                         <div className="flex-1 min-w-0">

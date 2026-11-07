@@ -343,11 +343,11 @@ A: Yes, we ship across all Indian states and provide export logistics support fo
 Connect with our sourcing specialists today to discuss your fabric requirements, request swatch samples, or obtain a project quotation.
 
 **Contact & WhatsApp:** +91 9875198837  
-**Email:** contact@srifabrics.com  
+**Email:** contact@srifabric.com  
 **Location:** Ring Road, Surat, Gujarat 395002, India`,
     author: 'SRI FABRIC Sourcing Team',
     categoryName: 'SOURCING GUIDE',
-    featuredImageUrl: '/blog1.png',
+    featuredImageUrl: '/blog1.webp',
     featured: true,
     publishDate: new Date().toISOString(),
     status: 'PUBLISHED',
@@ -475,11 +475,11 @@ A: Yes. SRI FABRIC ships across all Indian states and manages export freight doc
 Whether you are launching a bespoke fashion line, producing boutique ethnic wear, or sourcing commercial printed fabrics, SRI FABRIC is your trusted manufacturing partner in Surat.
 
 **Contact & WhatsApp:** +91 9875198837  
-**Email:** contact@srifabrics.com  
+**Email:** contact@srifabric.com  
 **Location:** Ring Road, Surat, Gujarat 395002, India`,
     author: 'SRI FABRIC Design & Production Team',
     categoryName: 'DIGITAL PRINTING',
-    featuredImageUrl: '/blog2.png',
+    featuredImageUrl: '/blog2.webp',
     featured: true,
     publishDate: new Date().toISOString(),
     status: 'PUBLISHED',

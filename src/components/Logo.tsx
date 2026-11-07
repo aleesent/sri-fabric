@@ -61,21 +61,24 @@ export const Logo: React.FC<LogoProps> = ({
     );
   }
 
-  // Primary: Render the user's uploaded logo.png with high fidelity
+  // Primary: Render the user's uploaded logo with modern WebP and high fidelity
   if (!imageError) {
     return (
       <div className={`flex items-center select-none ${className}`}>
-        <img
-          src="/logo.png"
-          alt="SRI FABRICS – Fabrics For A Brighter Tomorrow"
-          onError={() => setImageError(true)}
-          className={`${containerSizes[size]} w-auto object-contain transition-transform duration-200 hover:scale-[1.02]`}
-          loading="eager"
-          decoding="sync"
-          fetchPriority="high"
-          width={260}
-          height={72}
-        />
+        <picture>
+          <source srcSet="/logo.webp" type="image/webp" />
+          <img
+            src="/logo.png"
+            alt="SRI FABRICS – Fabrics For A Brighter Tomorrow"
+            onError={() => setImageError(true)}
+            className={`${containerSizes[size]} w-auto object-contain transition-transform duration-200 hover:scale-[1.02]`}
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+            width={260}
+            height={72}
+          />
+        </picture>
       </div>
     );
   }
