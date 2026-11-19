@@ -603,51 +603,51 @@ Whether you are launching a bespoke fashion line, producing boutique ethnic wear
     ]);
 
     // 8. Manufacturing Processes
-    const proc1 = createTextileSvg('Stage 01', 'Yarn Selection & Testing', '#2d1b22', '#dfb15b', 'crepe');
-    const proc2 = createTextileSvg('Stage 02', 'High-Speed Precision Weaving', '#162822', '#e6c387', 'loom');
-    const proc3 = createTextileSvg('Stage 03', 'AZO-Free Eco Dyeing', '#361b2b', '#dfb15b', 'crepe');
-    const proc4 = createTextileSvg('Stage 04', 'Calendering & Specialized Finish', '#212a33', '#c9a050', 'sheer');
-    const proc5 = createTextileSvg('Stage 05', 'ASTM 4-Point Quality Inspection', '#1f1a26', '#dfb15b', 'zari');
+    const proc1 = createTextileSvg('Stage 01', 'Fabric Sourcing & Selection', '#2d1b22', '#dfb15b', 'crepe');
+    const proc2 = createTextileSvg('Stage 02', 'Design & Product Development', '#162822', '#e6c387', 'loom');
+    const proc3 = createTextileSvg('Stage 03', 'Processing & Production', '#361b2b', '#dfb15b', 'crepe');
+    const proc4 = createTextileSvg('Stage 04', 'Quality Inspection', '#212a33', '#c9a050', 'sheer');
+    const proc5 = createTextileSvg('Stage 05', 'Packaging & Bulk Dispatch', '#1f1a26', '#dfb15b', 'zari');
 
     await db.insert(manufacturingProcesses).values([
       {
-        title: 'Yarn Selection & Quality Testing',
+        title: 'Fabric Sourcing & Selection',
         stepNumber: 1,
-        description: 'Certified Grade-A mulberry silk, high-twist viscose filaments, and tested metallic zari are evaluated for tensile strength, elongation, and uniformity before entering the warp room.',
+        description: 'Carefully source and select suitable textile materials according to product requirements, design preferences and buyer specifications.',
         imageUrl: proc1,
-        highlight: '100% Tested Yarn Batches',
+        highlight: 'Curated Surat Textile Sourcing',
         sortOrder: 1,
       },
       {
-        title: 'High-Precision Rapier & Jacquard Weaving',
+        title: 'Design & Product Development',
         stepNumber: 2,
-        description: 'Our Surat facility operates synchronized airjet and electronic Jacquard looms capable of executing complex weaves, dense brocades, and delicate sheers with microscopic stitch accuracy.',
+        description: 'Develop textile collections, prints, patterns and product concepts suitable for different market segments.',
         imageUrl: proc2,
-        highlight: 'Micro-Tension Sensor Weaving',
+        highlight: 'Market-Aligned Collection Concepts',
         sortOrder: 2,
       },
       {
-        title: 'AZO-Free Eco-Dyeing & Washing',
+        title: 'Processing & Production',
         stepNumber: 3,
-        description: 'Computerized jet-dyeing vessels deliver flawless shade consistency across 5,000+ metre production runs, operating on non-toxic, OEKO-TEX Standard 100 compliant reactive dyestuffs.',
+        description: 'Coordinate the required textile processing, finishing and production activities according to the selected product and order specifications.',
         imageUrl: proc3,
-        highlight: 'Delta E < 0.5 Shade Consistency',
+        highlight: 'Coordinated Order Execution',
         sortOrder: 3,
       },
       {
-        title: 'Calendering, Softening & Finishing',
+        title: 'Quality Inspection',
         stepNumber: 4,
-        description: 'Custom post-processing treatments including high-temperature calendering, anti-static coating, silk-touch enzyme washing, and water-repellent applications tailored to buyer specifications.',
+        description: 'Inspect products for fabric appearance, print consistency, finishing, stitching (where applicable) and overall product quality.',
         imageUrl: proc4,
-        highlight: 'Tailored Luxury Hand-Feel',
+        highlight: 'Pre-Dispatch Quality Checks',
         sortOrder: 4,
       },
       {
-        title: 'ASTM 4-Point Quality Inspection & Packing',
+        title: 'Packaging & Bulk Dispatch',
         stepNumber: 5,
-        description: 'Every single roll of fabric passes across backlit inspection frames operated by seasoned fabric auditors, followed by moisture-proof vacuum roll sealing for international ocean and air freight.',
+        description: 'Prepare completed orders for organized packaging and wholesale dispatch, ensuring proper coordination with buyers.',
         imageUrl: proc5,
-        highlight: 'Zero-Defect Export Standard',
+        highlight: 'Organized Wholesale Dispatch',
         sortOrder: 5,
       },
     ]);
@@ -655,32 +655,25 @@ Whether you are launching a bespoke fashion line, producing boutique ethnic wear
     // 9. Manufacturing Capabilities
     await db.insert(manufacturingCapabilities).values([
       {
-        title: 'Monthly Production Volume',
-        metric: '500,000+ Metres',
-        description: 'State-of-the-art weaving infrastructure spread across 120,000 sq. ft. in Surat, Gujarat running round-the-clock shifts.',
-        icon: 'factory',
+        title: 'Ready-Stock Collections',
+        metric: 'Wholesale Stock',
+        description: 'Explore a diverse selection of wholesale sarees, fabrics, kurti sets and ethnic wear materials available for bulk purchasing.',
+        icon: 'layers',
         sortOrder: 1,
       },
       {
-        title: 'Custom Fabric Development Lab',
-        metric: '48-Hour Lab Dips',
-        description: 'In-house spectrophotometer color matching, custom GSM weighting, and rapid prototype sample strike-offs for designers.',
+        title: 'Made-to-Order Production',
+        metric: 'Custom Runs',
+        description: 'Develop collections according to buyer requirements, including fabric selection, designs, colors and product specifications.',
         icon: 'sparkles',
         sortOrder: 2,
       },
       {
-        title: 'Global Export Accreditations',
-        metric: 'ISO 9001 & OEKO-TEX',
-        description: 'Compliant with strict European and American safety and environmental regulations, ensuring skin-safe, durable textiles.',
+        title: 'Customized Textile Solutions',
+        metric: 'B2B Sourcing',
+        description: 'Work with our team to discuss product specifications, fabric requirements, design preferences and bulk-order needs.',
         icon: 'shield',
         sortOrder: 3,
-      },
-      {
-        title: 'Worldwide Fast Track Logistics',
-        metric: '35+ Export Countries',
-        description: 'Dedicated B2B logistics desk handling ocean bill of lading, air couriers, customs documentation, and door-to-door delivery.',
-        icon: 'truck',
-        sortOrder: 4,
       },
     ]);
 

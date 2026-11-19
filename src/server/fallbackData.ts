@@ -490,16 +490,17 @@ Whether you are launching a bespoke fashion line, producing boutique ethnic wear
 
 // Fallback Manufacturing Processes & Capabilities
 export const FALLBACK_PROCESSES = [
-  { id: 1, stepNumber: 1, title: 'Yarn Sourcing & Grading', description: 'Certified Mulberry silks, combed cottons, and high-twist viscose yarns.', iconName: 'Leaf', sortOrder: 1, isActive: true },
-  { id: 2, stepNumber: 2, title: 'High-Precision Loom Weaving', description: 'Advanced electronic jacquard and rapier looms operating 24/7.', iconName: 'Cog', sortOrder: 2, isActive: true },
-  { id: 3, stepNumber: 3, title: 'Eco-Friendly Dyeing & Finishing', description: 'OEKO-TEX certified zero-discharge waterless and steam finishing.', iconName: 'Sparkles', sortOrder: 3, isActive: true },
-  { id: 4, stepNumber: 4, title: 'Stringent Multi-Point Quality Audit', description: 'Inspecting every meter for tensile strength, colorfastness, and weave flawlessness.', iconName: 'CheckCircle2', sortOrder: 4, isActive: true },
+  { id: 1, stepNumber: 1, title: 'Fabric Sourcing & Selection', description: 'Carefully source and select suitable textile materials according to product requirements, design preferences and buyer specifications.', iconName: 'Layers', sortOrder: 1, isActive: true },
+  { id: 2, stepNumber: 2, title: 'Design & Product Development', description: 'Develop textile collections, prints, patterns and product concepts suitable for different market segments.', iconName: 'Palette', sortOrder: 2, isActive: true },
+  { id: 3, stepNumber: 3, title: 'Processing & Production', description: 'Coordinate the required textile processing, finishing and production activities according to the selected product and order specifications.', iconName: 'Settings', sortOrder: 3, isActive: true },
+  { id: 4, stepNumber: 4, title: 'Quality Inspection', description: 'Inspect products for fabric appearance, print consistency, finishing, stitching (where applicable) and overall product quality.', iconName: 'CheckCircle2', sortOrder: 4, isActive: true },
+  { id: 5, stepNumber: 5, title: 'Packaging & Bulk Dispatch', description: 'Prepare completed orders for organized packaging and wholesale dispatch, ensuring proper coordination with buyers.', iconName: 'Package', sortOrder: 5, isActive: true },
 ];
 
 export const FALLBACK_CAPABILITIES = [
-  { id: 1, title: 'Monthly Production Capacity', metric: '500,000+ Metres', description: 'High-speed rapier and jacquard weaving lines.', sortOrder: 1, isActive: true },
-  { id: 2, title: 'Custom Shade Matching', metric: '48 Hours', description: 'Computerized spectral color matching and lab dip turnaround.', sortOrder: 2, isActive: true },
-  { id: 3, title: 'Global Export Footprint', metric: '25+ Countries', description: 'Certified international shipping with complete customs compliance.', sortOrder: 3, isActive: true },
+  { id: 1, title: 'Ready-Stock Collections', metric: 'Wholesale Stock', description: 'Explore a diverse selection of wholesale sarees, fabrics, kurti sets and ethnic wear materials available for bulk purchasing.', sortOrder: 1, isActive: true },
+  { id: 2, title: 'Made-to-Order Production', metric: 'Custom Runs', description: 'Develop collections according to buyer requirements, including fabric selection, designs, colors and product specifications.', sortOrder: 2, isActive: true },
+  { id: 3, title: 'Customized Textile Solutions', metric: 'B2B Sourcing', description: 'Work with our team to discuss product specifications, fabric requirements, design preferences and bulk-order needs.', sortOrder: 3, isActive: true },
 ];
 
 // Fallback Site Settings

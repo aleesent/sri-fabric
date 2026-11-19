@@ -410,27 +410,29 @@ export default function App() {
         return (
           <>
             <SEOHead
-              title="Textile Manufacturing in Surat | High-Speed Looms & Digital Printing | SRI FABRIC"
-              description="Advanced textile manufacturing and custom digital fabric printing in Surat, Gujarat. Rapier looms, electronic Jacquards, 500,000m monthly capacity."
-              keywords="textile manufacturing Surat, rapier looms Surat, digital textile printing Surat, electronic Jacquard weaving, fabric production capacity Surat, textile dyeing mill"
+              title="Manufacturing & Textile Production Capabilities | Textile Manufacturer in Surat | SRI FABRIC"
+              description="SRI FABRIC is a trusted textile manufacturer and textile wholesale supplier in Surat offering ready-stock sarees, fabrics, kurti sets, made-to-order textile production, and bulk B2B textile sourcing across India and international markets."
+              keywords="Textile Manufacturer in Surat, Textile Wholesale Supplier in Surat, B2B Fabric Surat, Fabric Wholesale Surat, Wholesale Saree Supplier, Ethnic Wear Wholesale, Textile Sourcing India, Bulk Fabric Supplier India, Made-to-Order Textile Production"
               canonicalPath="/manufacturing"
               jsonLd={{
                 '@context': 'https://schema.org',
-                '@type': 'ItemPage',
-                name: 'Textile Manufacturing Facility Surat',
-                description: 'Advanced rapier loom weaving and digital printing facility in Surat, Gujarat.',
+                '@type': 'WebPage',
+                name: 'Manufacturing & Textile Production Capabilities | SRI FABRIC Surat',
+                description:
+                  'Ready-stock wholesale collections, made-to-order textile production, and customized B2B textile sourcing solutions from SRI FABRIC in Surat, Gujarat, India.',
                 url: 'https://www.srifabric.com/manufacturing',
                 breadcrumb: {
                   '@type': 'BreadcrumbList',
                   itemListElement: [
                     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.srifabric.com/' },
-                    { '@type': 'ListItem', position: 2, name: 'Manufacturing', item: 'https://www.srifabric.com/manufacturing' },
+                    { '@type': 'ListItem', position: 2, name: 'Manufacturing & Production', item: 'https://www.srifabric.com/manufacturing' },
                   ],
                 },
               }}
             />
             <ManufacturingView
-              onRequestEnquiry={() => handleOpenEnquiry()}
+              onRequestEnquiry={handleOpenEnquiry}
+              onNavigate={navigateTo}
             />
           </>
         );
